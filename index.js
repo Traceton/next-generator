@@ -1,8 +1,6 @@
 const readline = require("readline");
 
-const {
-  generatorController,
-} = require("./commands/generate/generatorController");
+const generatorController = require("./commands/generate/generatorController");
 
 const rl = readline.createInterface({
   input: process.stdin,
