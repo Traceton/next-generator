@@ -14,4 +14,4 @@ const generatorController = (userInput) => {
   }
 };
 
-module.exports = { generatorController };
+module.exports = generatorController;

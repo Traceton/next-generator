@@ -84,4 +84,4 @@ Content-type: application/json
     await createFile(`tests/${modelName}.rest`, restFile);
   }
 };
-module.exports = { generateRestTest };
+module.exports = generateRestTest;
