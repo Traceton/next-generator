@@ -5,4 +5,4 @@ const generateModel = (userInput) => {
   console.log("Tried to generate a model");
 };
 
-module.exports = generateModel;
+module.exports = { generateModel };

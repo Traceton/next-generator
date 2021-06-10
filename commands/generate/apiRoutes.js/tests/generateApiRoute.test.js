@@ -1,5 +1,7 @@
-const generateApiRoute = require("../generateApiRoute");
+const { generateApiRoute } = require("../generateApiRoute");
 
-test("should return yes", () => {
-  expect(generateApiRoute(["g", "api-route", "testRouteName"])).toBe("yes");
+test("should return true", async () => {
+  expect(await generateApiRoute(["g", "api-route", "testRouteName"])).toBe(
+    true
+  );
 });
