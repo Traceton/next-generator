@@ -4,7 +4,8 @@
   "description": "Your Next.js route, model, and page generator.",
   "main": "index.js",
   "scripts": {
-    "Next-generator": "node index.js"
+    "Next-generator": "node index.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
