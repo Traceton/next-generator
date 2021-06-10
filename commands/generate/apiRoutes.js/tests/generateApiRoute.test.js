@@ -5,3 +5,7 @@ test("should return true", async () => {
     true
   );
 });
+
+test("should return false", async () => {
+  expect(await generateApiRoute(["g", "api-route"])).toBe(false);
+});

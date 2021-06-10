@@ -2,24 +2,31 @@ const { createDirectory } = require("../../../utils");
 const { createFile } = require("../../../utils");
 const { existsSync } = require("fs");
 
+// g sr page
+
 const generateApiRoute = async (userInput) => {
   const routeName = userInput[2];
 
+  if (!routeName) {
+    return false;
+  }
+
   const apiRouteFile = `
-route name ----> ${routeName}
+// route name ----> ${routeName}
 `;
 
+  if (!existsSync(`pages`)) {
+    await createDirectory("pages");
+  }
+
   if (!existsSync(`pages/api`)) {
-    // console.log("/tests path does NOT exist");
-    await createDirectory("pages/api");
+    await createDirectory("pages/api/");
+  }
+
+  if (existsSync(`pages/api`)) {
     await createFile(`pages/api/${routeName}.js`, apiRouteFile);
-    return true;
-  } else if (existsSync(`pages/api`)) {
-    // console.log("/tests path exists");
-    await createFile(`tests/${routeName}.js`, apiRouteFile);
-    return true;
   } else {
-    return false;
+    console.log("no file created");
   }
 };
 
