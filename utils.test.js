@@ -1,9 +1,11 @@
 const { createDirectory, createFile } = require("./utils");
 
 test("should return file created", async () => {
+  let testTextFile = `dummy text from testing`;
+
   let fileCreated = await createFile(
-    `randomFilePathName/randomFileName`,
-    "dummy text from testing"
+    `randomFileNameForJestTest.txt`,
+    testTextFile
   );
   expect(fileCreated).toBe(`file created`);
 });

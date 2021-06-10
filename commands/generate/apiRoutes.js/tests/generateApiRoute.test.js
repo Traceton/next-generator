@@ -1,11 +1,13 @@
 const { generateApiRoute } = require("../generateApiRoute");
 
-test("should return true", async () => {
+test("should return file created", async () => {
   expect(await generateApiRoute(["g", "api-route", "testRouteName"])).toBe(
-    true
+    `file created`
   );
 });
 
-test("should return false", async () => {
-  expect(await generateApiRoute(["g", "api-route"])).toBe(false);
+test("should return no routeName recieved", async () => {
+  expect(await generateApiRoute(["g", "api-route"])).toBe(
+    `no routeName recieved`
+  );
 });

@@ -8,7 +8,7 @@ const generateApiRoute = async (userInput) => {
   const routeName = userInput[2];
 
   if (!routeName) {
-    return false;
+    return `no routeName recieved`;
   }
 
   const apiRouteFile = `
@@ -25,6 +25,7 @@ const generateApiRoute = async (userInput) => {
 
   if (existsSync(`pages/api`)) {
     await createFile(`pages/api/${routeName}.js`, apiRouteFile);
+    return `file created`;
   } else {
     console.log("no file created");
   }
