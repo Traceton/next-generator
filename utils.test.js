@@ -1,21 +1,32 @@
+// Test functionality of createDirectory and createFile.
 const { createDirectory, createFile } = require("./utils");
 
+// test correct input
 test("should return file created", async () => {
-  let testTextFile = `dummy text from testing`;
+  expect(await createFile("", "// testContent")).toBe(`file created`);
+});
 
-  let fileCreated = await createFile(
-    `randomFileNameForJestTest.txt`,
-    testTextFile
+// test incorrect input
+test("should return filePath does not exist", async () => {
+  expect(await createFile("nonExistingFilePath.txt", "// testContent")).toBe(
+    `filePath does not exist`
   );
-  expect(fileCreated).toBe(`file created`);
+});
+
+// Test undefined input
+test("should return no filePath and no fileContent recieved ", async () => {
+  expect(await createFile(undefined)).toBe(
+    `no filePath and no fileContent recieved`
+  );
+});
+
+// Test null input
+test("should return no filePath and no fileContent recieved ", async () => {
+  expect(await createFile(null)).toBe(
+    `no filePath and no fileContent recieved`
+  );
 });
 
 test("should return no filePath and no fileContent recieved ", async () => {
   expect(await createFile()).toBe(`no filePath and no fileContent recieved`);
-});
-
-test("should return no filePath OR no fileContent recieved", async () => {
-  expect(await createFile(`randomDirectoryName/`)).toBe(
-    `no filePath OR no fileContent recieved`
-  );
 });
