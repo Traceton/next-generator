@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/tjcharm/next-generator/issues"
   },
-  "homepage": "https://github.com/tjcharm/next-generator#readme"
+  "homepage": "https://github.com/tjcharm/next-generator#readme",
+  "devDependencies": {
+    "jest": "^27.0.4"
+  }
 }
