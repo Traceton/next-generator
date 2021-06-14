@@ -2,6 +2,7 @@ const fs = require("fs");
 
 const createDirectory = async (directoryPath) => {
   if (!directoryPath) {
+    console.log(`no directoryPath recieved`);
     return `no directoryPath recieved`;
   }
 
@@ -15,14 +16,16 @@ const createDirectory = async (directoryPath) => {
 
 const createFile = async (filePath, fileContent) => {
   if (!filePath && !fileContent) {
+    console.log(`no filePath and no fileContent recieved`);
     return `no filePath and no fileContent recieved`;
   } else if (!fileContent) {
+    console.log(`no filePath OR no fileContent recieved`);
     return `no filePath OR no fileContent recieved`;
   }
 
   await fs.writeFile(filePath, fileContent, { recursive: true }, (error) => {
     if (error) {
-      // console.log(error);
+      console.log(`error in createFile --> ${error}`);
       return `error in createFile`;
     }
   });
