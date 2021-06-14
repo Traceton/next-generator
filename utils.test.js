@@ -1,7 +1,6 @@
 // Test functionality of createDirectory and createFile.
 const { createDirectory, createFile } = require("./utils");
 const fs = require("fs");
-const { existsSync } = require("fs");
 
 jest.mock(`fs`);
 
