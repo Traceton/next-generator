@@ -9,8 +9,8 @@ const createDirectory = async (directoryPath) => {
     if (error) {
       return `incorrect directory name format`;
     }
-    return `directory created`;
   });
+  return `directory created`;
 };
 
 const createFile = async (filePath, fileContent) => {
@@ -25,10 +25,8 @@ const createFile = async (filePath, fileContent) => {
       // console.log(error);
       return `error in createFile`;
     }
-    // console.log(`${filePath} created`);
-
-    return `file created`;
   });
+  return `file created`;
 };
 
 module.exports = { createDirectory, createFile };
