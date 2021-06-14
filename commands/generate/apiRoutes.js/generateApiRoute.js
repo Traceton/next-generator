@@ -20,15 +20,10 @@ const generateApiRoute = async (userInput) => {
   }
 
   if (!existsSync(`pages/api`)) {
-    await createDirectory("pages/api/");
+    await createDirectory("pages/api");
   }
 
-  if (existsSync(`pages/api`)) {
-    await createFile(`pages/api/${routeName}.js`, apiRouteFile);
-    return `file created`;
-  } else {
-    console.log("no file created");
-  }
+  createFile(`pages/api/${routeName}.js`, apiRouteFile);
 };
 
 module.exports = { generateApiRoute };

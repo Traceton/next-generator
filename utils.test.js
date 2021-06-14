@@ -8,12 +8,12 @@ jest.mock(`fs`);
 // test correct input
 describe("Test if `fs` is called correctly in createFile", () => {
   beforeAll(() => {
-    fs.writeFile.mockClear();
+    fs.writeFileSync.mockClear();
     // fs.writeFile.mockReturnValue("file created");
     createFile("testRoute.wozers", "// test content");
   });
-  it(`"fs.writeFile" should be called one time`, () => {
-    expect(fs.writeFile).toHaveBeenCalledTimes(1);
+  it(`"fs.writeFileSync" should be called one time`, () => {
+    expect(fs.writeFileSync).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -41,11 +41,11 @@ test("should return no filePath and no fileContent recieved ", async () => {
 // // test correct input
 describe("test if `fs` is called correctly in createDirectory", () => {
   beforeAll(() => {
-    fs.mkdir.mockClear();
+    fs.mkdirSync.mockClear();
     createDirectory("testDirectory");
   });
-  it(`"fs.mkdir" should be called one time`, () => {
-    expect(fs.mkdir).toHaveBeenCalledTimes(1);
+  it(`"fs.mkdirSync" should be called one time`, () => {
+    expect(fs.mkdirSync).toHaveBeenCalledTimes(1);
   });
 });
 
