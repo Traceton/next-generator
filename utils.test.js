@@ -3,30 +3,19 @@ const { createDirectory, createFile } = require("./utils");
 const fs = require("fs");
 const { existsSync } = require("fs");
 
-// jest.mock(`fs`);
+jest.mock(`fs`);
 
 // CREATE FILE TESTS
 // test correct input
-test("should return file created", async () => {
-  if (existsSync(`testFileName.js`)) {
-    await fs.unlink("testFileName.js", (err) => {
-      if (err) {
-        console.log(err);
-      }
-    });
-  }
-
-  await expect(await createFile("testFileName.js", "// testContent")).toBe(
-    `file created`
-  );
-
-  if (existsSync(`testFileName.js`)) {
-    await fs.unlink("testFileName.js", (err) => {
-      if (err) {
-        console.log(err);
-      }
-    });
-  }
+describe("Test if fs is called correctly", () => {
+  beforeAll(() => {
+    fs.writeFile.mockClear();
+    fs.writeFile.mockReturnValue("file created");
+    createFile("testRoute.wozers", "// test content");
+  });
+  it(`should be called one time`, () => {
+    expect(fs.writeFile).toHaveBeenCalledTimes(1);
+  });
 });
 
 // // test incorrect input
