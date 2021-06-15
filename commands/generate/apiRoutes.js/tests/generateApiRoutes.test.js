@@ -16,7 +16,7 @@ describe(`Test generating all api routes for a model with valid input`, () => {
   });
 
   it(` "fs.writeFileSync" to be called 1 times`, () => {
-    expect(fs.writeFileSync).toHaveBeenCalledTimes(1);
+    expect(fs.writeFileSync).toHaveBeenCalledTimes(2);
   });
 });
 
