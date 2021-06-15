@@ -21,6 +21,15 @@ const generatePages = async (userInput) => {
     await createDirectory(`pages/${modelName}s`);
   }
 
+  if (!existsSync(`.env.local`)) {
+    await createFile(
+      ".env.local",
+      `MONGODB_URI=your-database-string-here
+    MONGODB_DB=your-database-name-here    
+    `
+    );
+  }
+
   createFile(`pages/${modelName}s/index.js`, indexPage);
 
   createFile(`pages/${modelName}s/[${modelName}Id].js`, dynamicPage);

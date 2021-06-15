@@ -9,6 +9,10 @@ const generateApiRoutes = async (userInput) => {
     return `no routeName recieved`;
   }
 
+  const indexApiPage = `// blank content for pages index`;
+
+  const dynamicApiPage = `// blank dynamic page`;
+
   if (!existsSync(`pages`)) {
     await createDirectory("pages");
   }
@@ -21,14 +25,17 @@ const generateApiRoutes = async (userInput) => {
     createDirectory(`pages/api/${modelName}s`);
   }
 
-  createFile(
-    `pages/api/${modelName}s/index.js`,
-    "// blank test content for index"
-  );
-  createFile(
-    `pages/api/${modelName}s/[${modelName}Id].js`,
-    "// blank test content"
-  );
+  if (!existsSync(`.env.local`)) {
+    await createFile(
+      ".env.local",
+      `MONGODB_URI=your-database-string-here
+    MONGODB_DB=your-database-name-here    
+    `
+    );
+  }
+
+  createFile(`pages/api/${modelName}s/index.js`, indexApiPage);
+  createFile(`pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
 };
 
 module.exports = { generateApiRoutes };
