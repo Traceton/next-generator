@@ -8,10 +8,10 @@ describe(`Test generate a single api route with valid input`, () => {
   beforeAll(() => {
     fs.mkdirSync.mockClear();
     fs.writeFileSync.mockClear();
-    generateApiRoute(["generate", "sr", "testPage"]);
+    generateApiRoute(["generate", "sr", "truck"]);
   });
   it(`"fs.mkdirSync" should be called 2 times`, () => {
-    expect(fs.mkdirSync).toHaveBeenCalledTimes(2);
+    expect(fs.mkdirSync).toHaveBeenCalledTimes(3);
   });
 
   it(`"fs.writeFileSync" should be called 1 time`, () => {

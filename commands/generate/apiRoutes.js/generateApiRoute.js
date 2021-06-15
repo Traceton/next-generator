@@ -2,7 +2,7 @@ const { createDirectory } = require("../../../utils");
 const { createFile } = require("../../../utils");
 const { existsSync } = require("fs");
 
-// g sr page
+// g sr truck
 
 const generateApiRoute = async (userInput) => {
   const routeName = userInput[2];
@@ -23,7 +23,9 @@ const generateApiRoute = async (userInput) => {
     await createDirectory("pages/api");
   }
 
-  createFile(`pages/api/${routeName}.js`, apiRouteFile);
+  await createDirectory(`pages/api/${routeName}s`);
+
+  createFile(`pages/api/${routeName}s/${routeName}.js`, apiRouteFile);
 };
 
 module.exports = { generateApiRoute };
