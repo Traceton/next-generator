@@ -1,6 +1,7 @@
 const { generateModel } = require("./models/generateModel");
 const { generateApiRoutes } = require("./apiRoutes.js/generateApiRoutes");
 const { generateRestTest } = require("./tests/generateRestTest");
+const { generatePages } = require("./pages/tests/generatePages.test");
 
 const generatorController = (userInput) => {
   if (userInput[1] === "model" || userInput[1] === "m") {
@@ -9,6 +10,8 @@ const generatorController = (userInput) => {
     generateApiRoutes(userInput);
   } else if (userInput[1] === "tests" || userInput[1] === "t") {
     generateRestTest(userInput);
+  } else if (userInput[1] === "pages" || userInput[1] === "p") {
+    generatePages(userInput);
   } else {
     console.log(`Sorry, that command wasnt recognized`);
   }

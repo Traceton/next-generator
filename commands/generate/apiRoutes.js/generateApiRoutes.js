@@ -1,11 +1,10 @@
-const { createDirectory } = require("../../../utils");
-const { createFile } = require("../../../utils");
+const { createDirectory, createFile } = require("../../../utils");
 const { existsSync } = require("fs");
 
 // g r truck
 
 const generateApiRoutes = async (userInput) => {
-  const routeFolderName = userInput[2];
+  const modelName = userInput[2];
   if (!routeFolderName) {
     return `no routeName recieved`;
   }
@@ -18,16 +17,16 @@ const generateApiRoutes = async (userInput) => {
     await createDirectory("pages/api");
   }
 
-  if (!existsSync(`pages/api/${routeFolderName}s`)) {
-    createDirectory(`pages/api/${routeFolderName}s`);
+  if (!existsSync(`pages/api/${modelName}s`)) {
+    createDirectory(`pages/api/${modelName}s`);
   }
 
   createFile(
-    `pages/api/${routeFolderName}s/index.js`,
+    `pages/api/${modelName}s/index.js`,
     "// blank test content for index"
   );
   createFile(
-    `pages/api/${routeFolderName}s/[${routeFolderName}Id].js`,
+    `pages/api/${modelName}s/[${modelName}Id].js`,
     "// blank test content"
   );
 };
