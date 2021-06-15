@@ -1,8 +1,66 @@
-const { createDirectory } = require("../../../utils");
-const { createFile } = require("../../../utils");
+const { createDirectory, createFile } = require("../../../utils");
+const { existsSync } = require("fs");
 
-const generateModel = (userInput) => {
-  console.log("Tried to generate a model");
+// g m user firstName:String lastName:String
+
+const generateModel = async (userInput) => {
+  let modelName = userInput[2];
+
+  let modelItems = userInput.slice(3);
+
+  let neWModelSchemaItems = [];
+
+  // maps through each command
+  modelItems.map((unSplitEntry) => {
+    let entry = unSplitEntry.split(":");
+    let entryName = entry[0];
+    let entryType = entry[1];
+
+    let modelField = {
+      [entryName]: {
+        type: entryType,
+        required: true,
+      },
+    };
+
+    let stringField = JSON.stringify(modelField)
+      .replace("{", "")
+      .replace("}", "");
+    neWModelSchemaItems.push(stringField);
+  });
+
+  let createdOnField = `createdOn: {
+    type: Date,
+    required: true,
+    default: Date.now(),
+  },`;
+  neWModelSchemaItems.push(createdOnField);
+
+  let finalSchemaItems = neWModelSchemaItems
+    .toString()
+    .replace("[", "")
+    .replace("]", "")
+    .replace(/"/g, "");
+
+  let newModel = `const mongoose = require("mongoose"); \n
+
+  const ${modelName}Schema = new mongoose.Schema({
+
+  ${finalSchemaItems}
+
+  }); \n
+
+  module.exports = mongoose.models.${modelName} || mongoose.model("${modelName}", ${modelName}Schema);`;
+
+  if (!existsSync(`components`)) {
+    await createDirectory("components");
+  }
+
+  if (!existsSync(`components/models`)) {
+    await createDirectory("components/models");
+  }
+
+  createFile(`components/models/${modelName}.js`, newModel);
 };
 
 module.exports = { generateModel };
