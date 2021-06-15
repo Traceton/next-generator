@@ -1,7 +1,7 @@
 const { createDirectory, createFile } = require("../../../utils");
 const { existsSync } = require("fs");
 
-// g r truck
+// g e-r truck
 
 const generateEmptyApiRoutes = async (userInput) => {
   const modelName = userInput[2];
