@@ -8,6 +8,8 @@ const generatorController = (userInput) => {
     generateModel(userInput);
   } else if (userInput[1] === "routes" || userInput[1] === "r") {
     generateApiRoutes(userInput);
+  } else if (userInput[1] === "empty-routes" || userInput[1] === "e-r") {
+    generateApiRoutes(userInput);
   } else if (userInput[1] === "tests" || userInput[1] === "t") {
     generateRestTest(userInput);
   } else if (userInput[1] === "pages" || userInput[1] === "p") {

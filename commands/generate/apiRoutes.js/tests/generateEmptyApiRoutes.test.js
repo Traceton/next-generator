@@ -1,4 +1,4 @@
-const { generatePages } = require("../generatePages");
+const { generateEmptyApiRoutes } = require("../generateEmptyApiRoutes");
 
 const fs = require("fs");
 
@@ -8,11 +8,11 @@ describe(`Test generating all api routes for a model with valid input`, () => {
   beforeAll(() => {
     fs.mkdirSync.mockClear();
     fs.writeFileSync.mockClear();
-    generatePages(["generate", "p", "car"]);
+    generateEmptyApiRoutes(["generate", "e-r", "car"]);
   });
 
   it(` "fs.mkdirSync" to be called 3 times`, () => {
-    expect(fs.mkdirSync).toHaveBeenCalledTimes(2);
+    expect(fs.mkdirSync).toHaveBeenCalledTimes(3);
   });
 
   it(` "fs.writeFileSync" to be called 1 times`, () => {
@@ -24,7 +24,7 @@ describe(`Test generating all api routes for a model with incorrect input`, () =
   beforeAll(() => {
     fs.mkdirSync.mockClear();
     fs.writeFileSync.mockClear();
-    generatePages(["generate", "p", undefined]);
+    generateEmptyApiRoutes(["generate", "sr", undefined]);
   });
 
   it(` "fs.mkdirSync" to be called 0 times`, () => {

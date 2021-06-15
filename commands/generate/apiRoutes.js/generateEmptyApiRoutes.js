@@ -3,7 +3,7 @@ const { existsSync } = require("fs");
 
 // g r truck
 
-const generateApiRoutes = async (userInput) => {
+const generateEmptyApiRoutes = async (userInput) => {
   const modelName = userInput[2];
   if (!modelName) {
     return `no routeName recieved`;
@@ -31,4 +31,4 @@ const generateApiRoutes = async (userInput) => {
   );
 };
 
-module.exports = { generateApiRoutes };
+module.exports = { generateEmptyApiRoutes };
