@@ -1,7 +1,7 @@
 const { generateModel } = require("./models/generateModel");
 const { generateApiRoutes } = require("./apiRoutes.js/generateApiRoutes");
 const { generateRestTest } = require("./tests/generateRestTest");
-const { generatePages } = require("./pages/tests/generatePages.test");
+const { generatePages } = require("./pages/generatePages");
 
 const generatorController = (userInput) => {
   if (userInput[1] === "model" || userInput[1] === "m") {
