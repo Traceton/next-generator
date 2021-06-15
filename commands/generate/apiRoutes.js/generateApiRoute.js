@@ -23,7 +23,9 @@ const generateApiRoute = async (userInput) => {
     await createDirectory("pages/api");
   }
 
-  await createDirectory(`pages/api/${routeName}s`);
+  if (!existsSync(`pages/api/${routeName}s`)) {
+    await createDirectory(`pages/api/${routeName}s`);
+  }
 
   createFile(`pages/api/${routeName}s/${routeName}.js`, apiRouteFile);
 };
