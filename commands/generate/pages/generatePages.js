@@ -9,6 +9,10 @@ const generatePages = async (userInput) => {
     return `no modelName recieved`;
   }
 
+  const indexPage = `// blank content for pages index`;
+
+  const dynamicPage = `// blank dynamic page`;
+
   if (!existsSync(`pages`)) {
     await createDirectory("pages");
   }
@@ -17,15 +21,9 @@ const generatePages = async (userInput) => {
     await createDirectory(`pages/${modelName}s`);
   }
 
-  createFile(
-    `pages/${modelName}s/index.js`,
-    "// blank test content for pages index"
-  );
+  createFile(`pages/${modelName}s/index.js`, indexPage);
 
-  createFile(
-    `pages/${modelName}s/[${modelName}Id].js`,
-    "// blank test pages content"
-  );
+  createFile(`pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
 };
 
 module.exports = { generatePages };
