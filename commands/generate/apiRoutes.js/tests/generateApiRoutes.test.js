@@ -12,11 +12,11 @@ describe(`Test generating all api routes for a model with valid input`, () => {
   });
 
   it(` "fs.mkdirSync" to be called 3 times`, () => {
-    expect(fs.mkdirSync).toHaveBeenCalledTimes(3);
+    expect(fs.mkdirSync).toHaveBeenCalledTimes(4);
   });
 
   it(` "fs.writeFileSync" to be called 3 times`, () => {
-    expect(fs.writeFileSync).toHaveBeenCalledTimes(3);
+    expect(fs.writeFileSync).toHaveBeenCalledTimes(4);
   });
 });
 

@@ -14,90 +14,174 @@ const generateApiRoutes = async (userInput) => {
   }
 
   const indexApiPage = `
-  import ${upperCaseFirstLetterModelName} from "../../../components/models/${modelName}";
+import ${upperCaseFirstLetterModelName} from "../../../components/models/${upperCaseFirstLetterModelName}";
+import dbConnect from "../../../utils/dbConnect";
 
-  import { MongoClient } from "mongodb";
-  
-  export default async (req, res) => {
-    if (req.method === "GET") {
-      const client = await MongoClient.connect(process.env.MONGODB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
+dbConnect();
+
+export default async (req, res) => {
+  switch (req.method) {
+    case "GET":
+      try {
+        const ${modelName} = await ${upperCaseFirstLetterModelName}.find({});
+
+        if (!${modelName}) {
+          return res
+            .status(404)
+            .json({ message_type: "warning", message: "${modelName} not found" });
+        }
+
+        res.status(201).json({
+          message_type: "success",
+          message: "${modelName} found",
+          ${modelName}: ${modelName},
+        });
+      } catch (error) {
+        res.status(400).json({
+          message_type: "warning",
+          message: "${modelName} not found",
+          error: error,
+        });
+      }
+      break;
+    case "POST":
+      try {
+        const new${upperCaseFirstLetterModelName} = await ${upperCaseFirstLetterModelName}.create(req.body);
+
+        res.status(201).json({
+          message_type: "success",
+          message: "${modelName} found",
+          ${modelName}: new${upperCaseFirstLetterModelName},
+        });
+      } catch (error) {
+        res.status(400).json({
+          message_type: "warning",
+          message: "${modelName} not found",
+          error: error,
+        });
+      }
+      break;
+    default:
+      res.status(500).json({
+        message_type: "error",
+        message: "Response method not found",
       });
-  
-      const db = client.db();
-  
-      const ${modelName}sCollection = await db.collection("${modelName}s");
-  
-      let ${modelName}s = await ${modelName}sCollection.find().toArray();
-  
-      client.close();
-  
-      res.status(200).json(${modelName}s);
-    } else if (req.method === "POST") {
-      const client = await MongoClient.connect(process.env.MONGODB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
-  
-      const db = client.db();
-  
-      const ${modelName}sCollection = db.collection("${modelName}s");
-  
-      const ${modelName} = await new ${upperCaseFirstLetterModelName}(req.body);
-  
-      let new${upperCaseFirstLetterModelName} = await ${modelName}sCollection.insertOne(${modelName});
-  
-      client.close();
-  
-      res.status(200).json({ new${upperCaseFirstLetterModelName} });
-    } 
-  };`;
+      break;
+  }
+};
+  `;
 
   const dynamicApiPage = `
-  import ${upperCaseFirstLetterModelName} from "../../../components/models/Project";
-  import { MongoClient } from "mongodb";
-  import { ObjectId } from "bson";
+  import ${upperCaseFirstLetterModelName} from "../../../components/models/${upperCaseFirstLetterModelName}";
+  import dbConnect from "../../../utils/dbConnect";
+  
+  dbConnect();
   
   export default async (req, res) => {
     const ${modelName}Id = req.query.${modelName}Id;
   
-    if (req.method === "GET") {
-      const client = await MongoClient.connect(process.env.MONGODB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
+    switch (req.method) {
+      case "GET":
+        try {
+          const ${modelName} = await ${upperCaseFirstLetterModelName}.findById(${modelName}Id);
   
-      const db = client.db();
+          if (!${modelName}) {
+            return res
+              .status(404)
+              .json({ message_type: "warning", message: "${modelName} not found" });
+          }
   
-      const ${modelName}sCollection = await db.collection("${modelName}s");
+          res.status(201).json({
+            message_type: "success",
+            message: "${modelName} found",
+            ${modelName}: ${modelName},
+          });
+        } catch (error) {
+          res.status(400).json({
+            message_type: "warning",
+            message: "${modelName} not found",
+            error: error,
+          });
+        }
+        break;
+      case "PUT":
+        try {
+          const ${modelName} = await ${upperCaseFirstLetterModelName}.findByIdAndUpdate(${modelName}Id, req.body, {
+            new: true,
+            runValidators: true,
+          });
   
-      let ${modelName} = await ${modelName}sCollection.findOne(ObjectId(${modelName}Id));
+          if (!${modelName}) {
+            return res
+              .status(404)
+              .json({ message_type: "warning", message: "${modelName} not found" });
+          }
   
-      client.close();
+          res.status(201).json({
+            message_type: "success",
+            message: "${modelName} found",
+            ${modelName}: ${modelName},
+          });
+        } catch (error) {
+          res.status(400).json({
+            message_type: "warning",
+            message: "${modelName} not updated",
+            error: error,
+          });
+        }
+        break;
+      case "DELETE":
+        try {
+          const deleted${upperCaseFirstLetterModelName} = await ${upperCaseFirstLetterModelName}.deleteOne({ _id: ${modelName}Id });
   
-      res.status(200).json(${modelName});
-    } else if (req.method === "PATCH") {
-      const client = await MongoClient.connect(process.env.MONGODB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
+          if (!deleted${upperCaseFirstLetterModelName}) {
+            return res
+              .status(404)
+              .json({ message_type: "warning", message: "${modelName} not found" });
+          }
   
-      const db = client.db();
-  
-      const ${modelName}sCollection = db.collection("${modelName}s");
-  
-      const ${modelName} = await new ${upperCaseFirstLetterModelName}(req.body);
-  
-      let new${upperCaseFirstLetterModelName} = await ${modelName}sCollection.insertOne(${modelName});
-  
-      client.close();
-  
-      res.status(200).json({ new${upperCaseFirstLetterModelName} });
-    } else if (req.method === "DELETE") {
-      res.status(200).json({ name: "John Doe delete" });
+          res.status(201).json({
+            message_type: "success",
+            message: "${modelName} found",
+            ${modelName}: deleted${upperCaseFirstLetterModelName},
+          });
+        } catch (error) {
+          res.status(400).json({
+            message_type: "warning",
+            message: "${modelName} not deleted",
+            error: error,
+          });
+        }
+        break;
+      default:
+        res.status(500).json({
+          message_type: "error",
+          message: "Response method not found",
+        });
+        break;
     }
-  };`;
+  };  
+  `;
+
+  const dbConnectFile = `
+  import mongoose from "mongoose";
+
+  const connection = {};
+  
+  async function dbConnect() {
+    if (connection.isConnected) {
+      return;
+    }
+  
+    const db = await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+  
+    connection.isConnected = db.connections[0].readyState;
+  }
+  
+  export default dbConnect;`;
 
   if (!existsSync(`pages`)) {
     await createDirectory("pages");
@@ -110,6 +194,12 @@ const generateApiRoutes = async (userInput) => {
   if (!existsSync(`pages/api/${modelName}s`)) {
     createDirectory(`pages/api/${modelName}s`);
   }
+
+  if (!existsSync(`utils`)) {
+    await createDirectory("utils");
+  }
+
+  createFile(`utils/dbConnect.js`, dbConnectFile);
 
   if (!existsSync(`.env.local`)) {
     await createFile(
