@@ -8,6 +8,7 @@ const generateApiRoutes = async (userInput) => {
 
   const upperCaseFirstLetterModelName =
     modelName.charAt(0).toUpperCase() + modelName.slice(1);
+
   if (!modelName) {
     return `no routeName recieved`;
   }
@@ -50,9 +51,7 @@ const generateApiRoutes = async (userInput) => {
       client.close();
   
       res.status(200).json({ new${upperCaseFirstLetterModelName} });
-    } else if (req.method === "DELETE") {
-      res.status(200).json({ name: "John Doe delete" });
-    }
+    } 
   };`;
 
   const dynamicApiPage = `
