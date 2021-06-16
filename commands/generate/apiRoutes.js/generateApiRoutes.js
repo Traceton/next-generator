@@ -6,7 +6,8 @@ const { existsSync } = require("fs");
 const generateApiRoutes = async (userInput) => {
   const modelName = userInput[2];
 
-  const upperCaseFirstLetterModelName = userInput[2];
+  const upperCaseFirstLetterModelName =
+    modelName.charAt(0).toUpperCase() + modelName.slice(1);
   if (!modelName) {
     return `no routeName recieved`;
   }
@@ -54,7 +55,50 @@ const generateApiRoutes = async (userInput) => {
     }
   };`;
 
-  const dynamicApiPage = `// blank dynamic page`;
+  const dynamicApiPage = `
+  import ${upperCaseFirstLetterModelName} from "../../../components/models/Project";
+  import { MongoClient } from "mongodb";
+  import { ObjectId } from "bson";
+  
+  export default async (req, res) => {
+    const ${modelName}Id = req.query.${modelName}Id;
+  
+    if (req.method === "GET") {
+      const client = await MongoClient.connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+  
+      const db = client.db();
+  
+      const ${modelName}sCollection = await db.collection("${modelName}s");
+  
+      let ${modelName} = await ${modelName}sCollection.findOne(ObjectId(${modelName}Id));
+  
+      client.close();
+  
+      res.status(200).json(${modelName});
+    } else if (req.method === "PATCH") {
+      const client = await MongoClient.connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+  
+      const db = client.db();
+  
+      const ${modelName}sCollection = db.collection("${modelName}s");
+  
+      const ${modelName} = await new ${upperCaseFirstLetterModelName}(req.body);
+  
+      let new${upperCaseFirstLetterModelName} = await ${modelName}sCollection.insertOne(${modelName});
+  
+      client.close();
+  
+      res.status(200).json({ new${upperCaseFirstLetterModelName} });
+    } else if (req.method === "DELETE") {
+      res.status(200).json({ name: "John Doe delete" });
+    }
+  };`;
 
   if (!existsSync(`pages`)) {
     await createDirectory("pages");

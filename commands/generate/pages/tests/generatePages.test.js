@@ -4,23 +4,23 @@ const fs = require("fs");
 
 jest.mock("fs");
 
-describe(`Test generating all api routes for a model with valid input`, () => {
+describe(`Test generating all page routes for a model with valid input`, () => {
   beforeAll(() => {
     fs.mkdirSync.mockClear();
     fs.writeFileSync.mockClear();
     generatePages(["generate", "p", "car"]);
   });
 
-  it(` "fs.mkdirSync" to be called 3 times`, () => {
+  it(` "fs.mkdirSync" to be called 2 times`, () => {
     expect(fs.mkdirSync).toHaveBeenCalledTimes(2);
   });
 
-  it(` "fs.writeFileSync" to be called 1 times`, () => {
-    expect(fs.writeFileSync).toHaveBeenCalledTimes(2);
+  it(` "fs.writeFileSync" to be called 3 times`, () => {
+    expect(fs.writeFileSync).toHaveBeenCalledTimes(3);
   });
 });
 
-describe(`Test generating all api routes for a model with incorrect input`, () => {
+describe(`Test generating all page routes for a model with incorrect input`, () => {
   beforeAll(() => {
     fs.mkdirSync.mockClear();
     fs.writeFileSync.mockClear();
