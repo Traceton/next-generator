@@ -46,17 +46,17 @@ export default async (req, res) => {
       break;
     case "POST":
       try {
-        const new${upperCaseFirstLetterModelName} = await ${upperCaseFirstLetterModelName}.create(req.body);
+        const ${modelName} = await ${upperCaseFirstLetterModelName}.create(req.body);
 
         res.status(201).json({
           message_type: "success",
-          message: "${modelName} found",
-          ${modelName}: new${upperCaseFirstLetterModelName},
+          message: "${modelName} created",
+          ${modelName}: ${modelName},
         });
       } catch (error) {
         res.status(400).json({
           message_type: "warning",
-          message: "${modelName} not found",
+          message: "${modelName} not created",
           error: error,
         });
       }
@@ -119,7 +119,7 @@ export default async (req, res) => {
 
         res.status(201).json({
           message_type: "success",
-          message: "${modelName} found",
+          message: "${modelName} updated",
           ${modelName}: ${modelName},
         });
       } catch (error) {
@@ -132,9 +132,9 @@ export default async (req, res) => {
       break;
     case "DELETE":
       try {
-        const deleted${upperCaseFirstLetterModelName} = await ${upperCaseFirstLetterModelName}.deleteOne({ _id: ${modelName}Id });
+        const ${modelName} = await ${upperCaseFirstLetterModelName}.deleteOne({ _id: ${modelName}Id });
 
-        if (!deleted${upperCaseFirstLetterModelName}) {
+        if (!${modelName}) {
           return res
             .status(404)
             .json({ message_type: "warning", message: "${modelName} not found" });
@@ -142,8 +142,8 @@ export default async (req, res) => {
 
         res.status(201).json({
           message_type: "success",
-          message: "${modelName} found",
-          ${modelName}: deleted${upperCaseFirstLetterModelName},
+          message: "${modelName} deleted",
+          ${modelName}: ${modelName},
         });
       } catch (error) {
         res.status(400).json({
@@ -154,7 +154,7 @@ export default async (req, res) => {
       }
       break;
     default:
-      res.status(500).json({
+      res.status(404).json({
         message_type: "error",
         message: "Response method not found",
       });
