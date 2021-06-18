@@ -192,8 +192,8 @@ export default async (req, res) => {
     await createDirectory("pages/api");
   }
 
-  if (!existsSync(`pages/api/${modelName}s`)) {
-    createDirectory(`pages/api/${modelName}s`);
+  if (!existsSync(`pages/api/${upperCaseFirstLetterModelName}s`)) {
+    createDirectory(`pages/api/${upperCaseFirstLetterModelName}s`);
   }
 
   if (!existsSync(`utils`)) {
@@ -211,8 +211,14 @@ export default async (req, res) => {
     );
   }
 
-  createFile(`pages/api/${modelName}s/index.js`, indexApiPage);
-  createFile(`pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
+  createFile(
+    `pages/api/${upperCaseFirstLetterModelName}s/index.js`,
+    indexApiPage
+  );
+  createFile(
+    `pages/api/${upperCaseFirstLetterModelName}s/[${modelName}Id].js`,
+    dynamicApiPage
+  );
 };
 
 module.exports = { generateApiRoutes };
