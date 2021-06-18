@@ -73,94 +73,95 @@ export default async (req, res) => {
 
   const dynamicApiPage = `
   import ${upperCaseFirstLetterModelName} from "../../../components/models/${upperCaseFirstLetterModelName}";
-  import dbConnect from "../../../utils/dbConnect";
-  
-  dbConnect();
-  
-  export default async (req, res) => {
-    const ${modelName}Id = req.query.${modelName}Id;
-  
-    switch (req.method) {
-      case "GET":
-        try {
-          const ${modelName} = await ${upperCaseFirstLetterModelName}.findById(${modelName}Id);
-  
-          if (!${modelName}) {
-            return res
-              .status(404)
-              .json({ message_type: "warning", message: "${modelName} not found" });
-          }
-  
-          res.status(201).json({
-            message_type: "success",
-            message: "${modelName} found",
-            ${modelName}: ${modelName},
-          });
-        } catch (error) {
-          res.status(400).json({
-            message_type: "warning",
-            message: "${modelName} not found",
-            error: error,
-          });
+import dbConnect from "../../../utils/dbConnect";
+
+dbConnect();
+
+export default async (req, res) => {
+  const ${modelName}Id = req.query.${modelName}Id;
+
+  switch (req.method) {
+    case "GET":
+      try {
+        const ${modelName} = await ${upperCaseFirstLetterModelName}.findById(${modelName}Id);
+
+        if (!${modelName}) {
+          return res
+            .status(404)
+            .json({ message_type: "warning", message: "${modelName} not found" });
         }
-        break;
-      case "PUT":
-        try {
-          const ${modelName} = await ${upperCaseFirstLetterModelName}.findByIdAndUpdate(${modelName}Id, req.body, {
-            new: true,
-            runValidators: true,
-          });
-  
-          if (!${modelName}) {
-            return res
-              .status(404)
-              .json({ message_type: "warning", message: "${modelName} not found" });
-          }
-  
-          res.status(201).json({
-            message_type: "success",
-            message: "${modelName} found",
-            ${modelName}: ${modelName},
-          });
-        } catch (error) {
-          res.status(400).json({
-            message_type: "warning",
-            message: "${modelName} not updated",
-            error: error,
-          });
-        }
-        break;
-      case "DELETE":
-        try {
-          const deleted${upperCaseFirstLetterModelName} = await ${upperCaseFirstLetterModelName}.deleteOne({ _id: ${modelName}Id });
-  
-          if (!deleted${upperCaseFirstLetterModelName}) {
-            return res
-              .status(404)
-              .json({ message_type: "warning", message: "${modelName} not found" });
-          }
-  
-          res.status(201).json({
-            message_type: "success",
-            message: "${modelName} found",
-            ${modelName}: deleted${upperCaseFirstLetterModelName},
-          });
-        } catch (error) {
-          res.status(400).json({
-            message_type: "warning",
-            message: "${modelName} not deleted",
-            error: error,
-          });
-        }
-        break;
-      default:
-        res.status(500).json({
-          message_type: "error",
-          message: "Response method not found",
+
+        res.status(201).json({
+          message_type: "success",
+          message: "${modelName} found",
+          ${modelName}: ${modelName},
         });
-        break;
-    }
-  };  
+      } catch (error) {
+        res.status(400).json({
+          message_type: "warning",
+          message: "${modelName} not found",
+          error: error,
+        });
+      }
+      break;
+    case "PATCH":
+      try {
+        const ${modelName} = await ${upperCaseFirstLetterModelName}.findByIdAndUpdate(${modelName}Id, req.body, {
+          new: true,
+          runValidators: true,
+        });
+
+        if (!${modelName}) {
+          return res
+            .status(404)
+            .json({ message_type: "warning", message: "${modelName} not found" });
+        }
+
+        res.status(201).json({
+          message_type: "success",
+          message: "${modelName} found",
+          ${modelName}: ${modelName},
+        });
+      } catch (error) {
+        res.status(400).json({
+          message_type: "warning",
+          message: "${modelName} not updated",
+          error: error,
+        });
+      }
+      break;
+    case "DELETE":
+      try {
+        const deleted${upperCaseFirstLetterModelName} = await ${upperCaseFirstLetterModelName}.deleteOne({ _id: ${modelName}Id });
+
+        if (!deleted${upperCaseFirstLetterModelName}) {
+          return res
+            .status(404)
+            .json({ message_type: "warning", message: "${modelName} not found" });
+        }
+
+        res.status(201).json({
+          message_type: "success",
+          message: "${modelName} found",
+          ${modelName}: deleted${upperCaseFirstLetterModelName},
+        });
+      } catch (error) {
+        res.status(400).json({
+          message_type: "warning",
+          message: "${modelName} not deleted",
+          error: error,
+        });
+      }
+      break;
+    default:
+      res.status(500).json({
+        message_type: "error",
+        message: "Response method not found",
+      });
+      break;
+  }
+};
+
   `;
 
   const dbConnectFile = `
