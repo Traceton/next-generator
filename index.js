@@ -18,8 +18,6 @@ const recursiveReadline = () => {
         rl.close();
         break;
       case "generate":
-        generatorController(userInput);
-        break;
       case "g":
         generatorController(userInput);
         break;
