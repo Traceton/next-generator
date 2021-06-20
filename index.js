@@ -9,15 +9,6 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-// rl.question(`Next-generator command: \n`, (answer) => {
-//   let userInput = answer.trim().split(" ");
-//   if (userInput[0] === "generate" || userInput[0] === "g") {
-//     generatorController(userInput);
-//   }
-
-//   rl.close();
-// });
-
 const recursiveReadline = () => {
   rl.question("next-generator command: ", function (answer) {
     let userInput = answer.trim().split(" ");
