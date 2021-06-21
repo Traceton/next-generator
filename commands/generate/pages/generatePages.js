@@ -79,7 +79,62 @@ export const getStaticProps = async (context) => {
 
   `;
 
-  const dynamicPage = `// blank dynamic page`;
+  const dynamicPage = `
+  import { useRouter } from "next/router";
+import ${upperCaseFirstLetterModelName} from "../../components/shared/${upperCaseFirstLetterModelName}";
+
+export default function ${modelName}Details(props) {
+  // router object from next
+  const router = useRouter();
+
+  const ${modelName}Id = router.query.${modelName}Id;
+
+  return (
+    <div>
+      {" "}
+      <${upperCaseFirstLetterModelName} ${modelName}={props.${modelName}} />
+    </div>
+  );
+}
+
+export const getStaticPaths = async () => {
+  const res = await fetch(\`http://localhost:3000/api/${modelName}s\`);
+
+  const data = await res.json();
+
+  const staticPathParams = [];
+
+  await data.${modelName}s.map((${modelName}) => {
+    staticPathParams.push({ params: { ${modelName}Id: ${modelName}._id } });
+  });
+
+  return {
+    paths: staticPathParams,
+    fallback: true,
+  };
+};
+
+export const getStaticProps = async (context) => {
+  // fetch ${modelName} data from api here
+  const ${modelName}Id = context.params.${modelName}Id;
+  const res = await fetch(\`http://localhost:3000/api/projects/\${${modelName}Id}\`);
+
+  const data = await res.json();
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      ${modelName}: data.${modelName},
+    },
+  };
+};
+
+  `;
 
   if (!existsSync(`pages`)) {
     await createDirectory("pages");
