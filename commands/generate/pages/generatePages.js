@@ -23,7 +23,12 @@ export default function ${upperCaseFirstLetterModelName}(props) {
         </h2>
       </div>
       <div>
-        <ProjectList projects={props.${modelName}s} />
+
+      {props.${modelName}s.map((${modelName}) => (
+        <li key={${modelName}._id}>
+          <h1> ${modelName} id ---> {${modelName}._id}</h1>
+        </li>
+      ))}
       </div>
     </div>
   );
