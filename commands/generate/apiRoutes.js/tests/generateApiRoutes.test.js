@@ -11,12 +11,76 @@ describe(`Test generating all api routes for a model with valid input`, () => {
     generateApiRoutes(["generate", "sr", "car"]);
   });
 
+  it(`"fs.mkdirSync" should be called with "pages,pages/api,pages/api/Cars,utils" `, () => {
+    expect(fs.mkdirSync).toHaveBeenNthCalledWith(
+      1,
+      `pages`,
+      { recursive: true },
+      expect.any(Function)
+    );
+
+    expect(fs.mkdirSync).toHaveBeenNthCalledWith(
+      2,
+      `pages/api`,
+      { recursive: true },
+      expect.any(Function)
+    );
+
+    expect(fs.mkdirSync).toHaveBeenNthCalledWith(
+      3,
+      `pages/api/Cars`,
+      { recursive: true },
+      expect.any(Function)
+    );
+
+    expect(fs.mkdirSync).toHaveBeenNthCalledWith(
+      4,
+      `utils`,
+      { recursive: true },
+      expect.any(Function)
+    );
+  });
+
   it(` "fs.mkdirSync" to be called 3 times`, () => {
     expect(fs.mkdirSync).toHaveBeenCalledTimes(4);
   });
 
   it(`"fs.mkdirSync" should return with undefined`, () => {
     expect(fs.mkdirSync).toHaveLastReturnedWith(undefined);
+  });
+
+  it(`"fs.writeFileSync" should be called with "pages,pages/api,pages/api/Cars,utils" `, () => {
+    expect(fs.writeFileSync).toHaveBeenNthCalledWith(
+      1,
+      `utils/dbConnect.js`,
+      expect.any(String),
+      { recursive: true },
+      expect.any(Function)
+    );
+
+    expect(fs.writeFileSync).toHaveBeenNthCalledWith(
+      2,
+      `.env.local`,
+      expect.any(String),
+      { recursive: true },
+      expect.any(Function)
+    );
+
+    expect(fs.writeFileSync).toHaveBeenNthCalledWith(
+      3,
+      `pages/api/Cars/index.js`,
+      expect.any(String),
+      { recursive: true },
+      expect.any(Function)
+    );
+
+    expect(fs.writeFileSync).toHaveBeenNthCalledWith(
+      4,
+      `pages/api/Cars/[carId].js`,
+      expect.any(String),
+      { recursive: true },
+      expect.any(Function)
+    );
   });
 
   it(` "fs.writeFileSync" to be called 3 times`, () => {
