@@ -15,8 +15,16 @@ describe(`Test generating all api routes for a model with valid input`, () => {
     expect(fs.mkdirSync).toHaveBeenCalledTimes(4);
   });
 
+  it(`"fs.mkdirSync" should return with undefined`, () => {
+    expect(fs.mkdirSync).toHaveLastReturnedWith(undefined);
+  });
+
   it(` "fs.writeFileSync" to be called 3 times`, () => {
     expect(fs.writeFileSync).toHaveBeenCalledTimes(4);
+  });
+
+  it(`"fs.writeFileSync" should return with undefined`, () => {
+    expect(fs.writeFileSync).toHaveLastReturnedWith(undefined);
   });
 });
 
