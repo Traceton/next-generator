@@ -6,6 +6,16 @@ const { existsSync } = require("fs");
 const generateModel = async (userInput) => {
   let modelName = userInput[2];
 
+  if (modelName === undefined || modelName === "undefined") {
+    console.log(`must enter a model name`);
+    return `must enter a model name`;
+  }
+
+  if (userInput.length <= 3) {
+    console.log(`must enter model schema parameters`);
+    return `must enter model schema parameters`;
+  }
+
   let modelItems = userInput.slice(3);
 
   let neWModelSchemaItems = [];
