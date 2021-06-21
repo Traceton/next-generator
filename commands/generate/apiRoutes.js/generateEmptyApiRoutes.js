@@ -5,6 +5,10 @@ const { existsSync } = require("fs");
 
 const generateEmptyApiRoutes = async (userInput) => {
   const modelName = userInput[2];
+
+  const upperCaseFirstLetterModelName =
+    modelName.charAt(0).toUpperCase() + modelName.slice(1);
+
   if (!modelName) {
     return `no routeName recieved`;
   }
@@ -17,16 +21,16 @@ const generateEmptyApiRoutes = async (userInput) => {
     await createDirectory("pages/api");
   }
 
-  if (!existsSync(`pages/api/${modelName}s`)) {
-    createDirectory(`pages/api/${modelName}s`);
+  if (!existsSync(`pages/api/${upperCaseFirstLetterModelName}s`)) {
+    createDirectory(`pages/api/${upperCaseFirstLetterModelName}s`);
   }
 
   createFile(
-    `pages/api/${modelName}s/index.js`,
+    `pages/api/${upperCaseFirstLetterModelName}s/index.js`,
     "// blank test content for index"
   );
   createFile(
-    `pages/api/${modelName}s/[${modelName}Id].js`,
+    `pages/api/${upperCaseFirstLetterModelName}s/[${modelName}Id].js`,
     "// blank test content"
   );
 };

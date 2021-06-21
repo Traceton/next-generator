@@ -11,6 +11,29 @@ describe(`Test generating all api routes for a model with valid input`, () => {
     generateEmptyApiRoutes(["generate", "e-r", "car"]);
   });
 
+  it(`"fs.mkdirSync" should be called with "pages,pages/api,pages/api/Cars,utils" `, () => {
+    expect(fs.mkdirSync).toHaveBeenNthCalledWith(
+      1,
+      `pages`,
+      { recursive: true },
+      expect.any(Function)
+    );
+
+    expect(fs.mkdirSync).toHaveBeenNthCalledWith(
+      2,
+      `pages/api`,
+      { recursive: true },
+      expect.any(Function)
+    );
+
+    expect(fs.mkdirSync).toHaveBeenNthCalledWith(
+      3,
+      `pages/api/Cars`,
+      { recursive: true },
+      expect.any(Function)
+    );
+  });
+
   it(` "fs.mkdirSync" to be called 3 times`, () => {
     expect(fs.mkdirSync).toHaveBeenCalledTimes(3);
   });
