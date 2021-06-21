@@ -44,8 +44,13 @@ describe("test if `fs` is called correctly in createDirectory", () => {
     fs.mkdirSync.mockClear();
     createDirectory("testDirectory");
   });
+
   it(`"fs.mkdirSync" should be called one time`, () => {
     expect(fs.mkdirSync).toHaveBeenCalledTimes(1);
+  });
+
+  it(`"fs.mkdirSync" should be called with "directory created"`, () => {
+    expect(fs.mkdirSync).toHaveReturnedWith(`directory created`);
   });
 });
 
