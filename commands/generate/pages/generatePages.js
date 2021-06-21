@@ -47,7 +47,6 @@ export default function ${upperCaseFirstLetterModelName}(props) {
         </h2>
       </div>
       <div>
-
       {props.${modelName}s.map((${modelName}) => (
         <li key={${modelName}._id}>
         ${finalSchemaItems}
@@ -86,12 +85,13 @@ export default function ${modelName}Details(props) {
   // router object from next
   const router = useRouter();
 
+  const ${modelName} = props.${modelName}
+
   const ${modelName}Id = router.query.${modelName}Id;
 
   return (
     <div>
-      {" "}
-      <${upperCaseFirstLetterModelName} ${modelName}={props.${modelName}} />
+      ${finalSchemaItems}
     </div>
   );
 }
