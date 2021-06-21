@@ -23,7 +23,7 @@ const generatePages = async (userInput) => {
     let entryName = entry[0];
     let entryType = entry[1];
 
-    let modelField = `<h1>${modelName} ${entryName} ---> {${modelName}._id}</h1>`;
+    let modelField = `<h1>${modelName} ${entryName} ---> {${modelName}.${entryName}}</h1>`;
 
     let stringField = JSON.stringify(modelField);
     neWModelSchemaItems.push(stringField);
@@ -33,7 +33,9 @@ const generatePages = async (userInput) => {
     .toString()
     .replace("[", "")
     .replace("]", "")
-    .replace(/`/g, "");
+    .replace(/`/g, "")
+    .replace(/,/g, "")
+    .replace(/"/g, "");
 
   const indexPage = `
 export default function ${upperCaseFirstLetterModelName}(props) {
