@@ -76,7 +76,6 @@ export const getStaticProps = async (context) => {
     },
   };
 };
-
   `;
 
   const dynamicPage = `
