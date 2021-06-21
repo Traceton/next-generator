@@ -13,6 +13,15 @@ describe("Test if `fs` is called correctly in createFile", () => {
     createFile("testRoute.wozers", "// test content");
   });
 
+  it(`"fs.writeFileSync" should be called with "" `, () => {
+    expect(fs.writeFileSync).toHaveBeenLastCalledWith(
+      "testRoute.wozers",
+      "// test content",
+      { recursive: true },
+      expect.any(Function)
+    );
+  });
+
   it(`"fs.writeFileSync" should be called one time`, () => {
     expect(fs.writeFileSync).toHaveBeenCalledTimes(1);
   });
@@ -48,6 +57,17 @@ describe("test if `fs` is called correctly in createDirectory", () => {
   beforeAll(() => {
     fs.mkdirSync.mockClear();
     createDirectory("testDirectory");
+  });
+
+  it(`"fs.mkdirSync" should be called with
+   "testDirectory",
+  { recursive: true },
+  expect.any(Function)" `, () => {
+    expect(fs.mkdirSync).toHaveBeenLastCalledWith(
+      "testDirectory",
+      { recursive: true },
+      expect.any(Function)
+    );
   });
 
   it(`"fs.mkdirSync" should be called one time`, () => {
