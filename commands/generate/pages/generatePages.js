@@ -1,7 +1,7 @@
 const { createDirectory, createFile } = require("../../../utils");
 const { existsSync } = require("fs");
 
-// g p truck
+// g p truck make:String model:String
 
 const generatePages = async (userInput) => {
   const modelName = userInput[2];
@@ -12,6 +12,28 @@ const generatePages = async (userInput) => {
   if (!modelName) {
     return `no modelName recieved`;
   }
+
+  let modelItems = userInput.slice(3);
+
+  let neWModelSchemaItems = [];
+
+  // maps through each command
+  modelItems.map((unSplitEntry) => {
+    let entry = unSplitEntry.split(":");
+    let entryName = entry[0];
+    let entryType = entry[1];
+
+    let modelField = `<h1>${modelName} ${entryName} ---> {${modelName}._id}</h1>`;
+
+    let stringField = JSON.stringify(modelField);
+    neWModelSchemaItems.push(stringField);
+  });
+
+  let finalSchemaItems = neWModelSchemaItems
+    .toString()
+    .replace("[", "")
+    .replace("]", "")
+    .replace(/`/g, "");
 
   const indexPage = `
 export default function ${upperCaseFirstLetterModelName}(props) {
@@ -26,7 +48,7 @@ export default function ${upperCaseFirstLetterModelName}(props) {
 
       {props.${modelName}s.map((${modelName}) => (
         <li key={${modelName}._id}>
-          <h1> ${modelName} id ---> {${modelName}._id}</h1>
+        ${finalSchemaItems}
         </li>
       ))}
       </div>

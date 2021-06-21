@@ -1,7 +1,7 @@
 const { createDirectory, createFile } = require("../../../utils");
 const { existsSync } = require("fs");
 
-// g m user firstName:String lastName:String
+// g m truck make:String model:String
 
 const generateModel = async (userInput) => {
   let modelName = userInput[2];
