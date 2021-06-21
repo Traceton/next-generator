@@ -35,17 +35,17 @@ describe(`Test generating mongoose api model with valid input`, () => {
     expect(fs.mkdirSync).toHaveLastReturnedWith(undefined);
   });
 
-  it(`"fs.writeFileSync" should be called with "pages,pages/api,pages/api/Cars,utils" `, () => {
+  it(`"fs.writeFileSync" should be called with "components/models/Car.js" `, () => {
     expect(fs.writeFileSync).toHaveBeenNthCalledWith(
       1,
-      `components/models/car.js`,
+      `components/models/Car.js`,
       expect.any(String),
       { recursive: true },
       expect.any(Function)
     );
   });
 
-  it(` "fs.writeFileSync" to be called 3 times`, () => {
+  it(` "fs.writeFileSync" to be called 1 times`, () => {
     expect(fs.writeFileSync).toHaveBeenCalledTimes(1);
   });
 

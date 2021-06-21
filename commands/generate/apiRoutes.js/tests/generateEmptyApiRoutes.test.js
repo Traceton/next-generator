@@ -11,7 +11,7 @@ describe(`Test generating all api routes for a model with valid input`, () => {
     generateEmptyApiRoutes(["generate", "e-r", "car"]);
   });
 
-  it(`"fs.mkdirSync" should be called with "pages,pages/api,pages/api/Cars" `, () => {
+  it(`"fs.mkdirSync" should be called with "pages,pages/api,pages/api/cars" `, () => {
     expect(fs.mkdirSync).toHaveBeenNthCalledWith(
       1,
       `pages`,
@@ -28,7 +28,7 @@ describe(`Test generating all api routes for a model with valid input`, () => {
 
     expect(fs.mkdirSync).toHaveBeenNthCalledWith(
       3,
-      `pages/api/Cars`,
+      `pages/api/cars`,
       { recursive: true },
       expect.any(Function)
     );
@@ -40,6 +40,24 @@ describe(`Test generating all api routes for a model with valid input`, () => {
 
   it(`"fs.mkdirSync" should return with undefined`, () => {
     expect(fs.mkdirSync).toHaveLastReturnedWith(undefined);
+  });
+
+  it(`"fs.writeFileSync" should be called with "pages/api/cars/index.js,pages/api/cars/[carId].js" `, () => {
+    expect(fs.writeFileSync).toHaveBeenNthCalledWith(
+      1,
+      `pages/api/cars/index.js`,
+      expect.any(String),
+      { recursive: true },
+      expect.any(Function)
+    );
+
+    expect(fs.writeFileSync).toHaveBeenNthCalledWith(
+      2,
+      `pages/api/cars/[carId].js`,
+      expect.any(String),
+      { recursive: true },
+      expect.any(Function)
+    );
   });
 
   it(` "fs.writeFileSync" to be called 1 times`, () => {

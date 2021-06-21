@@ -6,6 +6,9 @@ const { existsSync } = require("fs");
 const generateModel = async (userInput) => {
   let modelName = userInput[2];
 
+  const upperCaseFirstLetterModelName =
+    modelName.charAt(0).toUpperCase() + modelName.slice(1);
+
   if (modelName === undefined || modelName === "undefined") {
     console.log(`must enter a model name`);
     return `must enter a model name`;
@@ -70,7 +73,7 @@ const generateModel = async (userInput) => {
     await createDirectory("components/models");
   }
 
-  createFile(`components/models/${modelName}.js`, newModel);
+  createFile(`components/models/${upperCaseFirstLetterModelName}.js`, newModel);
 };
 
 module.exports = { generateModel };

@@ -11,7 +11,7 @@ describe(`Test generating all api routes for a model with valid input`, () => {
     generateApiRoutes(["generate", "sr", "car"]);
   });
 
-  it(`"fs.mkdirSync" should be called with "pages,pages/api,pages/api/Cars,utils" `, () => {
+  it(`"fs.mkdirSync" should be called with "pages,pages/api,pages/api/cars,utils" `, () => {
     expect(fs.mkdirSync).toHaveBeenNthCalledWith(
       1,
       `pages`,
@@ -28,7 +28,7 @@ describe(`Test generating all api routes for a model with valid input`, () => {
 
     expect(fs.mkdirSync).toHaveBeenNthCalledWith(
       3,
-      `pages/api/Cars`,
+      `pages/api/cars`,
       { recursive: true },
       expect.any(Function)
     );
@@ -49,7 +49,7 @@ describe(`Test generating all api routes for a model with valid input`, () => {
     expect(fs.mkdirSync).toHaveLastReturnedWith(undefined);
   });
 
-  it(`"fs.writeFileSync" should be called with "pages,pages/api,pages/api/Cars,utils" `, () => {
+  it(`"fs.writeFileSync" should be called with "pages,pages/api,pages/api/cars,utils" `, () => {
     expect(fs.writeFileSync).toHaveBeenNthCalledWith(
       1,
       `utils/dbConnect.js`,
@@ -68,7 +68,7 @@ describe(`Test generating all api routes for a model with valid input`, () => {
 
     expect(fs.writeFileSync).toHaveBeenNthCalledWith(
       3,
-      `pages/api/Cars/index.js`,
+      `pages/api/cars/index.js`,
       expect.any(String),
       { recursive: true },
       expect.any(Function)
@@ -76,7 +76,7 @@ describe(`Test generating all api routes for a model with valid input`, () => {
 
     expect(fs.writeFileSync).toHaveBeenNthCalledWith(
       4,
-      `pages/api/Cars/[carId].js`,
+      `pages/api/cars/[carId].js`,
       expect.any(String),
       { recursive: true },
       expect.any(Function)
