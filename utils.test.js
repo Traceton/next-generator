@@ -12,8 +12,13 @@ describe("Test if `fs` is called correctly in createFile", () => {
     // fs.writeFile.mockReturnValue("file created");
     createFile("testRoute.wozers", "// test content");
   });
+
   it(`"fs.writeFileSync" should be called one time`, () => {
     expect(fs.writeFileSync).toHaveBeenCalledTimes(1);
+  });
+
+  it(`"fs.writeFileSync" should return with undefined`, () => {
+    expect(fs.writeFileSync).toHaveLastReturnedWith(undefined);
   });
 });
 
@@ -49,8 +54,8 @@ describe("test if `fs` is called correctly in createDirectory", () => {
     expect(fs.mkdirSync).toHaveBeenCalledTimes(1);
   });
 
-  it(`"fs.mkdirSync" should be called with "directory created"`, () => {
-    expect(fs.mkdirSync).toHaveReturnedWith(`directory created`);
+  it(`"fs.mkdirSync" should return with undefined`, () => {
+    expect(fs.mkdirSync).toHaveLastReturnedWith(undefined);
   });
 });
 
