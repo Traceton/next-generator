@@ -9,3 +9,5 @@ const generateCrud = async (userInput) => {
   await generateApiRoutes(userInput);
   await generatePages(userInput);
 };
+
+module.exports = { generateCrud };
