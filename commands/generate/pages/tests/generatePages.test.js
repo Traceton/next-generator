@@ -55,10 +55,26 @@ describe(`Test generating all page routes for a model with valid input`, () => {
       { recursive: true },
       expect.any(Function)
     );
+
+    expect(fs.writeFileSync).toHaveBeenNthCalledWith(
+      4,
+      `pages/cars/createCar.js`,
+      expect.any(String),
+      { recursive: true },
+      expect.any(Function)
+    );
+
+    expect(fs.writeFileSync).toHaveBeenNthCalledWith(
+      5,
+      `pages/cars/editCar.js`,
+      expect.any(String),
+      { recursive: true },
+      expect.any(Function)
+    );
   });
 
-  it(` "fs.writeFileSync" to be called 3 times`, () => {
-    expect(fs.writeFileSync).toHaveBeenCalledTimes(3);
+  it(` "fs.writeFileSync" to be called 5 times`, () => {
+    expect(fs.writeFileSync).toHaveBeenCalledTimes(5);
   });
 });
 

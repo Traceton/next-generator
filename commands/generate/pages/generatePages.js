@@ -17,6 +17,8 @@ const generatePages = async (userInput) => {
 
   let neWModelSchemaItems = [];
 
+  formFieldItems = [];
+
   // maps through each command
   modelItems.map((unSplitEntry) => {
     let entry = unSplitEntry.split(":");
@@ -24,10 +26,27 @@ const generatePages = async (userInput) => {
     let entryType = entry[1];
 
     let modelField = `<h1>${modelName} ${entryName} ---> {${modelName}.${entryName}}</h1>`;
+    let formField = ` <label htmlFor="${entryName}">${entryName}</label>
+                      <input
+                        id="${entryName}"
+                        name="${entryName}"
+                        type="text"
+                        autoComplete="${entryName}"
+                        required
+                      />
+                    `;
 
-    let stringField = JSON.stringify(modelField);
-    neWModelSchemaItems.push(stringField);
+    formFieldItems.push(JSON.stringify(formField));
+    neWModelSchemaItems.push(JSON.stringify(modelField));
   });
+
+  let finalFormFieldItems = formFieldItems
+    .toString()
+    .replace("[", "")
+    .replace("]", "")
+    .replace(/`/g, "")
+    .replace(/,/g, "")
+    .replace(/"/g, "");
 
   let finalSchemaItems = neWModelSchemaItems
     .toString()
@@ -139,7 +158,7 @@ export default function create${upperCaseFirstLetterModelName}() {
   const createNew${upperCaseFirstLetterModelName} = async (event) => {
     event.preventDefault();
 
-    const res = await fetch("/api/${modelName}s", {
+    const res = await fetch("http://localhost:3000/api/${modelName}s", {
       body: JSON.stringify({
         title: event.target.title.value,
         hostedAt: event.target.hostedAt.value,
@@ -160,41 +179,7 @@ export default function create${upperCaseFirstLetterModelName}() {
         className="w-1/2 flex flex-col justify-center self-center"
         onSubmit={createNew${upperCaseFirstLetterModelName}}
       >
-        <label htmlFor="title">title</label>
-        <input
-          id="title"
-          name="title"
-          type="text"
-          autoComplete="title"
-          required
-        />
-        <label htmlFor="hostedAt">hostedAt</label>
-        <input
-          id="hostedAt"
-          name="hostedAt"
-          type="text"
-          autoComplete="hostedAt"
-          required
-        />
-        <label htmlFor="description">description</label>
-        <input
-          id="description"
-          name="description"
-          type="text"
-          autoComplete="description"
-          required
-        />
-        <label htmlFor="imageUrl">imageUrl</label>
-        <input
-          id="imageUrl"
-          name="imageUrl"
-          type="text"
-          autoComplete="imageUrl"
-          required
-        />
-        <label htmlFor="href">href</label>
-        <input id="href" name="href" type="text" autoComplete="href" required />
-
+      ${finalFormFieldItems}
         <button type="submit">Create ${upperCaseFirstLetterModelName}</button>
       </form>
     </div>
@@ -203,12 +188,24 @@ export default function create${upperCaseFirstLetterModelName}() {
 
   `;
 
+  const editPage = `
+  // blank edit page
+  `;
+
   if (!existsSync(`pages`)) {
     await createDirectory("pages");
   }
 
   if (!existsSync(`pages/${modelName}s`)) {
     await createDirectory(`pages/${modelName}s`);
+  }
+
+  if (
+    !existsSync(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)
+  ) {
+    await createDirectory(
+      `pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`
+    );
   }
 
   if (!existsSync(`.env.local`)) {
@@ -223,6 +220,16 @@ export default function create${upperCaseFirstLetterModelName}() {
   createFile(`pages/${modelName}s/index.js`, indexPage);
 
   createFile(`pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
+
+  createFile(
+    `pages/${modelName}s/create${upperCaseFirstLetterModelName}`,
+    createPage
+  );
+
+  createFile(
+    `pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`,
+    editPage
+  );
 };
 
 module.exports = { generatePages };
