@@ -132,6 +132,77 @@ export const getStaticProps = async (context) => {
 
   `;
 
+  const createPage = `
+  import React from "react";
+
+export default function create${upperCaseFirstLetterModelName}() {
+  const createNew${upperCaseFirstLetterModelName} = async (event) => {
+    event.preventDefault();
+
+    const res = await fetch("/api/${modelName}s", {
+      body: JSON.stringify({
+        title: event.target.title.value,
+        hostedAt: event.target.hostedAt.value,
+        description: event.target.description.value,
+        imageUrl: event.target.imageUrl.value,
+        href: event.target.href.value,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
+  };
+
+  return (
+    <div className="bg-blue-500 h-screen w-full flex flex-col justify-center">
+      <form
+        className="w-1/2 flex flex-col justify-center self-center"
+        onSubmit={createNew${upperCaseFirstLetterModelName}}
+      >
+        <label htmlFor="title">title</label>
+        <input
+          id="title"
+          name="title"
+          type="text"
+          autoComplete="title"
+          required
+        />
+        <label htmlFor="hostedAt">hostedAt</label>
+        <input
+          id="hostedAt"
+          name="hostedAt"
+          type="text"
+          autoComplete="hostedAt"
+          required
+        />
+        <label htmlFor="description">description</label>
+        <input
+          id="description"
+          name="description"
+          type="text"
+          autoComplete="description"
+          required
+        />
+        <label htmlFor="imageUrl">imageUrl</label>
+        <input
+          id="imageUrl"
+          name="imageUrl"
+          type="text"
+          autoComplete="imageUrl"
+          required
+        />
+        <label htmlFor="href">href</label>
+        <input id="href" name="href" type="text" autoComplete="href" required />
+
+        <button type="submit">Create ${upperCaseFirstLetterModelName}</button>
+      </form>
+    </div>
+  );
+}
+
+  `;
+
   if (!existsSync(`pages`)) {
     await createDirectory("pages");
   }
