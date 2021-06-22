@@ -79,15 +79,12 @@ export const getStaticProps = async (context) => {
 
   const dynamicPage = `
   import { useRouter } from "next/router";
-import ${upperCaseFirstLetterModelName} from "../../components/shared/${upperCaseFirstLetterModelName}";
 
 export default function ${modelName}Details(props) {
   // router object from next
   const router = useRouter();
 
   const ${modelName} = props.${modelName}
-
-  const ${modelName}Id = router.query.${modelName}Id;
 
   return (
     <div>
