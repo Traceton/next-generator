@@ -221,7 +221,6 @@ export default function create${upperCaseFirstLetterModelName}() {
 
   `;
 
-  // NOT FINISHED CONVERTING TO DYNAMIC VALUES
   const editPage = `
   import { useRouter } from "next/router";
 
