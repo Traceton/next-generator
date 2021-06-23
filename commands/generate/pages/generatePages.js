@@ -322,7 +322,7 @@ export const getStaticProps = async (context) => {
   createFile(`pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
 
   createFile(
-    `pages/${modelName}s/create${upperCaseFirstLetterModelName}`,
+    `pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`,
     createPage
   );
 
