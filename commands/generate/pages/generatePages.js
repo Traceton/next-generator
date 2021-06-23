@@ -52,8 +52,8 @@ const generatePages = async (userInput) => {
                       />
                     `;
 
-    neWModelSchemaItems.push(JSON.stringify(jsonBodyField));
-    jsonBodyForForm.push(JSON.stringify(value));
+    neWModelSchemaItems.push(JSON.stringify(modelField));
+    jsonBodyForForm.push(JSON.stringify(jsonBodyField));
     formFieldItems.push(JSON.stringify(formField));
     editFormFieldItems.push(JSON.stringify(editFormField));
   });
