@@ -30,7 +30,7 @@ const generatePages = async (userInput) => {
     let entryType = entry[1];
 
     let modelField = `<h1>${modelName} ${entryName} ---> {${modelName}.${entryName}}</h1>`;
-    let jsonBodyField = `${entryName}: event.target.${entryName}.value`;
+    let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
     let formField = ` <label htmlFor="${entryName}">${entryName}</label>
                       <input
                         id="${entryName}"
@@ -77,15 +77,17 @@ const generatePages = async (userInput) => {
     .toString()
     .replace("[", "")
     .replace("]", "")
+    .replace(/`/g, "")
     .replace(/,/g, "")
-    .replace(/`/g, "");
+    .replace(/"/g, "");
 
   let finalEditFormFieldItems = editFormFieldItems
     .toString()
     .replace("[", "")
     .replace("]", "")
+    .replace(/`/g, "")
     .replace(/,/g, "")
-    .replace(/`/g, "");
+    .replace(/"/g, "");
 
   const indexPage = `
 export default function ${upperCaseFirstLetterModelName}(props) {
