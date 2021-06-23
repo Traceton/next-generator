@@ -71,7 +71,6 @@ const generatePages = async (userInput) => {
     .replace("[", "")
     .replace("]", "")
     .replace(/`/g, "")
-    .replace(/,/g, "")
     .replace(/"/g, "");
 
   let finalFormFieldItems = formFieldItems
