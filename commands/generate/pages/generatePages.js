@@ -191,20 +191,18 @@ export default function create${upperCaseFirstLetterModelName}() {
   // NOT FINISHED CONVERTING TO DYNAMIC VALUES
   const editPage = `
   import { useRouter } from "next/router";
-import Project from "../../../components/shared/Project";
 
-export default function editProject(props) {
+export default function edit${upperCaseFirstLetterModelName}(props) {
   // router object from next
   const router = useRouter();
 
-  const projectId = router.query.projectId;
+  const ${modelName}Id = router.query.${modelName}Id;
 
-  // console.log(\`projects props ----> \${JSON.stringify(props.project)}\`);
 
-  const updateProject = async (event) => {
+  const update${upperCaseFirstLetterModelName} = async (event) => {
     event.preventDefault();
 
-    const res = await fetch(\`http://localhost:3000/api/projects/\${projectId}\`, {
+    const res = await fetch(\`http://localhost:3000/api/${modelName}s/\${${modelName}Id}\`, {
       body: JSON.stringify({
         title: event.target.title.value,
         hostedAt: event.target.hostedAt.value,
@@ -223,11 +221,11 @@ export default function editProject(props) {
     <div className="bg-blue-500 h-screen w-full flex flex-col justify-center">
       <form
         className="w-1/2 flex flex-col justify-center self-center"
-        onSubmit={updateProject}
+        onSubmit={update${upperCaseFirstLetterModelName}}
       >
         <label htmlFor="title">title</label>
         <input
-          defaultValue={props.project.title}
+          defaultValue={props.${modelName}.title}
           id="title"
           name="title"
           type="text"
@@ -236,7 +234,7 @@ export default function editProject(props) {
         />
         <label htmlFor="hostedAt">hostedAt</label>
         <input
-          defaultValue={props.project.hostedAt}
+          defaultValue={props.${modelName}.hostedAt}
           id="hostedAt"
           name="hostedAt"
           type="text"
@@ -245,7 +243,7 @@ export default function editProject(props) {
         />
         <label htmlFor="description">description</label>
         <input
-          defaultValue={props.project.description}
+          defaultValue={props.${modelName}.description}
           id="description"
           name="description"
           type="text"
@@ -254,7 +252,7 @@ export default function editProject(props) {
         />
         <label htmlFor="imageUrl">imageUrl</label>
         <input
-          defaultValue={props.project.imageUrl}
+          defaultValue={props.${modelName}.imageUrl}
           id="imageUrl"
           name="imageUrl"
           type="text"
@@ -263,7 +261,7 @@ export default function editProject(props) {
         />
         <label htmlFor="href">href</label>
         <input
-          defaultValue={props.project.href}
+          defaultValue={props.${modelName}.href}
           id="href"
           name="href"
           type="text"
@@ -271,7 +269,7 @@ export default function editProject(props) {
           required
         />
 
-        <button type="submit">Create Project</button>
+        <button type="submit">Update ${upperCaseFirstLetterModelName}</button>
       </form>
     </div>
   );
