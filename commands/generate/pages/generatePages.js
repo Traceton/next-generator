@@ -70,12 +70,13 @@ const generatePages = async (userInput) => {
     .toString()
     .replace("[", "")
     .replace("]", "");
+    .replace(/`/g, "")
+    .replace(/"/g, "");
 
   let finalFormFieldItems = formFieldItems
     .toString()
     .replace("[", "")
     .replace("]", "")
-    .replace(/`/g, "")
     .replace(/,/g, "")
     .replace(/"/g, "");
 
@@ -83,7 +84,6 @@ const generatePages = async (userInput) => {
     .toString()
     .replace("[", "")
     .replace("]", "")
-    .replace(/`/g, "")
     .replace(/,/g, "")
     .replace(/"/g, "");
 
