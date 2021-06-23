@@ -30,7 +30,7 @@ const generatePages = async (userInput) => {
     let entryType = entry[1];
 
     let modelField = `<h1>${modelName} ${entryName} ---> {${modelName}.${entryName}}</h1>`;
-    let jsonBodyField = `${entryName}: event.target.${entryName}.value`
+    let jsonBodyField = `${entryName}: event.target.${entryName}.value`;
     let formField = ` <label htmlFor="${entryName}">${entryName}</label>
                       <input
                         id="${entryName}"
@@ -41,7 +41,7 @@ const generatePages = async (userInput) => {
                       />
                     `;
 
-                    let editFormField = ` <label htmlFor="${entryName}">${entryName}</label>
+    let editFormField = ` <label htmlFor="${entryName}">${entryName}</label>
                       <input
                         defaultValue={props.${modelName}.${entryName}}
                         id="${entryName}"
@@ -52,11 +52,10 @@ const generatePages = async (userInput) => {
                       />
                     `;
 
-    neWModelSchemaItems.push(JSON.stringify(jsonBodyField));    
-    jsonBodyForForm.push(JSON.stringify(value))    
+    neWModelSchemaItems.push(JSON.stringify(jsonBodyField));
+    jsonBodyForForm.push(JSON.stringify(value));
     formFieldItems.push(JSON.stringify(formField));
-    editFormFieldItems.push(JSON.stringify(editFormField))
-    
+    editFormFieldItems.push(JSON.stringify(editFormField));
   });
 
   let finalSchemaItems = neWModelSchemaItems
@@ -68,12 +67,12 @@ const generatePages = async (userInput) => {
     .replace(/"/g, "");
 
   let finalJsonBodyItems = jsonBodyForForm
-  .toString()
-  .replace("[", "")
-  .replace("]", "")
-  .replace(/`/g, "")
-  .replace(/,/g, "")
-  .replace(/"/g, "");
+    .toString()
+    .replace("[", "")
+    .replace("]", "")
+    .replace(/`/g, "")
+    .replace(/,/g, "")
+    .replace(/"/g, "");
 
   let finalFormFieldItems = formFieldItems
     .toString()
@@ -83,15 +82,13 @@ const generatePages = async (userInput) => {
     .replace(/,/g, "")
     .replace(/"/g, "");
 
-    let finalEditFormFieldItems = editFormFieldItems
+  let finalEditFormFieldItems = editFormFieldItems
     .toString()
     .replace("[", "")
     .replace("]", "")
     .replace(/`/g, "")
     .replace(/,/g, "")
     .replace(/"/g, "");
-
-
 
   const indexPage = `
 export default function ${upperCaseFirstLetterModelName}(props) {
@@ -260,7 +257,7 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
 }
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`http://localhost:3000/api/projects`);
+  const res = await fetch(\`http://localhost:3000/api/projects\`);
 
   const data = await res.json();
 
@@ -279,7 +276,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   // fetch project data from api here
   const projectId = context.params.projectId;
-  const res = await fetch(`http://localhost:3000/api/projects/${projectId}`);
+  const res = await fetch(\`http://localhost:3000/api/projects/\${projectId}\`);
 
   const data = await res.json();
 
