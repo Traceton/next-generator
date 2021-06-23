@@ -188,8 +188,132 @@ export default function create${upperCaseFirstLetterModelName}() {
 
   `;
 
+  // NOT FINISHED CONVERTING TO DYNAMIC VALUES
   const editPage = `
-  // blank edit page
+  import { useRouter } from "next/router";
+import Project from "../../../components/shared/Project";
+
+export default function editProject(props) {
+  // router object from next
+  const router = useRouter();
+
+  const projectId = router.query.projectId;
+
+  // console.log(\`projects props ----> \${JSON.stringify(props.project)}\`);
+
+  const updateProject = async (event) => {
+    event.preventDefault();
+
+    const res = await fetch(\`http://localhost:3000/api/projects/\${projectId}\`, {
+      body: JSON.stringify({
+        title: event.target.title.value,
+        hostedAt: event.target.hostedAt.value,
+        description: event.target.description.value,
+        imageUrl: event.target.imageUrl.value,
+        href: event.target.href.value,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "PATCH",
+    });
+  };
+
+  return (
+    <div className="bg-blue-500 h-screen w-full flex flex-col justify-center">
+      <form
+        className="w-1/2 flex flex-col justify-center self-center"
+        onSubmit={updateProject}
+      >
+        <label htmlFor="title">title</label>
+        <input
+          defaultValue={props.project.title}
+          id="title"
+          name="title"
+          type="text"
+          autoComplete="title"
+          required
+        />
+        <label htmlFor="hostedAt">hostedAt</label>
+        <input
+          defaultValue={props.project.hostedAt}
+          id="hostedAt"
+          name="hostedAt"
+          type="text"
+          autoComplete="hostedAt"
+          required
+        />
+        <label htmlFor="description">description</label>
+        <input
+          defaultValue={props.project.description}
+          id="description"
+          name="description"
+          type="text"
+          autoComplete="description"
+          required
+        />
+        <label htmlFor="imageUrl">imageUrl</label>
+        <input
+          defaultValue={props.project.imageUrl}
+          id="imageUrl"
+          name="imageUrl"
+          type="text"
+          autoComplete="imageUrl"
+          required
+        />
+        <label htmlFor="href">href</label>
+        <input
+          defaultValue={props.project.href}
+          id="href"
+          name="href"
+          type="text"
+          autoComplete="href"
+          required
+        />
+
+        <button type="submit">Create Project</button>
+      </form>
+    </div>
+  );
+}
+
+export const getStaticPaths = async () => {
+  const res = await fetch(`http://localhost:3000/api/projects`);
+
+  const data = await res.json();
+
+  const staticPathParams = [];
+
+  await data.projects.map((project) => {
+    staticPathParams.push({ params: { projectId: project._id } });
+  });
+
+  return {
+    paths: staticPathParams,
+    fallback: true,
+  };
+};
+
+export const getStaticProps = async (context) => {
+  // fetch project data from api here
+  const projectId = context.params.projectId;
+  const res = await fetch(`http://localhost:3000/api/projects/${projectId}`);
+
+  const data = await res.json();
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      project: data.project,
+    },
+  };
+};
+
   `;
 
   if (!existsSync(`pages`)) {
