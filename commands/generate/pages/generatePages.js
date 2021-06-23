@@ -17,7 +17,11 @@ const generatePages = async (userInput) => {
 
   let neWModelSchemaItems = [];
 
-  formFieldItems = [];
+  let jsonBodyForForm = [];
+
+  let formFieldItems = [];
+
+  let editFormFieldItems = [];
 
   // maps through each command
   modelItems.map((unSplitEntry) => {
@@ -26,6 +30,7 @@ const generatePages = async (userInput) => {
     let entryType = entry[1];
 
     let modelField = `<h1>${modelName} ${entryName} ---> {${modelName}.${entryName}}</h1>`;
+    let jsonBodyField = `${entryName}: event.target.${entryName}.value`
     let formField = ` <label htmlFor="${entryName}">${entryName}</label>
                       <input
                         id="${entryName}"
@@ -36,9 +41,39 @@ const generatePages = async (userInput) => {
                       />
                     `;
 
+                    let editFormField = ` <label htmlFor="${entryName}">${entryName}</label>
+                      <input
+                        defaultValue={props.${modelName}.${entryName}}
+                        id="${entryName}"
+                        name="${entryName}"
+                        type="text"
+                        autoComplete="${entryName}"
+                        required
+                      />
+                    `;
+
+    neWModelSchemaItems.push(JSON.stringify(jsonBodyField));    
+    jsonBodyForForm.push(JSON.stringify(value))    
     formFieldItems.push(JSON.stringify(formField));
-    neWModelSchemaItems.push(JSON.stringify(modelField));
+    editFormFieldItems.push(JSON.stringify(editFormField))
+    
   });
+
+  let finalSchemaItems = neWModelSchemaItems
+    .toString()
+    .replace("[", "")
+    .replace("]", "")
+    .replace(/`/g, "")
+    .replace(/,/g, "")
+    .replace(/"/g, "");
+
+  let finalJsonBodyItems = jsonBodyForForm
+  .toString()
+  .replace("[", "")
+  .replace("]", "")
+  .replace(/`/g, "")
+  .replace(/,/g, "")
+  .replace(/"/g, "");
 
   let finalFormFieldItems = formFieldItems
     .toString()
@@ -48,13 +83,15 @@ const generatePages = async (userInput) => {
     .replace(/,/g, "")
     .replace(/"/g, "");
 
-  let finalSchemaItems = neWModelSchemaItems
+    let finalEditFormFieldItems = editFormFieldItems
     .toString()
     .replace("[", "")
     .replace("]", "")
     .replace(/`/g, "")
     .replace(/,/g, "")
     .replace(/"/g, "");
+
+
 
   const indexPage = `
 export default function ${upperCaseFirstLetterModelName}(props) {
@@ -160,11 +197,7 @@ export default function create${upperCaseFirstLetterModelName}() {
 
     const res = await fetch("http://localhost:3000/api/${modelName}s", {
       body: JSON.stringify({
-        title: event.target.title.value,
-        hostedAt: event.target.hostedAt.value,
-        description: event.target.description.value,
-        imageUrl: event.target.imageUrl.value,
-        href: event.target.href.value,
+        ${finalJsonBodyItems}
       }),
       headers: {
         "Content-Type": "application/json",
@@ -204,11 +237,7 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
 
     const res = await fetch(\`http://localhost:3000/api/${modelName}s/\${${modelName}Id}\`, {
       body: JSON.stringify({
-        title: event.target.title.value,
-        hostedAt: event.target.hostedAt.value,
-        description: event.target.description.value,
-        imageUrl: event.target.imageUrl.value,
-        href: event.target.href.value,
+        ${finalJsonBodyItems}
       }),
       headers: {
         "Content-Type": "application/json",
@@ -223,51 +252,7 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
         className="w-1/2 flex flex-col justify-center self-center"
         onSubmit={update${upperCaseFirstLetterModelName}}
       >
-        <label htmlFor="title">title</label>
-        <input
-          defaultValue={props.${modelName}.title}
-          id="title"
-          name="title"
-          type="text"
-          autoComplete="title"
-          required
-        />
-        <label htmlFor="hostedAt">hostedAt</label>
-        <input
-          defaultValue={props.${modelName}.hostedAt}
-          id="hostedAt"
-          name="hostedAt"
-          type="text"
-          autoComplete="hostedAt"
-          required
-        />
-        <label htmlFor="description">description</label>
-        <input
-          defaultValue={props.${modelName}.description}
-          id="description"
-          name="description"
-          type="text"
-          autoComplete="description"
-          required
-        />
-        <label htmlFor="imageUrl">imageUrl</label>
-        <input
-          defaultValue={props.${modelName}.imageUrl}
-          id="imageUrl"
-          name="imageUrl"
-          type="text"
-          autoComplete="imageUrl"
-          required
-        />
-        <label htmlFor="href">href</label>
-        <input
-          defaultValue={props.${modelName}.href}
-          id="href"
-          name="href"
-          type="text"
-          autoComplete="href"
-          required
-        />
+        ${finalEditFormFieldItems}
 
         <button type="submit">Update ${upperCaseFirstLetterModelName}</button>
       </form>
