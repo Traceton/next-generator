@@ -69,7 +69,7 @@ const generatePages = async (userInput) => {
   let finalJsonBodyItems = jsonBodyForForm
     .toString()
     .replace("[", "")
-    .replace("]", "");
+    .replace("]", "")
     .replace(/`/g, "")
     .replace(/"/g, "");
 
