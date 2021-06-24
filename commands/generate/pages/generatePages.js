@@ -31,23 +31,23 @@ const generatePages = async (userInput) => {
 
     let modelField = `<h1>${modelName} ${entryName} ---> {${modelName}.${entryName}}</h1>`;
     let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
-    let formField = ` <label htmlFor="${entryName}">${entryName}</label>
+    let formField = ` <label htmlFor=\`${entryName}\`>${entryName}</label>
                       <input
-                        id="${entryName}"
-                        name="${entryName}"
-                        type="text"
-                        autoComplete="${entryName}"
+                        id=\`${entryName}\`
+                        name=\`${entryName}\`
+                        type=\`text\`
+                        autoComplete=\`${entryName}\`
                         required
                       />
                     `;
 
-    let editFormField = ` <label htmlFor="${entryName}">${entryName}</label>
+    let editFormField = ` <label htmlFor=\`${entryName}\`>${entryName}</label>
                       <input
                         defaultValue={props.${modelName}.${entryName}}
-                        id="${entryName}"
-                        name="${entryName}"
-                        type="text"
-                        autoComplete="${entryName}"
+                        id=\`${entryName}\`
+                        name=\`${entryName}\`
+                        type=\`text\`
+                        autoComplete=\`${entryName}\`
                         required
                       />
                     `;
