@@ -31,8 +31,6 @@ describe("Test if `fs` is called correctly in createFile", () => {
   });
 });
 
-// // test incorrect input
-
 // // Test undefined input
 test("should return no filePath and no fileContent recieved ", async () => {
   expect(await createFile(undefined)).toBe(
