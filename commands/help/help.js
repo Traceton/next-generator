@@ -15,14 +15,14 @@ const help = async (userInput) => {
     ` crud or c - generate a mongoose model, all api routes, and all pages for that model. (Create-Read-Update-Delete)   \n `
   );
   console.log(
-    ` crud or c - Format : "generate crud your-model-name model-field:field-type model-field:field-type"   \n `
+    ` crud or c - Format : "generate crud your-model-name field-name:data-type field-name:data-type"   \n `
   );
   console.log(
     ` crud or c - example : "generate crud vehicle year:Number make:String model:String"   \n  \n `
   );
   console.log(` model or m - generate a mongoose model.  \n `);
   console.log(
-    ` model or m - Format : "generate model your-model-name model-field:field-type model-field:field-type"  \n `
+    ` model or m - Format : "generate model your-model-name field-name:data-type field-name:data-type"  \n `
   );
   console.log(
     ` model or m - Example : "generate model vehicle year:Number make:String model:String"  \n  \n `
@@ -31,7 +31,7 @@ const help = async (userInput) => {
     ` api-routes or a-r - generate next js crud (Create-Read-Update-Delete) api routes.  \n `
   );
   console.log(
-    ` api-routes or a-r - Format : "generate api-routes your-model-name model-field:field-type model-field:field-type"  \n `
+    ` api-routes or a-r - Format : "generate api-routes your-model-name field-name:data-type field-name:data-type"  \n `
   );
   console.log(
     ` api-routes or a-r - Example : "generate api-routes vehicle year:Number make:String model:String"  \n  \n `
@@ -40,7 +40,7 @@ const help = async (userInput) => {
     ` pages or p - generate next js crud (Create-Read-Update-Delete) pages.  \n `
   );
   console.log(
-    ` pages or p - Format : "generate pages your-model-name model-field:field-type model-field:field-type"  \n `
+    ` pages or p - Format : "generate pages your-model-name field-name:data-type field-name:data-type"  \n `
   );
   console.log(
     ` pages or p - Example : "generate pages vehicle year:Number make:String model:String"  \n  \n `
