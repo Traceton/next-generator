@@ -13,9 +13,9 @@ const generatorController = (userInput) => {
     generateModel(userInput);
   } else if (userInput[1] === "crud" || userInput[1] === "c") {
     generateCrud(userInput);
-  } else if (userInput[1] === "routes" || userInput[1] === "r") {
+  } else if (userInput[1] === "api-routes" || userInput[1] === "a-r") {
     generateApiRoutes(userInput);
-  } else if (userInput[1] === "empty-routes" || userInput[1] === "e-r") {
+  } else if (userInput[1] === "empty-api-routes" || userInput[1] === "e-a-r") {
     generateEmptyApiRoutes(userInput);
   } else if (userInput[1] === "tests" || userInput[1] === "t") {
     generateRestTest(userInput);

@@ -27,6 +27,20 @@ const help = async (userInput) => {
   console.log(
     ` model or m - Example : "generate model vehicle year:Number make:String model:String"  \n  \n `
   );
+  console.log(` api-routes or a-r - generate next js api routes.  \n `);
+  console.log(
+    ` api-routes or a-r - Format : "generate api-routes your-model-name model-field:field-type model-field:field-type"  \n `
+  );
+  console.log(
+    ` api-routes or a-r - Example : "generate api-routes vehicle year:Number make:String model:String"  \n  \n `
+  );
+  console.log(` pages or p - generate next js pages.  \n `);
+  console.log(
+    ` pages or p - Format : "generate pages your-model-name model-field:field-type model-field:field-type"  \n `
+  );
+  console.log(
+    ` pages or p - Example : "generate pages vehicle year:Number make:String model:String"  \n  \n `
+  );
 
   console.log(`***** End of User Guide *****`);
 };
