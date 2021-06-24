@@ -1,7 +1,0 @@
-This file will hold the minimum requirements for tests in this application.
-
-Tests should be written for every function,
- ideally before the function is created.
-
-Tests should respond correctly to,
- undefined input, null input, incorrect input.
