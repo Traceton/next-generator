@@ -25,10 +25,17 @@ describe(`Test generating all page routes for a model with valid input`, () => {
       { recursive: true },
       expect.any(Function)
     );
+
+    expect(fs.mkdirSync).toHaveBeenNthCalledWith(
+      3,
+      `pages/cars/editCars`,
+      { recursive: true },
+      expect.any(Function)
+    );
   });
 
   it(` "fs.mkdirSync" to be called 2 times`, () => {
-    expect(fs.mkdirSync).toHaveBeenCalledTimes(2);
+    expect(fs.mkdirSync).toHaveBeenCalledTimes(3);
   });
 
   it(`"fs.writeFileSync" should be called with ".env.local,pages/cars/index.js,pages/cars/[carId].js" `, () => {
@@ -66,7 +73,7 @@ describe(`Test generating all page routes for a model with valid input`, () => {
 
     expect(fs.writeFileSync).toHaveBeenNthCalledWith(
       5,
-      `pages/cars/editCar.js`,
+      `pages/cars/editCars/[carId].js`,
       expect.any(String),
       { recursive: true },
       expect.any(Function)
