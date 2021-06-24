@@ -16,9 +16,11 @@ const recursiveReadline = () => {
     console.log(userInput[0]);
     switch (userInput[0]) {
       case "exit":
+      case "e":  
         rl.close();
         break;
       case "help":
+      case "h":
         help();
         break;
       case "generate":
