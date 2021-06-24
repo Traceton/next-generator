@@ -23,23 +23,23 @@ export default async (req, res) => {
   switch (req.method) {
     case "GET":
       try {
-        const ${modelName} = await ${upperCaseFirstLetterModelName}.find({});
+        const ${modelName}s = await ${upperCaseFirstLetterModelName}.find({});
 
-        if (!${modelName}) {
+        if (!${modelName}s) {
           return res
             .status(404)
-            .json({ message_type: "warning", message: "${modelName} not found" });
+            .json({ message_type: "warning", message: "${modelName}s not found" });
         }
 
         res.status(201).json({
           message_type: "success",
-          message: "${modelName} found",
-          ${modelName}: ${modelName},
+          message: "${modelName}s found",
+          ${modelName}s: ${modelName}s,
         });
       } catch (error) {
         res.status(400).json({
           message_type: "warning",
-          message: "${modelName} not found",
+          message: "${modelName}s not found",
           error: error,
         });
       }
