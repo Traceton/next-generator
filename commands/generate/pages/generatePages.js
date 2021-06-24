@@ -62,15 +62,13 @@ const generatePages = async (userInput) => {
     .toString()
     .replace("[", "")
     .replace("]", "")
-    .replace(/,/g, "")
-    .replace(/"/g, "");
+    .replace(/,/g, "");
 
   let finalEditFormFieldItems = editFormFieldItems
     .toString()
     .replace("[", "")
     .replace("]", "")
-    .replace(/,/g, "")
-    .replace(/"/g, "");
+    .replace(/,/g, "");
 
   const indexPage = `
 export default function ${upperCaseFirstLetterModelName}(props) {
