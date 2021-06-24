@@ -18,7 +18,7 @@ const help = async (userInput) => {
     ` crud or c - Format : "generate crud your-model-name field-name:data-type field-name:data-type"   \n `
   );
   console.log(
-    ` crud or c - example : "generate crud vehicle year:Number make:String model:String"   \n  \n `
+    ` crud or c - Example : "generate crud vehicle year:Number make:String model:String"   \n  \n `
   );
   console.log(` model or m - generate a mongoose model.  \n `);
   console.log(
