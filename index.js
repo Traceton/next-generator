@@ -3,6 +3,7 @@ const readline = require("readline");
 const {
   generatorController,
 } = require("./commands/generate/generatorController");
+const { help } = require("./commands/help/help");
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -16,6 +17,9 @@ const recursiveReadline = () => {
     switch (userInput[0]) {
       case "exit":
         rl.close();
+        break;
+      case "help":
+        help();
         break;
       case "generate":
       case "g":
