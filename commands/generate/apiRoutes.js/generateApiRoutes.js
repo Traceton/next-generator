@@ -4,14 +4,14 @@ const { existsSync } = require("fs");
 // g r truck
 
 const generateApiRoutes = async (userInput) => {
-  const modelName = userInput[2];
-
-  const upperCaseFirstLetterModelName =
-    modelName.charAt(0).toUpperCase() + modelName.slice(1);
+  const modelName = await userInput[2];
 
   if (!modelName) {
     return `no routeName recieved`;
   }
+
+  const upperCaseFirstLetterModelName =
+    modelName.charAt(0).toUpperCase() + modelName.slice(1);
 
   const indexApiPage = `
 import ${upperCaseFirstLetterModelName} from "../../../components/models/${upperCaseFirstLetterModelName}";

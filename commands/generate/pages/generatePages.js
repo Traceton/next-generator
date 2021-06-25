@@ -4,14 +4,14 @@ const { existsSync } = require("fs");
 // g p truck make:String model:String
 
 const generatePages = async (userInput) => {
-  const modelName = userInput[2];
-
-  const upperCaseFirstLetterModelName =
-    modelName.charAt(0).toUpperCase() + modelName.slice(1);
+  const modelName = await userInput[2];
 
   if (!modelName) {
     return `no modelName recieved`;
   }
+
+  const upperCaseFirstLetterModelName =
+    modelName.charAt(0).toUpperCase() + modelName.slice(1);
 
   let modelItems = userInput.slice(3);
 
