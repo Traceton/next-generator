@@ -1,8 +1,5 @@
 import readline from "readline"
-
-
 import { generatorController } from "./commands/generate/generatorController"
-
 import { help } from "./commands/help/help"
 
 const rl = readline.createInterface({

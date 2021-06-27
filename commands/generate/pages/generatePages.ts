@@ -1,58 +1,77 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.generatePages = void 0;
-const utils_1 = require("../../../utils");
-const fs_1 = require("fs");
-const generatePages = async (userInput) => {
-    const modelName = userInput[2];
-    if (!modelName) {
-        return `no modelName recieved`;
-    }
-    const upperCaseFirstLetterModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
-    let modelItems = userInput.slice(3);
-    let neWModelSchemaItems = [];
-    let jsonBodyForForm = [];
-    let formFieldItems = [];
-    let editFormFieldItems = [];
-    modelItems.map((unSplitEntry) => {
-        let entry = unSplitEntry.split(":");
-        let entryName = entry[0];
-        let entryType = entry[1];
-        let modelField = `<h1>${modelName} ${entryName} ---> {${modelName}.${entryName}}</h1>`;
-        let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
-        let formField = ` <label htmlFor="${entryName}">${entryName}</label> \
+import { createDirectory, createFile } from "../../../utils";
+import { existsSync } from "fs";
+
+
+// g p truck make:String model:String
+
+export const generatePages = async (userInput: string[]) => {
+  const modelName = userInput[2];
+
+  if (!modelName) {
+    return `no modelName recieved`;
+  }
+
+  const upperCaseFirstLetterModelName =
+    modelName.charAt(0).toUpperCase() + modelName.slice(1);
+
+  let modelItems = userInput.slice(3);
+
+  let neWModelSchemaItems: any[] = [];
+
+  let jsonBodyForForm: any[] = [];
+
+  let formFieldItems: any[] = [];
+
+  let editFormFieldItems: any[] = [];
+
+  // maps through each command
+  modelItems.map((unSplitEntry) => {
+    let entry = unSplitEntry.split(":");
+    let entryName = entry[0];
+    let entryType = entry[1];
+
+    let modelField = `<h1>${modelName} ${entryName} ---> {${modelName}.${entryName}}</h1>`;
+    let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
+    let formField = ` <label htmlFor="${entryName}">${entryName}</label> \
                       <input id="${entryName}" name="${entryName}" type="text" autoComplete="${entryName}" required /> `;
-        let editFormField = ` <label htmlFor="${entryName}">${entryName}</label> \
+
+    let editFormField = ` <label htmlFor="${entryName}">${entryName}</label> \
                       <input defaultValue={props.${modelName}.${entryName}} id="${entryName}" name="${entryName}" type="text" autoComplete="${entryName}" required /> `;
-        neWModelSchemaItems.push(JSON.stringify(modelField));
-        jsonBodyForForm.push(JSON.stringify(jsonBodyField));
-        formFieldItems.push(formField);
-        editFormFieldItems.push(editFormField);
-    });
-    let finalSchemaItems = neWModelSchemaItems
-        .toString()
-        .replace("[", "")
-        .replace("]", "")
-        .replace(/`/g, "")
-        .replace(/,/g, "")
-        .replace(/"/g, "");
-    let finalJsonBodyItems = jsonBodyForForm
-        .toString()
-        .replace("[", "")
-        .replace("]", "")
-        .replace(/`/g, "")
-        .replace(/"/g, "");
-    let finalFormFieldItems = formFieldItems
-        .toString()
-        .replace("[", "")
-        .replace("]", "")
-        .replace(/,/g, "");
-    let finalEditFormFieldItems = editFormFieldItems
-        .toString()
-        .replace("[", "")
-        .replace("]", "")
-        .replace(/,/g, "");
-    const indexPage = `
+
+    neWModelSchemaItems.push(JSON.stringify(modelField));
+    jsonBodyForForm.push(JSON.stringify(jsonBodyField));
+    formFieldItems.push(formField);
+    editFormFieldItems.push(editFormField);
+  });
+
+  let finalSchemaItems = neWModelSchemaItems
+    .toString()
+    .replace("[", "")
+    .replace("]", "")
+    .replace(/`/g, "")
+    .replace(/,/g, "")
+    .replace(/"/g, "");
+
+  let finalJsonBodyItems = jsonBodyForForm
+    .toString()
+    .replace("[", "")
+    .replace("]", "")
+    .replace(/`/g, "")
+    .replace(/"/g, "");
+
+  let finalFormFieldItems = formFieldItems
+    .toString()
+    .replace("[", "")
+    .replace("]", "")
+    .replace(/,/g, "");
+
+  let finalEditFormFieldItems = editFormFieldItems
+    .toString()
+    .replace("[", "")
+    .replace("]", "")
+    .replace(/,/g, "");
+
+  const indexPage = `
 export default function ${upperCaseFirstLetterModelName}(props) {
   return (
     <div className="bg-white shadow overflow-hidden sm:rounded-md">
@@ -91,7 +110,8 @@ export const getStaticProps = async (context) => {
   };
 };
   `;
-    const dynamicPage = `
+
+  const dynamicPage = `
   import { useRouter } from "next/router";
 
 export default function ${modelName}Details(props) {
@@ -145,7 +165,8 @@ export const getStaticProps = async (context) => {
 };
 
   `;
-    const createPage = `
+
+  const createPage = `
   import React from "react";
 
 export default function create${upperCaseFirstLetterModelName}() {
@@ -177,7 +198,8 @@ export default function create${upperCaseFirstLetterModelName}() {
 }
 
   `;
-    const editPage = `
+
+  const editPage = `
   import { useRouter } from "next/router";
 
 export default function edit${upperCaseFirstLetterModelName}(props) {
@@ -253,23 +275,45 @@ export const getStaticProps = async (context) => {
 };
 
   `;
-    if (!fs_1.existsSync(`pages`)) {
-        await utils_1.createDirectory("pages");
-    }
-    if (!fs_1.existsSync(`pages/${modelName}s`)) {
-        await utils_1.createDirectory(`pages/${modelName}s`);
-    }
-    if (!fs_1.existsSync(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)) {
-        await utils_1.createDirectory(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`);
-    }
-    if (!fs_1.existsSync(`.env.local`)) {
-        await utils_1.createFile(".env.local", `MONGODB_URI=your-database-string-here
+
+  if (!existsSync(`pages`)) {
+    await createDirectory("pages");
+  }
+
+  if (!existsSync(`pages/${modelName}s`)) {
+    await createDirectory(`pages/${modelName}s`);
+  }
+
+  if (
+    !existsSync(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)
+  ) {
+    await createDirectory(
+      `pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`
+    );
+  }
+
+  if (!existsSync(`.env.local`)) {
+    await createFile(
+      ".env.local",
+      `MONGODB_URI=your-database-string-here
     MONGODB_DB=your-database-name-here    
-    `);
-    }
-    utils_1.createFile(`pages/${modelName}s/index.js`, indexPage);
-    utils_1.createFile(`pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
-    utils_1.createFile(`pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`, createPage);
-    utils_1.createFile(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`, editPage);
+    `
+    );
+  }
+
+  createFile(`pages/${modelName}s/index.js`, indexPage);
+
+  createFile(`pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
+
+  createFile(
+    `pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`,
+    createPage
+  );
+
+  createFile(
+    `pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`,
+    editPage
+  );
 };
-exports.generatePages = generatePages;
+
+

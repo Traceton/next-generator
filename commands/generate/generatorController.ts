@@ -1,12 +1,11 @@
-const { generateCrud } = require("./comboGenerators/generateCrud");
-const { generateModel } = require("./models/generateModel");
-const { generateApiRoutes } = require("./apiRoutes.js/generateApiRoutes");
-const {
-  generateEmptyApiRoutes,
-} = require("./apiRoutes.js/generateEmptyApiRoutes");
-const { generateRestTest } = require("./tests/generateRestTest");
-const { generatePages } = require("./pages/generatePages");
-const { generateEmptyPages } = require("./pages/generateEmptyPages");
+import { generateCrud } from "./comboGenerators/generateCrud"
+import { generateModel } from "./models/generateModel"
+import { generateApiRoutes } from "./apiRoutes.js/generateApiRoutes"
+import { generateEmptyApiRoutes } from "./apiRoutes.js/generateEmptyApiRoutes"
+import { generateRestTest } from "./tests/generateRestTest"
+import { generatePages } from "./pages/generatePages"
+import { generateEmptyPages } from "./pages/generateEmptyPages"
+
 
 export const generatorController = (userInput: string[]) => {
   if (userInput[1] === "model" || userInput[1] === "m") {
