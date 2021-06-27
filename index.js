@@ -13,7 +13,6 @@ const rl = readline_1.default.createInterface({
 const recursiveReadline = () => {
     rl.question("next-generator command: ", function (answer) {
         let userInput = answer.trim().split(" ");
-        console.log(userInput[0]);
         switch (userInput[0]) {
             case "exit":
             case "e":
