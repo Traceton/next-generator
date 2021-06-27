@@ -6,7 +6,7 @@ export const createDirectory = async (directoryPath: string) => {
     return `no directoryPath recieved`;
   }
 
-  await fs.mkdirSync(directoryPath, { recursive: true }, (error) => {
+  await fs.mkdirSync(directoryPath, { recursive: true }, (error: object) => {
     if (error) {
       return `incorrect directory name format`;
     }
@@ -27,7 +27,7 @@ export const createFile = async (filePath: string, fileContent: string) => {
     filePath,
     fileContent,
     { recursive: true },
-    (error) => {
+    (error: object) => {
       if (error) {
         console.log(`error in createFile --> ${error}`);
         return `error in createFile`;
