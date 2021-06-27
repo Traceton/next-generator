@@ -1,9 +1,9 @@
-const readline = require("readline");
+import readline from "readline"
 
-const {
-  generatorController,
-} = require("./commands/generate/generatorController");
-const { help } = require("./commands/help/help");
+
+import { generatorController } from "./commands/generate/generatorController"
+
+import { help } from "./commands/help/help"
 
 const rl = readline.createInterface({
   input: process.stdin,

@@ -1,8 +1,12 @@
 "use strict";
-const readline = require("readline");
-const { generatorController, } = require("./commands/generate/generatorController");
-const { help } = require("./commands/help/help");
-const rl = readline.createInterface({
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const readline_1 = __importDefault(require("readline"));
+const generatorController_1 = require("./commands/generate/generatorController");
+const help_1 = require("./commands/help/help");
+const rl = readline_1.default.createInterface({
     input: process.stdin,
     output: process.stdout,
 });
@@ -17,11 +21,11 @@ const recursiveReadline = () => {
                 break;
             case "help":
             case "h":
-                help();
+                help_1.help();
                 break;
             case "generate":
             case "g":
-                generatorController(userInput);
+                generatorController_1.generatorController(userInput);
                 break;
         }
         recursiveReadline();
