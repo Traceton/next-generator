@@ -12,26 +12,17 @@ describe(`Test generating all page routes for a model with valid input`, () => {
   });
 
   it(`"fs.mkdirSync" should be called with "pages,pages/cars" `, () => {
-    expect(fs.mkdirSync).toHaveBeenNthCalledWith(
-      1,
-      `pages`,
-      { recursive: true },
-      expect.any(Function)
-    );
+    expect(fs.mkdirSync).toHaveBeenNthCalledWith(1, `pages`, {
+      recursive: true,
+    });
 
-    expect(fs.mkdirSync).toHaveBeenNthCalledWith(
-      2,
-      `pages/cars`,
-      { recursive: true },
-      expect.any(Function)
-    );
+    expect(fs.mkdirSync).toHaveBeenNthCalledWith(2, `pages/cars`, {
+      recursive: true,
+    });
 
-    expect(fs.mkdirSync).toHaveBeenNthCalledWith(
-      3,
-      `pages/cars/editCars`,
-      { recursive: true },
-      expect.any(Function)
-    );
+    expect(fs.mkdirSync).toHaveBeenNthCalledWith(3, `pages/cars/editCars`, {
+      recursive: true,
+    });
   });
 
   it(` "fs.mkdirSync" to be called 2 times`, () => {
@@ -42,41 +33,31 @@ describe(`Test generating all page routes for a model with valid input`, () => {
     expect(fs.writeFileSync).toHaveBeenNthCalledWith(
       1,
       `.env.local`,
-      expect.any(String),
-      { recursive: true },
-      expect.any(Function)
+      expect.any(String)
     );
 
     expect(fs.writeFileSync).toHaveBeenNthCalledWith(
       2,
       `pages/cars/index.js`,
-      expect.any(String),
-      { recursive: true },
-      expect.any(Function)
+      expect.any(String)
     );
 
     expect(fs.writeFileSync).toHaveBeenNthCalledWith(
       3,
       `pages/cars/[carId].js`,
-      expect.any(String),
-      { recursive: true },
-      expect.any(Function)
+      expect.any(String)
     );
 
     expect(fs.writeFileSync).toHaveBeenNthCalledWith(
       4,
       `pages/cars/createCar.js`,
-      expect.any(String),
-      { recursive: true },
-      expect.any(Function)
+      expect.any(String)
     );
 
     expect(fs.writeFileSync).toHaveBeenNthCalledWith(
       5,
       `pages/cars/editCars/[carId].js`,
-      expect.any(String),
-      { recursive: true },
-      expect.any(Function)
+      expect.any(String)
     );
   });
 

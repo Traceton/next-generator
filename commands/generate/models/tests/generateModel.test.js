@@ -12,19 +12,13 @@ describe(`Test generating mongoose api model with valid input`, () => {
   });
 
   it(`"fs.mkdirSync" should be called with "components,components/models" `, () => {
-    expect(fs.mkdirSync).toHaveBeenNthCalledWith(
-      1,
-      `components`,
-      { recursive: true },
-      expect.any(Function)
-    );
+    expect(fs.mkdirSync).toHaveBeenNthCalledWith(1, `components`, {
+      recursive: true,
+    });
 
-    expect(fs.mkdirSync).toHaveBeenNthCalledWith(
-      2,
-      `components/models`,
-      { recursive: true },
-      expect.any(Function)
-    );
+    expect(fs.mkdirSync).toHaveBeenNthCalledWith(2, `components/models`, {
+      recursive: true,
+    });
   });
 
   it(` "fs.mkdirSync" to be called 2 times`, () => {
@@ -39,9 +33,7 @@ describe(`Test generating mongoose api model with valid input`, () => {
     expect(fs.writeFileSync).toHaveBeenNthCalledWith(
       1,
       `components/models/Car.js`,
-      expect.any(String),
-      { recursive: true },
-      expect.any(Function)
+      expect.any(String)
     );
   });
 

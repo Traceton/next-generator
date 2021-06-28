@@ -10,11 +10,7 @@ const createDirectory = (directoryPath) => {
         console.log(`no directoryPath recieved`);
         return `no directoryPath recieved`;
     }
-    fs_1.default.mkdirSync(directoryPath, { recursive: true }, (error) => {
-        if (error) {
-            return `incorrect directory name format`;
-        }
-    });
+    fs_1.default.mkdirSync(directoryPath, { recursive: true });
     return `directory created`;
 };
 exports.createDirectory = createDirectory;
@@ -27,12 +23,7 @@ const createFile = (filePath, fileContent) => {
         console.log(`no filePath OR no fileContent recieved`);
         return `no filePath OR no fileContent recieved`;
     }
-    fs_1.default.writeFileSync(filePath, fileContent, { recursive: true }, (error) => {
-        if (error) {
-            console.log(`error in createFile --> ${error}`);
-            return `error in createFile`;
-        }
-    });
+    fs_1.default.writeFileSync(filePath, fileContent);
     return `file created`;
 };
 exports.createFile = createFile;
