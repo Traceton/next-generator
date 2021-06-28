@@ -5,12 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createFile = exports.createDirectory = void 0;
 const fs_1 = __importDefault(require("fs"));
-const createDirectory = async (directoryPath) => {
+const createDirectory = (directoryPath) => {
     if (!directoryPath) {
         console.log(`no directoryPath recieved`);
         return `no directoryPath recieved`;
     }
-    await fs_1.default.mkdirSync(directoryPath, { recursive: true }, (error) => {
+    fs_1.default.mkdirSync(directoryPath, { recursive: true }, (error) => {
         if (error) {
             return `incorrect directory name format`;
         }
@@ -18,7 +18,7 @@ const createDirectory = async (directoryPath) => {
     return `directory created`;
 };
 exports.createDirectory = createDirectory;
-const createFile = async (filePath, fileContent) => {
+const createFile = (filePath, fileContent) => {
     if (!filePath && !fileContent) {
         console.log(`no filePath and no fileContent recieved`);
         return `no filePath and no fileContent recieved`;
@@ -27,7 +27,7 @@ const createFile = async (filePath, fileContent) => {
         console.log(`no filePath OR no fileContent recieved`);
         return `no filePath OR no fileContent recieved`;
     }
-    await fs_1.default.writeFileSync(filePath, fileContent, { recursive: true }, (error) => {
+    fs_1.default.writeFileSync(filePath, fileContent, { recursive: true }, (error) => {
         if (error) {
             console.log(`error in createFile --> ${error}`);
             return `error in createFile`;

@@ -1,12 +1,13 @@
 import fs from "fs";
 
-export const createDirectory = async (directoryPath: string) => {
+
+export const createDirectory =  (directoryPath: string) => {
   if (!directoryPath) {
     console.log(`no directoryPath recieved`);
     return `no directoryPath recieved`;
   }
 
-  await fs.mkdirSync(directoryPath, { recursive: true }, (error: object) => {
+   fs.mkdirSync(directoryPath, { recursive: true }, (error: object) => {
     if (error) {
       return `incorrect directory name format`;
     }
@@ -14,7 +15,7 @@ export const createDirectory = async (directoryPath: string) => {
   return `directory created`;
 };
 
-export const createFile = async (filePath: string, fileContent: string) => {
+export const createFile =  (filePath: string, fileContent: string) => {
   if (!filePath && !fileContent) {
     console.log(`no filePath and no fileContent recieved`);
     return `no filePath and no fileContent recieved`;
@@ -23,7 +24,7 @@ export const createFile = async (filePath: string, fileContent: string) => {
     return `no filePath OR no fileContent recieved`;
   }
 
-  await fs.writeFileSync(
+   fs.writeFileSync(
     filePath,
     fileContent,
     { recursive: true },
