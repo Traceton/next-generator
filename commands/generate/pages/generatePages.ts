@@ -16,19 +16,18 @@ export const generatePages = async (userInput: string[]) => {
 
   let modelItems = userInput.slice(3);
 
-  let neWModelSchemaItems: any[] = [];
+  let neWModelSchemaItems: string[] = [];
 
-  let jsonBodyForForm: any[] = [];
+  let jsonBodyForForm: string[] = [];
 
-  let formFieldItems: any[] = [];
+  let formFieldItems: string[] = [];
 
-  let editFormFieldItems: any[] = [];
+  let editFormFieldItems: string[] = [];
 
   // maps through each command
   modelItems.map((unSplitEntry) => {
     let entry = unSplitEntry.split(":");
     let entryName = entry[0];
-    let entryType = entry[1];
 
     let modelField = `<h1>${modelName} ${entryName} ---> {${modelName}.${entryName}}</h1>`;
     let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;

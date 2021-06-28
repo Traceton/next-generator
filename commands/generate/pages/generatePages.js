@@ -17,7 +17,6 @@ const generatePages = async (userInput) => {
     modelItems.map((unSplitEntry) => {
         let entry = unSplitEntry.split(":");
         let entryName = entry[0];
-        let entryType = entry[1];
         let modelField = `<h1>${modelName} ${entryName} ---> {${modelName}.${entryName}}</h1>`;
         let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
         let formField = ` <label htmlFor="${entryName}">${entryName}</label> \
