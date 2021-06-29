@@ -190,7 +190,11 @@ export default function create${upperCaseFirstLetterModelName}() {
         onSubmit={createNew${upperCaseFirstLetterModelName}}
       >
       ${finalFormFieldItems}
-        <button type="submit">Create ${upperCaseFirstLetterModelName}</button>
+      <input
+      type="submit"
+      value="Update ${upperCaseFirstLetterModelName}"
+      className="bg-gray-350 hover:bg-green-500 font-2xl rounded px-10 py-4 m-2"
+    ></input>
       </form>
     </div>
   );
@@ -228,8 +232,11 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
         onSubmit={update${upperCaseFirstLetterModelName}}
       >
         ${finalEditFormFieldItems}
-
-        <button type="submit">Update ${upperCaseFirstLetterModelName}</button>
+      <input
+          type="submit"
+          value="Update ${upperCaseFirstLetterModelName}"
+          className="bg-gray-350 hover:bg-green-500 font-2xl rounded px-10 py-4 m-2"
+        ></input>
       </form>
     </div>
   );
