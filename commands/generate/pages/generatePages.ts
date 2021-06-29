@@ -36,7 +36,6 @@ export const generatePages = async (userInput: string[]) => {
                     ${entryName} \
                     </label> \
                     <input \
-                      defaultValue={props.${modelName}.${entryName}} \
                       type="text" \
                       name="${entryName}" \
                       id="${entryName}" \

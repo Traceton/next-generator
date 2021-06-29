@@ -24,7 +24,6 @@ const generatePages = async (userInput) => {
                     ${entryName} \
                     </label> \
                     <input \
-                      defaultValue={props.${modelName}.${entryName}} \
                       type="text" \
                       name="${entryName}" \
                       id="${entryName}" \
