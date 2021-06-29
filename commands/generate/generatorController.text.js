@@ -1,1 +1,0 @@
-// const { generatorController } = require("./generatorController");
