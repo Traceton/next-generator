@@ -17,7 +17,6 @@ export const generateModel = async (userInput: string[]) => {
   }
 
   try {
-    console.log(`model name ---> ${modelName}`);
     const upperCaseFirstLetterModelName =
       modelName.charAt(0).toUpperCase() + modelName.slice(1);
 

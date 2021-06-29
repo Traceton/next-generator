@@ -14,7 +14,6 @@ const generateModel = async (userInput) => {
         return `must enter model schema parameters`;
     }
     try {
-        console.log(`model name ---> ${modelName}`);
         const upperCaseFirstLetterModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
         let modelItems = userInput.slice(3);
         let neWModelSchemaItems = [];
