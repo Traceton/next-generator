@@ -31,11 +31,33 @@ export const generatePages = async (userInput: string[]) => {
 
     let modelField = `<h1>${modelName} ${entryName} ---> {${modelName}.${entryName}}</h1>`;
     let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
-    let formField = ` <label htmlFor="${entryName}">${entryName}</label> \
-                      <input id="${entryName}" name="${entryName}" type="text" autoComplete="${entryName}" required /> `;
+    let formField = `<div className="flex flex-col m-4 p-2 text-center"> \
+                    <label htmlFor="${entryName}" className="text-2xl"> \
+                    ${entryName} \
+                    </label> \
+                    <input \
+                      defaultValue={props.${modelName}.${entryName}} \
+                      type="text" \
+                      name="${entryName}" \
+                      id="${entryName}" \
+                      className="py-4 m-1  bg-gray-350 rounded" \
+                      required \
+                    /> \
+                  </div>`;
 
-    let editFormField = ` <label htmlFor="${entryName}">${entryName}</label> \
-                      <input defaultValue={props.${modelName}.${entryName}} id="${entryName}" name="${entryName}" type="text" autoComplete="${entryName}" required /> `;
+    let editFormField = `<div className="flex flex-col m-4 p-2 text-center"> \
+                      <label htmlFor="${entryName}" className="text-2xl"> \
+                      ${entryName} \
+                      </label> \
+                      <input \
+                        defaultValue={props.${modelName}.${entryName}} \
+                        type="text" \
+                        name="${entryName}" \
+                        id="${entryName}" \
+                        className="py-4 m-1  bg-gray-350 rounded" \
+                        required \
+                      /> \
+                    </div>`;
 
     neWModelSchemaItems.push(JSON.stringify(modelField));
     jsonBodyForForm.push(JSON.stringify(jsonBodyField));
