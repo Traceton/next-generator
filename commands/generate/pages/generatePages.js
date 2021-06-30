@@ -192,7 +192,7 @@ export default function create${upperCaseFirstLetterModelName}() {
       ${finalFormFieldItems}
       <input
       type="submit"
-      value="Update ${upperCaseFirstLetterModelName}"
+      value="Create ${upperCaseFirstLetterModelName}"
       className="bg-gray-350 hover:bg-green-500 font-2xl rounded px-10 py-4 m-2"
     ></input>
       </form>
