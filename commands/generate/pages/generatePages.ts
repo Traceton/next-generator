@@ -1,7 +1,6 @@
 import { createDirectory, createFile } from "../../../utils";
 import { existsSync } from "fs";
 
-
 // g p truck make:String model:String
 
 export const generatePages = async (userInput: string[]) => {
