@@ -270,7 +270,7 @@ export const getStaticPaths = async () => {
 
   const staticPathParams = [];
 
-  await data.${modelName}.map((${modelName}) => {
+  await data.${modelName}s.map((${modelName}) => {
     staticPathParams.push({ params: { ${modelName}Id: ${modelName}._id } });
   });
 
@@ -283,7 +283,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   // fetch ${modelName} data from api here
   const ${modelName}Id = context.params.${modelName}Id;
-  const res = await fetch(\`http://localhost:3000/api/${modelName}s/\${modelName}\`);
+  const res = await fetch(\`http://localhost:3000/api/${modelName}s/\${modelName}Id\`);
 
   const data = await res.json();
 
