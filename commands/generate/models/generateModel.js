@@ -52,13 +52,13 @@ const generateModel = async (userInput) => {
   }); \n
 
   module.exports = mongoose.models.${modelName} || mongoose.model("${modelName}", ${modelName}Schema);`;
-        if (!fs_1.existsSync(`components`)) {
-            await utils_1.createDirectory("components");
+        if (!(0, fs_1.existsSync)(`components`)) {
+            await (0, utils_1.createDirectory)("components");
         }
-        if (!fs_1.existsSync(`components/models`)) {
-            await utils_1.createDirectory("components/models");
+        if (!(0, fs_1.existsSync)(`components/models`)) {
+            await (0, utils_1.createDirectory)("components/models");
         }
-        utils_1.createFile(`components/models/${upperCaseFirstLetterModelName}.js`, newModel);
+        (0, utils_1.createFile)(`components/models/${upperCaseFirstLetterModelName}.js`, newModel);
     }
     catch (error) {
         console.log(error);

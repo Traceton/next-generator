@@ -131,7 +131,7 @@ export const getStaticPaths = async () => {
   const res = await fetch(\`http://localhost:3000/api/${modelName}s\`);
 
   const data = await res.json();
-
+BB
   const staticPathParams = [];
 
   await data.${modelName}s.map((${modelName}) => {
@@ -147,7 +147,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   // fetch ${modelName} data from api here
   const ${modelName}Id = context.params.${modelName}Id;
-  const res = await fetch(\`http://localhost:3000/api/projects/\${${modelName}Id}\`);
+  const res = await fetch(\`http://localhost:3000/api/${modelName}s/\${${modelName}Id}\`);
 
   const data = await res.json();
 
@@ -243,14 +243,14 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
 }
 
 export const getStaticPaths = async () => {
-  const res = await fetch(\`http://localhost:3000/api/projects\`);
+  const res = await fetch(\`http://localhost:3000/api/${modelName}s\`);
 
   const data = await res.json();
 
   const staticPathParams = [];
 
-  await data.projects.map((project) => {
-    staticPathParams.push({ params: { projectId: project._id } });
+  await data.${modelName}.map((${modelName}) => {
+    staticPathParams.push({ params: { ${modelName}Id: ${modelName}._id } });
   });
 
   return {
@@ -260,9 +260,9 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-  // fetch project data from api here
-  const projectId = context.params.projectId;
-  const res = await fetch(\`http://localhost:3000/api/projects/\${projectId}\`);
+  // fetch ${modelName} data from api here
+  const ${modelName}Id = context.params.${modelName}Id;
+  const res = await fetch(\`http://localhost:3000/api/${modelName}s/\${modelName}\`);
 
   const data = await res.json();
 
@@ -274,29 +274,29 @@ export const getStaticProps = async (context) => {
 
   return {
     props: {
-      project: data.project,
+      ${modelName}: data.${modelName},
     },
   };
 };
 
   `;
-    if (!fs_1.existsSync(`pages`)) {
-        await utils_1.createDirectory("pages");
+    if (!(0, fs_1.existsSync)(`pages`)) {
+        await (0, utils_1.createDirectory)("pages");
     }
-    if (!fs_1.existsSync(`pages/${modelName}s`)) {
-        await utils_1.createDirectory(`pages/${modelName}s`);
+    if (!(0, fs_1.existsSync)(`pages/${modelName}s`)) {
+        await (0, utils_1.createDirectory)(`pages/${modelName}s`);
     }
-    if (!fs_1.existsSync(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)) {
-        await utils_1.createDirectory(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`);
+    if (!(0, fs_1.existsSync)(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)) {
+        await (0, utils_1.createDirectory)(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`);
     }
-    if (!fs_1.existsSync(`.env.local`)) {
-        await utils_1.createFile(".env.local", `MONGODB_URI=your-database-string-here
+    if (!(0, fs_1.existsSync)(`.env.local`)) {
+        await (0, utils_1.createFile)(".env.local", `MONGODB_URI=your-database-string-here
     MONGODB_DB=your-database-name-here    
     `);
     }
-    utils_1.createFile(`pages/${modelName}s/index.js`, indexPage);
-    utils_1.createFile(`pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
-    utils_1.createFile(`pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`, createPage);
-    utils_1.createFile(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`, editPage);
+    (0, utils_1.createFile)(`pages/${modelName}s/index.js`, indexPage);
+    (0, utils_1.createFile)(`pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
+    (0, utils_1.createFile)(`pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`, createPage);
+    (0, utils_1.createFile)(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`, editPage);
 };
 exports.generatePages = generatePages;

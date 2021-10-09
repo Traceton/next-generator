@@ -68,12 +68,12 @@ DELETE http://localhost:3001/${modelName}s/1
 Content-type: application/json
 
 `;
-    if (!fs_1.existsSync(`tests`)) {
-        await utils_1.createDirectory("tests");
-        await utils_1.createFile(`tests/${modelName}.rest`, restFile);
+    if (!(0, fs_1.existsSync)(`tests`)) {
+        await (0, utils_1.createDirectory)("tests");
+        await (0, utils_1.createFile)(`tests/${modelName}.rest`, restFile);
     }
     else {
-        await utils_1.createFile(`tests/${modelName}.rest`, restFile);
+        await (0, utils_1.createFile)(`tests/${modelName}.rest`, restFile);
     }
 };
 exports.generateRestTest = generateRestTest;

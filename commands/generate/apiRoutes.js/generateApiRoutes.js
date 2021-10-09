@@ -177,25 +177,25 @@ export default async (req, res) => {
   }
   
   export default dbConnect;`;
-    if (!fs_1.existsSync(`pages`)) {
-        await utils_1.createDirectory("pages");
+    if (!(0, fs_1.existsSync)(`pages`)) {
+        await (0, utils_1.createDirectory)("pages");
     }
-    if (!fs_1.existsSync(`pages/api`)) {
-        await utils_1.createDirectory("pages/api");
+    if (!(0, fs_1.existsSync)(`pages/api`)) {
+        await (0, utils_1.createDirectory)("pages/api");
     }
-    if (!fs_1.existsSync(`pages/api/${modelName}s`)) {
-        utils_1.createDirectory(`pages/api/${modelName}s`);
+    if (!(0, fs_1.existsSync)(`pages/api/${modelName}s`)) {
+        (0, utils_1.createDirectory)(`pages/api/${modelName}s`);
     }
-    if (!fs_1.existsSync(`utils`)) {
-        await utils_1.createDirectory("utils");
+    if (!(0, fs_1.existsSync)(`utils`)) {
+        await (0, utils_1.createDirectory)("utils");
     }
-    utils_1.createFile(`utils/dbConnect.js`, dbConnectFile);
-    if (!fs_1.existsSync(`.env.local`)) {
-        await utils_1.createFile(".env.local", `MONGODB_URI=your-database-string-here
+    (0, utils_1.createFile)(`utils/dbConnect.js`, dbConnectFile);
+    if (!(0, fs_1.existsSync)(`.env.local`)) {
+        await (0, utils_1.createFile)(".env.local", `MONGODB_URI=your-database-string-here
     MONGODB_DB=your-database-name-here    
     `);
     }
-    utils_1.createFile(`pages/api/${modelName}s/index.js`, indexApiPage);
-    utils_1.createFile(`pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
+    (0, utils_1.createFile)(`pages/api/${modelName}s/index.js`, indexApiPage);
+    (0, utils_1.createFile)(`pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
 };
 exports.generateApiRoutes = generateApiRoutes;

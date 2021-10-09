@@ -8,16 +8,16 @@ const generateEmptyApiRoutes = async (userInput) => {
     if (!modelName) {
         return `no routeName recieved`;
     }
-    if (!fs_1.existsSync(`pages`)) {
-        await utils_1.createDirectory("pages");
+    if (!(0, fs_1.existsSync)(`pages`)) {
+        await (0, utils_1.createDirectory)("pages");
     }
-    if (!fs_1.existsSync(`pages/api`)) {
-        await utils_1.createDirectory("pages/api");
+    if (!(0, fs_1.existsSync)(`pages/api`)) {
+        await (0, utils_1.createDirectory)("pages/api");
     }
-    if (!fs_1.existsSync(`pages/api/${modelName}s`)) {
-        utils_1.createDirectory(`pages/api/${modelName}s`);
+    if (!(0, fs_1.existsSync)(`pages/api/${modelName}s`)) {
+        (0, utils_1.createDirectory)(`pages/api/${modelName}s`);
     }
-    utils_1.createFile(`pages/api/${modelName}s/index.js`, "// blank test content for index");
-    utils_1.createFile(`pages/api/${modelName}s/[${modelName}Id].js`, "// blank test content");
+    (0, utils_1.createFile)(`pages/api/${modelName}s/index.js`, "// blank test content for index");
+    (0, utils_1.createFile)(`pages/api/${modelName}s/[${modelName}Id].js`, "// blank test content");
 };
 exports.generateEmptyApiRoutes = generateEmptyApiRoutes;

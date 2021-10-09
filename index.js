@@ -20,11 +20,11 @@ const recursiveReadline = () => {
                 break;
             case "help":
             case "h":
-                help_1.help();
+                (0, help_1.help)();
                 break;
             case "generate":
             case "g":
-                generatorController_1.generatorController(userInput);
+                (0, generatorController_1.generatorController)(userInput);
                 break;
         }
         recursiveReadline();
