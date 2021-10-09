@@ -150,7 +150,7 @@ export const getStaticPaths = async () => {
   const res = await fetch(\`http://localhost:3000/api/${modelName}s\`);
 
   const data = await res.json();
-BB
+
   const staticPathParams = [];
 
   await data.${modelName}s.map((${modelName}) => {
