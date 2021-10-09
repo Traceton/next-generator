@@ -166,7 +166,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   // fetch ${modelName} data from api here
   const ${modelName}Id = context.params.${modelName}Id;
-  const res = await fetch(\`http://localhost:3000/api/projects/\${${modelName}Id}\`);
+  const res = await fetch(\`http://localhost:3000/api/${modelName}s/\${${modelName}Id}\`);
 
   const data = await res.json();
 
@@ -264,14 +264,14 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
 }
 
 export const getStaticPaths = async () => {
-  const res = await fetch(\`http://localhost:3000/api/projects\`);
+  const res = await fetch(\`http://localhost:3000/api/${modelName}s\`);
 
   const data = await res.json();
 
   const staticPathParams = [];
 
-  await data.projects.map((project) => {
-    staticPathParams.push({ params: { projectId: project._id } });
+  await data.${modelName}.map((${modelName}) => {
+    staticPathParams.push({ params: { ${modelName}Id: ${modelName}._id } });
   });
 
   return {
@@ -281,9 +281,9 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-  // fetch project data from api here
-  const projectId = context.params.projectId;
-  const res = await fetch(\`http://localhost:3000/api/projects/\${projectId}\`);
+  // fetch ${modelName} data from api here
+  const ${modelName}Id = context.params.${modelName}Id;
+  const res = await fetch(\`http://localhost:3000/api/${modelName}/\${modelName}\`);
 
   const data = await res.json();
 
@@ -295,7 +295,7 @@ export const getStaticProps = async (context) => {
 
   return {
     props: {
-      project: data.project,
+      ${modelName}: data.${modelName},
     },
   };
 };
