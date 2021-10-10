@@ -60,30 +60,30 @@ exit
 
 ```
 Format : generate crud your-model-name field-name:data-type field-name:data-type
-Example : generate crud vehicle year:Number make:String model:String
-Short hand example: g c vehicle year:Number make:String model:String
+Example : generate crud vehicle year:String make:String model:String
+Short hand example: g c vehicle year:String make:String model:String
 ```
 
 ### generate a mongoose model:
 
 ```
 Format : generate model your-model-name field-name:data-type field-name:data-type
-Example : generate model vehicle year:Number make:String model:String
-Short hand example: g m vehicle year:Number make:String model:String
+Example : generate model vehicle year:String make:String model:String
+Short hand example: g m vehicle year:String make:String model:String
 ```
 
 ### generate next js crud (Create-Read-Update-Delete) api routes.
 
 ```
 Format : generate api-routes your-model-name field-name:data-type field-name:data-type
-Example : generate api-routes vehicle year:Number make:String model:String
-Short hand example: g a-r vehicle year:Number make:String model:String
+Example : generate api-routes vehicle year:String make:String model:String
+Short hand example: g a-r vehicle year:String make:String model:String
 ```
 
 ### generate next js crud (Create-Read-Update-Delete) pages.
 
 ```
 Format : generate pages your-model-name field-name:data-type field-name:data-type
-Example : generate pages vehicle year:Number make:String model:String
-Short hand example: g p vehicle year:Number make:String model:String
+Example : generate pages vehicle year:String make:String model:String
+Short hand example: g p vehicle year:String make:String model:String
 ```
