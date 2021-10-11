@@ -6,7 +6,6 @@ import { generateRestTest } from "./tests/generateRestTest"
 import { generatePages } from "./pages/generatePages"
 import { generateEmptyPages } from "./pages/generateEmptyPages"
 
-
 export const generatorController = (userInput: string[]) => {
   if (userInput[1] === "model" || userInput[1] === "m") {
     generateModel(userInput);
