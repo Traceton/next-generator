@@ -11,10 +11,10 @@ const generateEmptyPages = async (userInput) => {
     const indexPage = `// blank content for pages index`;
     const dynamicPage = `// blank dynamic page`;
     if (!(0, fs_1.existsSync)(`pages`)) {
-        await (0, utils_1.createDirectory)("pages");
+        (0, utils_1.createDirectory)("pages");
     }
     if (!(0, fs_1.existsSync)(`pages/${modelName}s`)) {
-        await (0, utils_1.createDirectory)(`pages/${modelName}s`);
+        (0, utils_1.createDirectory)(`pages/${modelName}s`);
     }
     (0, utils_1.createFile)(`pages/${modelName}s/index.js`, indexPage);
     (0, utils_1.createFile)(`pages/${modelName}s/[${modelName}Id].js`, dynamicPage);

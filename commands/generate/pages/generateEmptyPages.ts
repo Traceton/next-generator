@@ -15,11 +15,11 @@ export const generateEmptyPages = async (userInput: string[]) => {
   const dynamicPage = `// blank dynamic page`;
 
   if (!existsSync(`pages`)) {
-    await createDirectory("pages");
+    createDirectory("pages");
   }
 
   if (!existsSync(`pages/${modelName}s`)) {
-    await createDirectory(`pages/${modelName}s`);
+    createDirectory(`pages/${modelName}s`);
   }
 
   createFile(`pages/${modelName}s/index.js`, indexPage);
