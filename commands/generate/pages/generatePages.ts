@@ -29,7 +29,7 @@ export const generatePages = async (userInput: string[]) => {
     let entryName = entry[0];
 
     // let modelField = `<h1>${modelName} ${entryName} ---> {${modelName}.${entryName}}</h1>`;
-    let modelField = `<p className="text-lg text-gray-500 truncate">id: {${modelName}.${entryName}}</p>`
+    let modelField = `<p className="text-lg text-gray-500 truncate">${entryName}: {${modelName}.${entryName}}</p>`
     let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
     let formField = `<div className="flex flex-col m-4 p-2 text-center"> \
                     <label htmlFor="${entryName}" className="text-2xl"> \
@@ -132,44 +132,73 @@ export const generatePages = async (userInput: string[]) => {
   // };
   //   `;
 
+  // NOT MODIFIED YET/ new index page
   const indexPage = `
-    <div className="bg-gray-700 h-screen">
-    <div className="p-2">
-      <div className="m-4 p-4 rounded-md bg-gray-400 font-light space-y-8">
-        <div className="flex flex-row">
-          <div className="p-4 m-4">
-            <h3 className="text-4xl leading-6 font-light text-gray-900">${upperCaseFirstLetterModelName}s</h3>
-          </div>
+  import Link from 'next/link'
 
-          <div className="m-2 p-2 w-full justify-end">
-            <div className="pt-2 flex justify-end">
-              <Link href="/${modelName}s/create${upperCaseFirstLetterModelName}">
-                <a className="m-1 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xl font-light rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" >
-                  New
-                </a>
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {props.${modelName}s.map((${modelName}) => (
-            <div
-              key={${modelName}._id}
-              className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-            >
-              <div className="flex-1 min-w-0">
-                <a href={"/${modelName}s/" + ${modelName}._id} className="focus:outline-none">
-                  <span className="absolute inset-0" aria-hidden="true" />
-                  ${finalSchemaItems}
-                </a>
+  export default function Vehicle(props) {
+    return (
+      <div className="bg-gray-700 h-screen">
+        <div className="p-2">
+          <div className="m-4 p-4 rounded-md bg-gray-400 font-light space-y-8">
+            <div className="flex flex-row">
+              <div className="p-4 m-4">
+                <h3 className="text-4xl leading-6 font-light text-gray-900">Vehicles</h3>
+              </div>
+  
+              <div className="m-2 p-2 w-full justify-end">
+                <div className="pt-2 flex justify-end">
+                  <Link href="/vehicles/createVehicle">
+                    <a className="m-1 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xl font-light rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" >
+                      New
+                    </a>
+                  </Link>
+                </div>
               </div>
             </div>
-          ))}
+  
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {props.vehicles.map((vehicle) => (
+                <div
+                  key={vehicle._id}
+                  className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                >
+                  <div className="flex-1 min-w-0">
+                    <a href={"/vehicles/" + vehicle._id} className="focus:outline-none">
+                      <span className="absolute inset-0" aria-hidden="true" />
+                      <p className="text-lg text-gray-500 truncate">id: {vehicle._id}</p>
+                      <p className="text-lg text-gray-500 truncate">year: {vehicle.year}</p>
+                      <p className="text-lg text-gray-500 truncate">make: {vehicle.make}</p>
+                      <p className="text-lg text-gray-500 truncate">model: {vehicle.model}</p>
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    );
+  }
+  
+  export const getStaticProps = async (context) => {
+    // fetch vehicle data from api here
+    const res = await fetch("http://localhost:3000/api/vehicles");
+  
+    const data = await res.json();
+  
+    if (!data) {
+      return {
+        notFound: true,
+      };
+    }
+  
+    return {
+      props: {
+        vehicles: data.vehicles,
+      },
+    };
+  };
 `
 
   const dynamicPage = `
