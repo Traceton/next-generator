@@ -10,14 +10,23 @@ const generatePages = async (userInput) => {
     }
     const upperCaseFirstLetterModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
     let modelItems = userInput.slice(3);
-    let neWModelSchemaItems = [];
+    let neWModelSchemaItemsForIndex = [];
+    let neWModelSchemaItemsForDynamicPage = [];
     let jsonBodyForForm = [];
     let formFieldItems = [];
     let editFormFieldItems = [];
     modelItems.map((unSplitEntry) => {
         let entry = unSplitEntry.split(":");
         let entryName = entry[0];
-        let modelField = `<p className=\`text-lg text-gray-500 truncate\`>${entryName}: {${modelName}.${entryName}}</p>`;
+        let modelFieldForIndex = `<p className=\`text-lg text-gray-500 truncate\`>${entryName}: {${modelName}.${entryName}}</p>`;
+        let modelFieldForDynamicPage = `<div className=\`sm:col-span-6\`>
+    <label htmlFor=\`${entryName}\` className=\`block text-3xl font-light text-gray-700\`>
+    ${entryName}
+    </label>
+    <div className=\`mt-1 flex rounded-md shadow-sm\`>
+      <h1 id=\`year\`>{props.${modelName}.${entryName}}</h1>
+    </div>
+  </div>`;
         let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
         let formField = `<div className="flex flex-col m-4 p-2 text-center"> \
                     <label htmlFor="${entryName}" className="text-2xl"> \
@@ -44,12 +53,20 @@ const generatePages = async (userInput) => {
                         required \
                       /> \
                     </div>`;
-        neWModelSchemaItems.push(JSON.stringify(modelField));
+        neWModelSchemaItemsForIndex.push(JSON.stringify(modelFieldForIndex));
+        neWModelSchemaItemsForDynamicPage.push(JSON.stringify(modelFieldForDynamicPage));
         jsonBodyForForm.push(JSON.stringify(jsonBodyField));
         formFieldItems.push(formField);
         editFormFieldItems.push(editFormField);
     });
-    let finalSchemaItems = neWModelSchemaItems
+    let finalSchemaItemsForIndex = neWModelSchemaItemsForIndex
+        .toString()
+        .replace("[", "")
+        .replace("]", "")
+        .replace(/`/g, "")
+        .replace(/,/g, "")
+        .replace(/"/g, "");
+    let finalSchemaItemsForDynamicPage = neWModelSchemaItemsForIndex
         .toString()
         .replace("[", "")
         .replace("]", "")
@@ -105,7 +122,7 @@ const generatePages = async (userInput) => {
                   <div className="flex-1 min-w-0">
                     <a href={"/${modelName}s/" + ${modelName}._id} className="focus:outline-none">
                       <span className="absolute inset-0" aria-hidden="true" />
-                      ${finalSchemaItems}
+                      ${finalSchemaItemsForIndex}
                     </a>
                   </div>
                 </div>
@@ -156,33 +173,7 @@ export default function ${modelName}Details(props) {
             </div>
 
             <div className="text-xl mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-              <div className="sm:col-span-6">
-                <label htmlFor="year" className="block text-3xl font-light text-gray-700">
-                  year
-                </label>
-                <div className="mt-1 flex rounded-md shadow-sm">
-                  <h1 id="year">{props.${modelName}.year}</h1>
-                </div>
-              </div>
-
-              <div className="sm:col-span-6">
-                <label htmlFor="make" className="block text-3xl font-light text-gray-700">
-                  make
-                </label>
-                <div className="mt-1">
-                  <h1 id="make">{props.${modelName}.make}</h1>
-                </div>
-              </div>
-
-              <div className="sm:col-span-6">
-                <label htmlFor="model" className="block text-3xl font-light text-gray-700">
-                  model
-                </label>
-                <div className="mt-1">
-                  <h1 id="model">{props.${modelName}.model}</h1>
-                </div>
-              </div>
-
+              ${finalSchemaItemsForDynamicPage}
               <div className="m-2 p-2 w-full">
                 <div className="  flex justify-start">
                   <button
