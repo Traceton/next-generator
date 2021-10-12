@@ -17,7 +17,7 @@ const generatePages = async (userInput) => {
     modelItems.map((unSplitEntry) => {
         let entry = unSplitEntry.split(":");
         let entryName = entry[0];
-        let modelField = `<p className=\"text-lg text-gray-500 truncate\">${entryName}: {${modelName}.${entryName}}</p>`;
+        let modelField = `<p className=\`text-lg text-gray-500 truncate\`>${entryName}: {${modelName}.${entryName}}</p>`;
         let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
         let formField = `<div className="flex flex-col m-4 p-2 text-center"> \
                     <label htmlFor="${entryName}" className="text-2xl"> \
