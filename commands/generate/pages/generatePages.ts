@@ -28,7 +28,6 @@ export const generatePages = async (userInput: string[]) => {
     let entry = unSplitEntry.split(":");
     let entryName = entry[0];
 
-    // let modelField = `<h1>${modelName} ${entryName} ---> {${modelName}.${entryName}}</h1>`;
     let modelField = `<p className=\`text-lg text-gray-500 truncate\`>${entryName}: {${modelName}.${entryName}}</p>`
     let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
     let formField = `<div className="flex flex-col m-4 p-2 text-center"> \
@@ -91,48 +90,9 @@ export const generatePages = async (userInput: string[]) => {
     .replace("]", "")
     .replace(/,/g, "");
 
-  //   const indexPage = `
-  // export default function ${upperCaseFirstLetterModelName}(props) {
-  //   return (
-  //     <div className="bg-white shadow overflow-hidden sm:rounded-md">
-  //       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
-  //         <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-  //           <span className="block">${upperCaseFirstLetterModelName}s</span>
-  //         </h2>
-  //       </div>
-  //       <div>
-  //       {props.${modelName}s.map((${modelName}) => (
-  //         <li key={${modelName}._id}>
-  //         ${finalSchemaItems}
-  //         </li>
-  //       ))}
-  //       </div>
-  //     </div>
-  //   );
-  // }
 
 
-  // export const getStaticProps = async (context) => {
-  //   // fetch ${modelName} data from api here
-  //   const res = await fetch("http://localhost:3000/api/${modelName}s");
-
-  //   const data = await res.json();
-
-  //   if (!data) {
-  //     return {
-  //       notFound: true,
-  //     };
-  //   }
-
-  //   return {
-  //     props: {
-  //       ${modelName}s: data.${modelName}s,
-  //     },
-  //   };
-  // };
-  //   `;
-
-  // NOT MODIFIED YET/ new index page
+  // new index page
   const indexPage = `
   import Link from 'next/link'
 
