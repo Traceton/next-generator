@@ -126,10 +126,7 @@ export const generatePages = async (userInput: string[]) => {
                   <div className="flex-1 min-w-0">
                     <a href={"/${modelName}s/" + ${modelName}._id} className="focus:outline-none">
                       <span className="absolute inset-0" aria-hidden="true" />
-                      <p className="text-lg text-gray-500 truncate">id: {${modelName}._id}</p>
-                      <p className="text-lg text-gray-500 truncate">year: {${modelName}.year}</p>
-                      <p className="text-lg text-gray-500 truncate">make: {${modelName}.make}</p>
-                      <p className="text-lg text-gray-500 truncate">model: {${modelName}.model}</p>
+                      ${finalSchemaItems}
                     </a>
                   </div>
                 </div>
