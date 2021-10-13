@@ -325,13 +325,12 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
 
   const ${modelName}Id = router.query.${modelName}Id;
 
-
   const update${upperCaseFirstLetterModelName} = async (event) => {
     event.preventDefault();
 
     const res = await fetch(\`http://localhost:3000/api/${modelName}s/\${${modelName}Id}\`, {
       body: JSON.stringify({
-        ${finalJsonBodyItems}
+        year: event.target.year.value, make: event.target.make.value, model: event.target.model.value
       }),
       headers: {
         "Content-Type": "application/json",
@@ -340,19 +339,105 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
     });
   };
 
+  const delete${upperCaseFirstLetterModelName} = async (event) => {
+    event.preventDefault();
+
+    const res = await fetch(\`http://localhost:3000/api/${modelName}s/\${${modelName}Id}\`, {
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "DELETE",
+    });
+  }
+
   return (
-    <div className="bg-blue-500 h-screen w-full flex flex-col justify-center">
-      <form
-        className="w-1/2 flex flex-col justify-center self-center"
-        onSubmit={update${upperCaseFirstLetterModelName}}
-      >
-        ${finalEditFormFieldItems}
-      <input
-          type="submit"
-          value="Update ${upperCaseFirstLetterModelName}"
-          className="bg-gray-350 hover:bg-green-500 font-2xl rounded px-10 py-4 m-2"
-        ></input>
-      </form>
+    <div className="bg-gray-700 h-screen">
+      <div className="p-2">
+        <div className=" m-4 p-4 rounded-md bg-gray-400 font-light space-y-8 ">
+          <form onSubmit={update${upperCaseFirstLetterModelName}}>
+            <div>
+              <h3 className="text-4xl leading-6 font-light text-gray-900">Edit ${upperCaseFirstLetterModelName}</h3>
+            </div>
+
+            <div className="text-xl mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+              <div className="sm:col-span-6">
+                <label htmlFor="year" className="block text-3xl font-light text-gray-700">
+                  year
+                </label>
+                <div className="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    defaultValue={props.vehicle.year}
+                    type="text"
+                    name="year"
+                    id="year"
+                    autoComplete="year"
+                    className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-6">
+                <label htmlFor="make" className="block text-3xl font-light text-gray-700">
+                  make
+                </label>
+                <div className="mt-1">
+                  <input
+                    defaultValue={props.vehicle.make}
+                    type="text"
+                    name="make"
+                    id="make"
+                    autoComplete="make"
+                    className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-6">
+                <label htmlFor="model" className="block text-3xl font-light text-gray-700">
+                  model
+                </label>
+                <div className="mt-1">
+                  <input
+                    defaultValue={props.vehicle.model}
+                    type="text"
+                    name="model"
+                    id="model"
+                    autoComplete="model"
+                    className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
+                  />
+                </div>
+              </div>
+
+              <div className="m-2 p-2 w-full">
+                <div className="  flex justify-start">
+                  <button
+                    onClick={() => router.back()}
+                    type="button"
+                    className="m-1 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xl font-light rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    Back
+                  </button>
+                  <button
+                    onClick={delete${upperCaseFirstLetterModelName}}
+                    type="button"
+                    className="m-1 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xl font-light rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    Delete
+                  </button>
+                  <button
+                    type="submit"
+                    className="m-1 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xl font-light rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
@@ -393,6 +478,8 @@ export const getStaticProps = async (context) => {
     },
   };
 };
+
+
 
   `;
 
