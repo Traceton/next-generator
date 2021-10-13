@@ -263,55 +263,7 @@ export default function create${upperCaseFirstLetterModelName}() {
             </div>
 
             <div className="text-xl mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            ${finalFormFieldItems} goes here
-              <div className="sm:col-span-6">
-                <label htmlFor="year" className="block text-3xl font-light text-gray-700">
-                  year
-                </label>
-                <div className="mt-1 flex rounded-md shadow-sm">
-                  <input
-
-                    type="text"
-                    name="year"
-                    id="year"
-                    autoComplete="year"
-                    className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-6">
-                <label htmlFor="make" className="block text-3xl font-light text-gray-700">
-                  make
-                </label>
-                <div className="mt-1">
-                  <input
-
-                    type="text"
-                    name="make"
-                    id="make"
-                    autoComplete="make"
-                    className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-6">
-                <label htmlFor="model" className="block text-3xl font-light text-gray-700">
-                  model
-                </label>
-                <div className="mt-1">
-                  <input
-
-                    type="text"
-                    name="model"
-                    id="model"
-                    autoComplete="model"
-                    className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-
+            ${finalFormFieldItems} 
               <div className="m-2 p-2 w-full">
                 <div className="  flex justify-start">
                   <button
