@@ -279,7 +279,7 @@ export default function create${upperCaseFirstLetterModelName}() {
       method: "POST",
     });
 
-    router.push(\`/vehicles\`)
+    router.push(\`/${modelName}s\`)
 
   };
 
@@ -343,7 +343,7 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
       method: "PATCH",
     });
 
-    router.push(\`/vehicles/\${${modelName}Id}\`)
+    router.push(\`/${modelName}s/\${${modelName}Id}\`)
 
   };
 
@@ -358,7 +358,7 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
       method: "DELETE",
     });
 
-    router.push(\`/vehicles\`)
+    router.push(\`/${modelName}s\`)
 
   }
 
