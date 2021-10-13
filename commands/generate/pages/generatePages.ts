@@ -74,7 +74,7 @@ export const generatePages = async (userInput: string[]) => {
     .replace(/,/g, "")
     .replace(/`/g, "")
     .replace(/"/g, "")
-    .replace(/^/g, "\"");
+    .replace(/^/g, `"`);
 
   let finalSchemaItemsForDynamicPage = neWModelSchemaItemsForDynamicPage
     .toString()
