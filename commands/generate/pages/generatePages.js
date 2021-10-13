@@ -35,19 +35,21 @@ const generatePages = async (userInput) => {
                         />
                       </div>
                     </div>`;
-        let editFormField = `<div className="flex flex-col m-4 p-2 text-center"> \
-                      <label htmlFor="${entryName}" className="text-2xl"> \
-                      ${entryName} \
-                      </label> \
-                      <input \
-                        defaultValue={props.${modelName}.${entryName}} \
-                        type="text" \
-                        name="${entryName}" \
-                        id="${entryName}" \
-                        className="py-4 m-1  bg-gray-350 rounded" \
-                        required \
-                      /> \
-                    </div>`;
+        let editFormField = `<div className="sm:col-span-6">
+    <label htmlFor="${entryName}" className="block text-3xl font-light text-gray-700">
+      ${entryName}
+    </label>
+    <div className="mt-1 flex rounded-md shadow-sm">
+      <input
+      defaultValue={props.${modelName}.${entryName}}
+        type="text"
+        name="${entryName}"
+        id="${entryName}"
+        autoComplete="${entryName}"
+        className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
+      />
+    </div>
+  </div>`;
         neWModelSchemaItemsForIndex.push(JSON.stringify(modelFieldForIndex));
         neWModelSchemaItemsForDynamicPage.push(JSON.stringify(modelFieldForDynamicPage));
         jsonBodyForForm.push(JSON.stringify(jsonBodyField));
