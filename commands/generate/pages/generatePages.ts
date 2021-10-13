@@ -33,18 +33,20 @@ export const generatePages = async (userInput: string[]) => {
     let modelFieldForIndex = `<p className=^text-lg text-gray-500 truncate^>${entryName}: {${modelName}.${entryName}}</p> `
     let modelFieldForDynamicPage = `<div className=^sm:col-span-6^><label htmlFor=^${entryName}^ className=^block text-3xl font-light text-gray-700^>${entryName}</label><div className=^mt-1 flex rounded-md shadow-sm^><h1 id=^year^>{props.${modelName}.${entryName}}</h1></div></div>`
     let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
-    let formField = `<div className="flex flex-col m-4 p-2 text-center"> \
-                    <label htmlFor="${entryName}" className="text-2xl"> \
-                    ${entryName} \
-                    </label> \
-                    <input \
-                      type="text" \
-                      name="${entryName}" \
-                      id="${entryName}" \
-                      className="py-4 m-1  bg-gray-350 rounded" \
-                      required \
-                    /> \
-                  </div>`;
+    let formField = `<div className="sm:col-span-6">
+                      <label htmlFor="${entryName}" className="block text-3xl font-light text-gray-700">
+                        ${entryName}
+                      </label>
+                      <div className="mt-1 flex rounded-md shadow-sm">
+                        <input
+                          type="text"
+                          name="${entryName}"
+                          id="${entryName}"
+                          autoComplete="${entryName}"
+                          className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
+                        />
+                      </div>
+                    </div>`;
 
     let editFormField = `<div className="flex flex-col m-4 p-2 text-center"> \
                       <label htmlFor="${entryName}" className="text-2xl"> \
@@ -257,9 +259,11 @@ export const getStaticProps = async (context) => {
   `
 
   const createPage = `
-  import React from "react";
+  import { useRouter } from 'next/router'
+import React from "react";
 
 export default function create${upperCaseFirstLetterModelName}() {
+  const router = useRouter()
   const createNew${upperCaseFirstLetterModelName} = async (event) => {
     event.preventDefault();
 
@@ -275,22 +279,89 @@ export default function create${upperCaseFirstLetterModelName}() {
   };
 
   return (
-    <div className="bg-blue-500 h-screen w-full flex flex-col justify-center">
-      <form
-        className="w-1/2 flex flex-col justify-center self-center"
-        onSubmit={createNew${upperCaseFirstLetterModelName}}
-      >
-      ${finalFormFieldItems}
-      <input
-      type="submit"
-      value="Create ${upperCaseFirstLetterModelName}"
-      className="bg-gray-350 hover:bg-green-500 font-2xl rounded px-10 py-4 m-2"
-    ></input>
-      </form>
+    <div className="bg-gray-700 h-screen">
+      <div className="p-2">
+        <div className=" m-4 p-4 rounded-md bg-gray-400 font-light space-y-8 ">
+          <form onSubmit={createNew${upperCaseFirstLetterModelName}}>
+            <div>
+              <h3 className="text-4xl leading-6 font-light text-gray-900">Create New ${upperCaseFirstLetterModelName}</h3>
+            </div>
+
+            <div className="text-xl mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+            ${finalFormFieldItems} goes here
+              <div className="sm:col-span-6">
+                <label htmlFor="year" className="block text-3xl font-light text-gray-700">
+                  year
+                </label>
+                <div className="mt-1 flex rounded-md shadow-sm">
+                  <input
+
+                    type="text"
+                    name="year"
+                    id="year"
+                    autoComplete="year"
+                    className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-6">
+                <label htmlFor="make" className="block text-3xl font-light text-gray-700">
+                  make
+                </label>
+                <div className="mt-1">
+                  <input
+
+                    type="text"
+                    name="make"
+                    id="make"
+                    autoComplete="make"
+                    className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-6">
+                <label htmlFor="model" className="block text-3xl font-light text-gray-700">
+                  model
+                </label>
+                <div className="mt-1">
+                  <input
+
+                    type="text"
+                    name="model"
+                    id="model"
+                    autoComplete="model"
+                    className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
+                  />
+                </div>
+              </div>
+
+              <div className="m-2 p-2 w-full">
+                <div className="  flex justify-start">
+                  <button
+                    onClick={() => router.back()}
+                    type="button"
+                    className="m-1 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xl font-light rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="submit"
+                    className="m-1 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xl font-light rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
-
   `;
 
   const editPage = `
