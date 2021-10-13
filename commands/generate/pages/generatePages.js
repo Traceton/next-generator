@@ -253,6 +253,9 @@ export default function create${upperCaseFirstLetterModelName}() {
       },
       method: "POST",
     });
+
+    router.push(\`/vehicles\`)
+
   };
 
   return (
@@ -313,6 +316,9 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
       },
       method: "PATCH",
     });
+
+    router.push(\`/vehicles/\${${modelName}Id}\`)
+
   };
 
   const delete${upperCaseFirstLetterModelName} = async (event) => {
