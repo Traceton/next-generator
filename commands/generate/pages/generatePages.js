@@ -59,7 +59,7 @@ const generatePages = async (userInput) => {
         .replace(/,/g, "")
         .replace(/`/g, "")
         .replace(/"/g, "")
-        .replace(/^/g, `"`);
+        .replace(/^/g, `\"`);
     let finalSchemaItemsForDynamicPage = neWModelSchemaItemsForDynamicPage
         .toString()
         .replace("[", "")
