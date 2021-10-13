@@ -30,7 +30,7 @@ export const generatePages = async (userInput: string[]) => {
     let entry = unSplitEntry.split(":");
     let entryName = entry[0];
 
-    let modelFieldForIndex = `<p className="text-lg text-gray-500 truncate">${entryName}: {${modelName}.${entryName}}</p>`
+    let modelFieldForIndex = `<p className=\\"text-lg text-gray-500 truncate\\">${entryName}: {${modelName}.${entryName}}</p>`
     let modelFieldForDynamicPage = `<div className=\`sm:col-span-6\`><label htmlFor=\`${entryName}\` className=\`block text-3xl font-light text-gray-700\`>${entryName}</label><div className=\`mt-1 flex rounded-md shadow-sm\`><h1 id=\`year\`>{props.${modelName}.${entryName}}</h1></div></div>`
     let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
     let formField = `<div className="flex flex-col m-4 p-2 text-center"> \
