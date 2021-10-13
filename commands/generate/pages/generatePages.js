@@ -309,7 +309,7 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
 
     const res = await fetch(\`http://localhost:3000/api/${modelName}s/\${${modelName}Id}\`, {
       body: JSON.stringify({
-        year: event.target.year.value, make: event.target.make.value, model: event.target.model.value
+        ${finalJsonBodyItems}
       }),
       headers: {
         "Content-Type": "application/json",
