@@ -337,54 +337,7 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
             </div>
 
             <div className="text-xl mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-              <div className="sm:col-span-6">
-                <label htmlFor="year" className="block text-3xl font-light text-gray-700">
-                  year
-                </label>
-                <div className="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    defaultValue={props.vehicle.year}
-                    type="text"
-                    name="year"
-                    id="year"
-                    autoComplete="year"
-                    className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-6">
-                <label htmlFor="make" className="block text-3xl font-light text-gray-700">
-                  make
-                </label>
-                <div className="mt-1">
-                  <input
-                    defaultValue={props.vehicle.make}
-                    type="text"
-                    name="make"
-                    id="make"
-                    autoComplete="make"
-                    className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-6">
-                <label htmlFor="model" className="block text-3xl font-light text-gray-700">
-                  model
-                </label>
-                <div className="mt-1">
-                  <input
-                    defaultValue={props.vehicle.model}
-                    type="text"
-                    name="model"
-                    id="model"
-                    autoComplete="model"
-                    className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-
+            ${finalEditFormFieldItems}
               <div className="m-2 p-2 w-full">
                 <div className="  flex justify-start">
                   <button
