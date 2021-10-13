@@ -357,6 +357,9 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
       },
       method: "DELETE",
     });
+
+    router.push(\`/vehicles\`)
+
   }
 
   return (
