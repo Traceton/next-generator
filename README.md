@@ -6,7 +6,7 @@
 
 #### next-generator makes working with crud functions quicker in your next.js project.
 
-#### ❓ Using nodejs, express, and mongoose? Check out node-generator on github or npm for a similar package to this one.
+#### ❓ Using nodejs, express, and mongoose? Check out node-trekker on github or npm for a similar package to this one.
 
 ## :one: Install and setup:
 
@@ -24,7 +24,7 @@
 
 `npm i next-generator -D`
 
-### :five: Next, navigate to your package.json file and copy the node-generator script given here and paste into your scripts:
+### :five: Next, navigate to your package.json file and copy the next-generator script given here and paste into your scripts:
 
 ```
  "scripts": {
