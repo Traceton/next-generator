@@ -486,5 +486,3 @@ export const getStaticProps = async (context) => {
     editPage
   );
 };
-
-
