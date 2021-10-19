@@ -261,7 +261,7 @@ export default function Create${upperCaseFirstLetterModelName}() {
   const createNew${upperCaseFirstLetterModelName} = async (event) => {
     event.preventDefault();
 
-    const res = await fetch("${process.env.NEXT_PUBLIC_HOST_URL}/api/${modelName}s", {
+    const res = await fetch("\${process.env.NEXT_PUBLIC_HOST_URL}/api/${modelName}s", {
       body: JSON.stringify({
         ${finalJsonBodyItems}
       }),
