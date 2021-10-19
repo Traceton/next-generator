@@ -1,6 +1,6 @@
 {
   "name": "next-generator",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Your Next.js route, model, and page generator.",
   "main": "index.js",
   "scripts": {
