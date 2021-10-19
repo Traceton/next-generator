@@ -133,9 +133,15 @@ const generatePages = async (userInput) => {
       );
     }
 
-    export const getStaticProps = async (context) => {
+    export const getServerSideProps = async () => {
       // fetch ${modelName} data from api here
-      const res = await fetch("http://localhost:3000/api/${modelName}s");
+      const res = await fetch(\`\${process.env.NEXT_PUBLIC_HOST_URL}/api/${modelName}s\`, {
+        method: "GET",
+        headers: {
+          "User-Agent": "*",
+          Accept: "application/json; charset=UTF-8",
+        }
+      });
 
       const data = await res.json();
 
@@ -156,7 +162,7 @@ const generatePages = async (userInput) => {
   import Link from 'next/link'
 import { useRouter } from "next/router";
 
-export default function ${modelName}Details(props) {
+export default function ${upperCaseFirstLetterModelName}Details(props) {
   // router object from next
   const router = useRouter();
 
@@ -198,27 +204,13 @@ export default function ${modelName}Details(props) {
   );
 }
 
-export const getStaticPaths = async () => {
-  const res = await fetch(\`http://localhost:3000/api/${modelName}s\`);
 
-  const data = await res.json();
-
-  const staticPathParams = [];
-
-  await data.${modelName}s.map((${modelName}) => {
-    staticPathParams.push({ params: { ${modelName}Id: ${modelName}._id } });
-  });
-
-  return {
-    paths: staticPathParams,
-    fallback: true,
-  };
-};
-
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   // fetch ${modelName} data from api here
   const ${modelName}Id = context.params.${modelName}Id;
-  const res = await fetch(\`http://localhost:3000/api/${modelName}s/\${${modelName}Id}\`);
+  const res = await fetch(\`\${process.env.NEXT_PUBLIC_HOST_URL}/api/${modelName}s/\${${modelName}Id}\`, {
+    method: "GET"
+  });
 
   const data = await res.json();
 
@@ -239,17 +231,18 @@ export const getStaticProps = async (context) => {
   import { useRouter } from 'next/router'
 import React from "react";
 
-export default function create${upperCaseFirstLetterModelName}() {
+export default function Create${upperCaseFirstLetterModelName}() {
   const router = useRouter()
   const createNew${upperCaseFirstLetterModelName} = async (event) => {
     event.preventDefault();
 
-    const res = await fetch("http://localhost:3000/api/${modelName}s", {
+    const res = await fetch("${process.env.NEXT_PUBLIC_HOST_URL}/api/${modelName}s", {
       body: JSON.stringify({
         ${finalJsonBodyItems}
       }),
       headers: {
         "Content-Type": "application/json",
+        "User-Agent": "*"
       },
       method: "POST",
     });
@@ -298,7 +291,7 @@ export default function create${upperCaseFirstLetterModelName}() {
     const editPage = `
   import { useRouter } from "next/router";
 
-export default function edit${upperCaseFirstLetterModelName}(props) {
+export default function Edit${upperCaseFirstLetterModelName}(props) {
   // router object from next
   const router = useRouter();
 
@@ -307,11 +300,12 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
   const update${upperCaseFirstLetterModelName} = async (event) => {
     event.preventDefault();
 
-    const res = await fetch(\`http://localhost:3000/api/${modelName}s/\${${modelName}Id}\`, {
+    const res = await fetch(\`\${process.env.NEXT_PUBLIC_HOST_URL}/api/${modelName}s/\${${modelName}Id}\`, {
       body: JSON.stringify({
         ${finalJsonBodyItems}
       }),
       headers: {
+        "User-Agent": "*",
         "Content-Type": "application/json",
       },
       method: "PATCH",
@@ -324,9 +318,10 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
   const delete${upperCaseFirstLetterModelName} = async (event) => {
     event.preventDefault();
 
-    const res = await fetch(\`http://localhost:3000/api/${modelName}s/\${${modelName}Id}\`, {
+    const res = await fetch(\`\${process.env.NEXT_PUBLIC_HOST_URL}/api/${modelName}s/\${${modelName}Id}\`, {
 
       headers: {
+        "User-Agent": "*",
         "Content-Type": "application/json",
       },
       method: "DELETE",
@@ -380,27 +375,16 @@ export default function edit${upperCaseFirstLetterModelName}(props) {
   );
 }
 
-export const getStaticPaths = async () => {
-  const res = await fetch(\`http://localhost:3000/api/${modelName}s\`);
-
-  const data = await res.json();
-
-  const staticPathParams = [];
-
-  await data.${modelName}s.map((${modelName}) => {
-    staticPathParams.push({ params: { ${modelName}Id: ${modelName}._id } });
-  });
-
-  return {
-    paths: staticPathParams,
-    fallback: true,
-  };
-};
-
 export const getStaticProps = async (context) => {
   // fetch ${modelName} data from api here
   const ${modelName}Id = context.params.${modelName}Id;
-  const res = await fetch(\`http://localhost:3000/api/${modelName}s/\${${modelName}Id}\`);
+  const res = await fetch(\`\${process.env.NEXT_PUBLIC_HOST_URL}/api/${modelName}s/\${${modelName}Id}\`, {
+    headers: {
+      "User-Agent": "*",
+      Accept: "application/json; charset=UTF-8",
+    },
+    method: "GET"
+  });
 
   const data = await res.json();
 
@@ -421,17 +405,17 @@ export const getStaticProps = async (context) => {
 
   `;
     if (!(0, fs_1.existsSync)(`pages`)) {
-        await (0, utils_1.createDirectory)("pages");
+        (0, utils_1.createDirectory)("pages");
     }
     if (!(0, fs_1.existsSync)(`pages/${modelName}s`)) {
-        await (0, utils_1.createDirectory)(`pages/${modelName}s`);
+        (0, utils_1.createDirectory)(`pages/${modelName}s`);
     }
     if (!(0, fs_1.existsSync)(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)) {
-        await (0, utils_1.createDirectory)(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`);
+        (0, utils_1.createDirectory)(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`);
     }
     if (!(0, fs_1.existsSync)(`.env.local`)) {
-        await (0, utils_1.createFile)(".env.local", `MONGODB_URI=your-database-string-here
-    MONGODB_DB=your-database-name-here    
+        (0, utils_1.createFile)(".env.local", ` MONGODB_URI=your-database-string-here 
+        NEXT_PUBLIC_HOST_URL=http://localhost:3000
     `);
     }
     (0, utils_1.createFile)(`pages/${modelName}s/index.js`, indexPage);
