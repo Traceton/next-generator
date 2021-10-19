@@ -375,7 +375,7 @@ export default function Edit${upperCaseFirstLetterModelName}(props) {
   );
 }
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   // fetch ${modelName} data from api here
   const ${modelName}Id = context.params.${modelName}Id;
   const res = await fetch(\`\${process.env.NEXT_PUBLIC_HOST_URL}/api/${modelName}s/\${${modelName}Id}\`, {
