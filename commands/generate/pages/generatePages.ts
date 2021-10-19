@@ -186,7 +186,7 @@ export const generatePages = async (userInput: string[]) => {
   import Link from 'next/link'
 import { useRouter } from "next/router";
 
-export default function ${modelName}Details(props) {
+export default function ${upperCaseFirstLetterModelName}Details(props) {
   // router object from next
   const router = useRouter();
 
@@ -256,7 +256,7 @@ export const getServerSideProps = async (context) => {
   import { useRouter } from 'next/router'
 import React from "react";
 
-export default function create${upperCaseFirstLetterModelName}() {
+export default function Create${upperCaseFirstLetterModelName}() {
   const router = useRouter()
   const createNew${upperCaseFirstLetterModelName} = async (event) => {
     event.preventDefault();
@@ -317,7 +317,7 @@ export default function create${upperCaseFirstLetterModelName}() {
   const editPage = `
   import { useRouter } from "next/router";
 
-export default function edit${upperCaseFirstLetterModelName}(props) {
+export default function Edit${upperCaseFirstLetterModelName}(props) {
   // router object from next
   const router = useRouter();
 
