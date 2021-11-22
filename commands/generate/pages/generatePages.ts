@@ -17,8 +17,6 @@ export const generatePages = async (userInput: string[]) => {
 
   // moved to getDynamicData function
 
-
-
   // index was here
 
   //  dynamic was here
