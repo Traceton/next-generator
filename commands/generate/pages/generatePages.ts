@@ -15,7 +15,7 @@ export const generatePages = async (userInput: string[]) => {
 
   let modelItems = userInput.slice(3);
 
-  let neWModelSchemaItemsForIndex: string[] = [];
+
 
   let neWModelSchemaItemsForDynamicPage: string[] = [];
 

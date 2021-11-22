@@ -1,6 +1,13 @@
-export const generateIndex = (modelName, upperCaseFirstLetterModelName, finalSchemaItemsForIndex) => {
+import { getUpperCaseFirstLetter } from "../pagesUtils"
 
-    const indexPage = `
+export const generateIndex = (modelName: string, finalSchemaItemsForIndex: string) => {
+
+  let upperCaseFirstLetterModelName = getUpperCaseFirstLetter(modelName)
+
+  let neWModelSchemaItemsForIndex: string[] = [];
+
+
+  const indexPage = `
     import Link from 'next/link'
 
     export default function ${upperCaseFirstLetterModelName}(props) {
@@ -71,5 +78,5 @@ export const generateIndex = (modelName, upperCaseFirstLetterModelName, finalSch
     };
   `
 
-    return indexPage
+  return indexPage
 }

@@ -10,7 +10,6 @@ const generatePages = async (userInput) => {
     }
     const upperCaseFirstLetterModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
     let modelItems = userInput.slice(3);
-    let neWModelSchemaItemsForIndex = [];
     let neWModelSchemaItemsForDynamicPage = [];
     let jsonBodyForForm = [];
     let formFieldItems = [];
