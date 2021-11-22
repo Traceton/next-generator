@@ -1,0 +1,4 @@
+{
+    "database": "mongodb",
+    "style": "tailwindcss"
+}

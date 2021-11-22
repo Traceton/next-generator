@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createFile = exports.createDirectory = void 0;
+exports.readNextConfig = exports.createFile = exports.createDirectory = void 0;
 const fs_1 = __importDefault(require("fs"));
 const createDirectory = (directoryPath) => {
     if (!directoryPath) {
@@ -27,3 +27,28 @@ const createFile = (filePath, fileContent) => {
     return `file created`;
 };
 exports.createFile = createFile;
+const readNextConfig = () => {
+    const rawConfigFile = fs_1.default.readFileSync('nextGenConfig.json');
+    const configData = JSON.parse(rawConfigFile.toString());
+    let acceptedDatabases = ["mongodb"];
+    let acceptedStyles = ["none", "tailwindcss"];
+    if (configData) {
+        if (acceptedDatabases.includes(configData.database)) {
+            if (acceptedStyles.includes(configData.style)) {
+                console.log(configData);
+                return configData;
+            }
+            else {
+                console.log(`unknown style: ${configData.style}`);
+            }
+        }
+        else {
+            console.log(`unknown database: ${configData.database}`);
+        }
+    }
+    else {
+        console.log("No nextGenConfig.json found");
+        return false;
+    }
+};
+exports.readNextConfig = readNextConfig;

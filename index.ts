@@ -1,6 +1,7 @@
 import readline from "readline"
 import { generatorController } from "./commands/generate/generatorController"
 import { help } from "./commands/help/help"
+import { readNextConfig } from "./utils"
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -8,11 +9,12 @@ const rl = readline.createInterface({
 });
 
 const recursiveReadline = () => {
+  readNextConfig()
   rl.question("next-generator command: ", function (answer: string) {
     let userInput = answer.trim().split(" ");
     switch (userInput[0]) {
       case "exit":
-      case "e":  
+      case "e":
         rl.close();
         break;
       case "help":
