@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateIndex = void 0;
-const pagesUtils_1 = require("../pagesUtils");
+const pagesUtils_1 = require("../utils/pagesUtils");
 const generateIndex = (modelName, finalSchemaItemsForIndex) => {
     let upperCaseFirstLetterModelName = (0, pagesUtils_1.getUpperCaseFirstLetter)(modelName);
-    let neWModelSchemaItemsForIndex = [];
     const indexPage = `
     import Link from 'next/link'
 

@@ -1,10 +1,8 @@
-import { getUpperCaseFirstLetter } from "../pagesUtils"
+import { getUpperCaseFirstLetter } from "../utils/pagesUtils"
 
 export const generateIndex = (modelName: string, finalSchemaItemsForIndex: string) => {
 
   let upperCaseFirstLetterModelName = getUpperCaseFirstLetter(modelName)
-
-  let neWModelSchemaItemsForIndex: string[] = [];
 
 
   const indexPage = `

@@ -11,6 +11,3 @@ export const getUpperCaseFirstLetter = (modelName: string) => {
 
 }
 
-export const getFinalSchemaItemsForIndex = (modelItems: string) => {
-
-}

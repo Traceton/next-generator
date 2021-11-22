@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getFinalSchemaItemsForIndex = exports.getUpperCaseFirstLetter = void 0;
+exports.getUpperCaseFirstLetter = void 0;
 const getUpperCaseFirstLetter = (modelName) => {
     if (modelName) {
         const upperCaseFirstLetterModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
@@ -11,6 +11,3 @@ const getUpperCaseFirstLetter = (modelName) => {
     }
 };
 exports.getUpperCaseFirstLetter = getUpperCaseFirstLetter;
-const getFinalSchemaItemsForIndex = (modelItems) => {
-};
-exports.getFinalSchemaItemsForIndex = getFinalSchemaItemsForIndex;
