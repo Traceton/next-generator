@@ -35,7 +35,6 @@ const readNextConfig = () => {
     if (configData) {
         if (acceptedDatabases.includes(configData.database)) {
             if (acceptedStyles.includes(configData.style)) {
-                console.log(configData);
                 return configData;
             }
             else {

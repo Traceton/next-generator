@@ -1,3 +1,4 @@
+import { readNextConfig } from "../../utils"
 import { generateCrud } from "./comboGenerators/generateCrud"
 import { generateModel } from "./models/generateModel"
 import { generateApiRoutes } from "./apiRoutes.js/generateApiRoutes"
@@ -7,6 +8,10 @@ import { generatePages } from "./pages/generatePages"
 import { generateEmptyPages } from "./pages/generateEmptyPages"
 
 export const generatorController = (userInput: string[]) => {
+
+  let configData = readNextConfig()
+  console.log(configData)
+
   if (userInput[1] === "model" || userInput[1] === "m") {
     generateModel(userInput);
   } else if (userInput[1] === "crud" || userInput[1] === "c") {

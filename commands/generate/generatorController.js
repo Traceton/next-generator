@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generatorController = void 0;
+const utils_1 = require("../../utils");
 const generateCrud_1 = require("./comboGenerators/generateCrud");
 const generateModel_1 = require("./models/generateModel");
 const generateApiRoutes_1 = require("./apiRoutes.js/generateApiRoutes");
@@ -9,6 +10,8 @@ const generateRestTest_1 = require("./tests/generateRestTest");
 const generatePages_1 = require("./pages/generatePages");
 const generateEmptyPages_1 = require("./pages/generateEmptyPages");
 const generatorController = (userInput) => {
+    let configData = (0, utils_1.readNextConfig)();
+    console.log(configData);
     if (userInput[1] === "model" || userInput[1] === "m") {
         (0, generateModel_1.generateModel)(userInput);
     }

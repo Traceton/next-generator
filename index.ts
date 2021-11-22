@@ -9,7 +9,10 @@ const rl = readline.createInterface({
 });
 
 const recursiveReadline = () => {
+
+  // Checks next config for issues and alerts user accordingly
   readNextConfig()
+
   rl.question("next-generator command: ", function (answer: string) {
     let userInput = answer.trim().split(" ");
     switch (userInput[0]) {

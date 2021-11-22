@@ -32,7 +32,7 @@ export const createFile = (filePath: string, fileContent: string) => {
 export const readNextConfig = () => {
   // reads json from nextGenConfig.json
   const rawConfigFile = fs.readFileSync('nextGenConfig.json');
-  // parses json
+  // parses raw config file into json
   const configData = JSON.parse(rawConfigFile.toString())
 
   // all accepted databases should be listed here
@@ -45,7 +45,6 @@ export const readNextConfig = () => {
     if (acceptedDatabases.includes(configData.database)) {
       // checks if the style entered by the user is currently accepted.
       if (acceptedStyles.includes(configData.style)) {
-        console.log(configData)
         return configData
       } else {
         console.log(`unknown style: ${configData.style}`)
