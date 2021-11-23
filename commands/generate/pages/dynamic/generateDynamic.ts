@@ -1,6 +1,6 @@
-export const generateDynamic = (modelName, upperCaseFirstLetterModelName, finalSchemaItemsForDynamicPage) => {
+export const generateDynamic = (modelName: string, upperCaseFirstLetterModelName: string, finalSchemaItemsForDynamicPage: string) => {
 
-    const dynamicPage = `
+  const dynamicPage = `
   import Link from 'next/link'
 import { useRouter } from "next/router";
 
@@ -70,5 +70,5 @@ export const getServerSideProps = async (context) => {
 };
   `
 
-    return dynamicPage
+  return dynamicPage
 }

@@ -1,4 +1,4 @@
-export const generateEdit = (modelName, upperCaseFirstLetterModelName, finalJsonBodyItems, finalEditFormFieldItems) => {
+export const generateEdit = (modelName: string, upperCaseFirstLetterModelName: string, finalJsonBodyItems: string, finalEditFormFieldItems: string) => {
 
   const editPage = `
   import { useRouter } from "next/router";

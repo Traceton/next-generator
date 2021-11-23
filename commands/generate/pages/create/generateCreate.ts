@@ -1,4 +1,4 @@
-export const generateCreate = (modelName, upperCaseFirstLetterModelName, finalJsonBodyItems, finalFormFieldItems) => {
+export const generateCreate = (modelName: string, upperCaseFirstLetterModelName: string, finalJsonBodyItems: string, finalFormFieldItems: string) => {
 
   const createPage = `
   import { useRouter } from 'next/router'

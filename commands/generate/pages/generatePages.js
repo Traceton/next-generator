@@ -10,11 +10,11 @@ const generateCreate_1 = require("./create/generateCreate");
 const generateEdit_1 = require("./edit/generateEdit");
 const generatePages = async (userInput) => {
     const modelName = userInput[2];
+    let modelItems = userInput.slice(3);
     if (!modelName) {
         return `no modelName recieved`;
     }
     const upperCaseFirstLetterModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
-    let modelItems = userInput.slice(3);
     let finalDynamicData = (0, getDynamicData_1.getDynamicDataForPages)(modelName, modelItems);
     let indexPage = (0, generateIndex_1.generateIndex)(modelName, finalDynamicData.finalSchemaItemsForIndex);
     let dynamicPage = (0, generateDynamic_1.generateDynamic)(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage);

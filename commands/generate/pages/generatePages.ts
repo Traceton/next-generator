@@ -11,6 +11,8 @@ import { generateEdit } from "./edit/generateEdit"
 export const generatePages = async (userInput: string[]) => {
   const modelName = userInput[2];
 
+  let modelItems = userInput.slice(3);
+
   if (!modelName) {
     return `no modelName recieved`;
   }
@@ -18,22 +20,21 @@ export const generatePages = async (userInput: string[]) => {
   const upperCaseFirstLetterModelName =
     modelName.charAt(0).toUpperCase() + modelName.slice(1);
 
-  let modelItems = userInput.slice(3);
-
-  // moved to getDynamicData function
+  // Gets any dynamic data that the page generators will need.
   let finalDynamicData = getDynamicDataForPages(modelName, modelItems)
 
-  // index was here
+  // generates the index page
   let indexPage = generateIndex(modelName, finalDynamicData.finalSchemaItemsForIndex)
 
-  //  dynamic was here
+  //  generates the dynamic page
   let dynamicPage = generateDynamic(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage)
 
-  // create was here
+  // generates the create page
   let createPage = generateCreate(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems)
 
-  // edit was here
+  // generates the edit page
   let editPage = generateEdit(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems)
+
 
   if (!existsSync(`pages`)) {
     createDirectory("pages");
