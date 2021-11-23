@@ -80,5 +80,13 @@ const getDynamicDataForPages = (modelName, modelItems) => {
         .replace("[", "")
         .replace("]", "")
         .replace(/,/g, "");
+    let finalDynamicData = {
+        finalSchemaItemsForIndex: finalSchemaItemsForIndex,
+        finalSchemaItemsForDynamicPage: finalSchemaItemsForDynamicPage,
+        finalJsonBodyItems: finalJsonBodyItems,
+        finalFormFieldItems: finalFormFieldItems,
+        finalEditFormFieldItems: finalEditFormFieldItems
+    };
+    return finalDynamicData;
 };
 exports.getDynamicDataForPages = getDynamicDataForPages;

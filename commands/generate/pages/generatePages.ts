@@ -1,5 +1,10 @@
 import { createDirectory, createFile } from "../../../utils";
 import { existsSync } from "fs";
+import { getDynamicDataForPages } from "./utils/getDynamicData"
+import { generateIndex } from "./index/generateIndex"
+import { generateDynamic } from "./dynamic/generateDynamic"
+import { generateCreate } from "./create/generateCreate"
+import { generateEdit } from "./edit/generateEdit"
 
 // g p truck make:String model:String
 
@@ -16,14 +21,19 @@ export const generatePages = async (userInput: string[]) => {
   let modelItems = userInput.slice(3);
 
   // moved to getDynamicData function
+  let finalDynamicData = getDynamicDataForPages(modelName, modelItems)
 
   // index was here
+  let indexPage = generateIndex(modelName, finalDynamicData.finalSchemaItemsForIndex)
 
   //  dynamic was here
+  let dynamicPage = generateDynamic(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage)
 
   // create was here
+  let createPage = generateCreate(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems)
 
   // edit was here
+  let editPage = generateEdit(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems)
 
   if (!existsSync(`pages`)) {
     createDirectory("pages");
