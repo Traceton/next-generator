@@ -1,0 +1,1 @@
+// use this page to get the dynamic data for pages using tailwindcss for style in their config.

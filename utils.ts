@@ -54,7 +54,7 @@ export const readNextConfig = () => {
     }
   } else {
     console.log("No nextGenConfig.json found")
-    return false
+    return JSON.parse("false")
   }
 
 }
