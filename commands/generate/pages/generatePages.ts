@@ -11,7 +11,7 @@ import { generateEdit } from "./edit/generateEdit"
 export const generatePages = async (userInput: string[]) => {
   const modelName = userInput[2];
 
-  let modelItems = userInput.slice(3);
+  const modelItems = userInput.slice(3);
 
   if (!modelName) {
     return `no modelName recieved`;
@@ -21,19 +21,19 @@ export const generatePages = async (userInput: string[]) => {
     modelName.charAt(0).toUpperCase() + modelName.slice(1);
 
   // Gets any dynamic data that the page generators will need.
-  let finalDynamicData = getDynamicDataForPages(modelName, modelItems)
+  const finalDynamicData = getDynamicDataForPages(modelName, modelItems)
 
   // generates the index page
-  let indexPage = generateIndex(modelName, finalDynamicData.finalSchemaItemsForIndex)
+  const indexPage = generateIndex(modelName, finalDynamicData.finalSchemaItemsForIndex)
 
   //  generates the dynamic page
-  let dynamicPage = generateDynamic(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage)
+  const dynamicPage = generateDynamic(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage)
 
   // generates the create page
-  let createPage = generateCreate(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems)
+  const createPage = generateCreate(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems)
 
   // generates the edit page
-  let editPage = generateEdit(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems)
+  const editPage = generateEdit(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems)
 
 
   if (!existsSync(`pages`)) {

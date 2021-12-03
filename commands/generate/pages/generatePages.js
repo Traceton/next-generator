@@ -10,16 +10,16 @@ const generateCreate_1 = require("./create/generateCreate");
 const generateEdit_1 = require("./edit/generateEdit");
 const generatePages = async (userInput) => {
     const modelName = userInput[2];
-    let modelItems = userInput.slice(3);
+    const modelItems = userInput.slice(3);
     if (!modelName) {
         return `no modelName recieved`;
     }
     const upperCaseFirstLetterModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
-    let finalDynamicData = (0, getDynamicData_1.getDynamicDataForPages)(modelName, modelItems);
-    let indexPage = (0, generateIndex_1.generateIndex)(modelName, finalDynamicData.finalSchemaItemsForIndex);
-    let dynamicPage = (0, generateDynamic_1.generateDynamic)(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage);
-    let createPage = (0, generateCreate_1.generateCreate)(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems);
-    let editPage = (0, generateEdit_1.generateEdit)(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems);
+    const finalDynamicData = (0, getDynamicData_1.getDynamicDataForPages)(modelName, modelItems);
+    const indexPage = (0, generateIndex_1.generateIndex)(modelName, finalDynamicData.finalSchemaItemsForIndex);
+    const dynamicPage = (0, generateDynamic_1.generateDynamic)(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage);
+    const createPage = (0, generateCreate_1.generateCreate)(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems);
+    const editPage = (0, generateEdit_1.generateEdit)(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems);
     if (!(0, fs_1.existsSync)(`pages`)) {
         (0, utils_1.createDirectory)("pages");
     }
