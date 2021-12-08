@@ -32,11 +32,13 @@ export const createFile = (filePath: string, fileContent: string) => {
 // example of next config format given in nextGenConfigExample.json
 export const readNextConfig = () => {
   let configData;
+  let path = `./nextGenConfig.json`
 
   try {
     // reads json from nextGenConfig.json
-    const rawConfigFile = fs.readFileSync('nextGenConfig.json').toString();
+    const rawConfigFile = fs.readFileSync(path,{ encoding: "utf8" });
     // If no config file was found, uses the default config.
+    console.log(`raw config file -> ${rawConfigFile}`)
     if (!rawConfigFile) {
       console.log("no config file found, using default config")
       configData = defaultConfig
