@@ -30,11 +30,10 @@ const createFile = (filePath, fileContent) => {
 exports.createFile = createFile;
 const readNextConfig = () => {
     let configData;
-    let path = `./nextGenConfig.json`;
+    let path = `nextGenConfig.json`;
     try {
         const rawConfigFile = fs_1.default.readFileSync(path, { encoding: "utf8" });
-        console.log(`raw config file -> ${rawConfigFile}`);
-        if (!rawConfigFile) {
+        if (!rawConfigFile || rawConfigFile == undefined) {
             console.log("no config file found, using default config");
             configData = next_generator_config_1.defaultConfig;
         }
@@ -45,6 +44,7 @@ const readNextConfig = () => {
     catch (error) {
         console.log(error);
     }
+    console.log(`configData -> ${JSON.stringify(configData)}`);
     if (configData) {
         if (next_generator_config_1.acceptedDatabases.includes(configData.database)) {
             if (next_generator_config_1.acceptedStyles.includes(configData.style)) {
