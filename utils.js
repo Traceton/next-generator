@@ -33,9 +33,12 @@ const readNextConfig = () => {
     try {
         const rawConfigFile = fs_1.default.readFileSync('nextGenConfig.json').toString();
         if (!rawConfigFile) {
-            console.log("no config file found");
+            console.log("no config file found, using default config");
+            configData = next_generator_config_1.defaultConfig;
         }
-        configData = JSON.parse(rawConfigFile);
+        else {
+            configData = JSON.parse(rawConfigFile);
+        }
     }
     catch (error) {
         console.log(error);
@@ -54,8 +57,8 @@ const readNextConfig = () => {
         }
     }
     else {
-        console.log("No nextGenConfig.json found");
-        return JSON.parse("false");
+        console.log("No configData found");
+        return next_generator_config_1.defaultConfig;
     }
 };
 exports.readNextConfig = readNextConfig;

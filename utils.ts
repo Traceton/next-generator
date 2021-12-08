@@ -1,5 +1,5 @@
 import fs from "fs";
-import { acceptedDatabases,acceptedStyles } from "./next-generator-config"
+import { defaultConfig,acceptedDatabases,acceptedStyles } from "./next-generator-config"
 
 
 export const createDirectory = (directoryPath: string) => {
@@ -31,17 +31,18 @@ export const createFile = (filePath: string, fileContent: string) => {
 // accepted databases & styles located in next-generator-config.ts
 // example of next config format given in nextGenConfigExample.json
 export const readNextConfig = () => {
-  // reads json from nextGenConfig.json
-  // const rawConfigFile = fs.readFileSync('nextGenConfig.json').toString();
-  
   let configData;
 
   try {
+    // reads json from nextGenConfig.json
     const rawConfigFile = fs.readFileSync('nextGenConfig.json').toString();
+    // If no config file was found, uses the default config.
     if (!rawConfigFile) {
-      console.log("no config file found")
+      console.log("no config file found, using default config")
+      configData = defaultConfig
+    } else {
+      configData = JSON.parse(rawConfigFile)
     }
-    configData = JSON.parse(rawConfigFile)
   } catch (error) {
     console.log(error)
   }
@@ -59,8 +60,8 @@ export const readNextConfig = () => {
       console.log(`unknown database: ${configData.database}`)
     }
   } else {
-    console.log("No nextGenConfig.json found")
-    return JSON.parse("false")
+    console.log("No configData found")
+    return defaultConfig
   }
 
 }
