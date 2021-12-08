@@ -44,7 +44,6 @@ export const readNextConfig = () => {
       configData = defaultConfig
     } else {
       configData = JSON.parse(rawConfigFile)
-      console.log(`nextGenConfig.json found using ${configData.database} and ${configData.style}`)
     }
   } catch (error) {
     console.log(error)
@@ -55,7 +54,6 @@ export const readNextConfig = () => {
     if (acceptedDatabases.includes(configData.database)) {
       // checks if the style entered by the user is currently accepted.
       if (acceptedStyles.includes(configData.style)) {
-        console.log(`database of ${configData.database} and style of ${configData.style} both accepted.`)
         return configData
       } else {
         console.log(`unknown style: ${configData.style}`)
@@ -64,7 +62,7 @@ export const readNextConfig = () => {
       console.log(`unknown database: ${configData.database}`)
     }
   } else {
-    console.log("No configData found")
+    console.log("No configData found, returning default config")
     return defaultConfig
   }
 

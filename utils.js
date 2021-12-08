@@ -39,7 +39,6 @@ const readNextConfig = () => {
         }
         else {
             configData = JSON.parse(rawConfigFile);
-            console.log(`nextGenConfig.json found using ${configData.database} and ${configData.style}`);
         }
     }
     catch (error) {
@@ -48,7 +47,6 @@ const readNextConfig = () => {
     if (configData) {
         if (next_generator_config_1.acceptedDatabases.includes(configData.database)) {
             if (next_generator_config_1.acceptedStyles.includes(configData.style)) {
-                console.log(`database of ${configData.database} and style of ${configData.style} both accepted.`);
                 return configData;
             }
             else {
@@ -60,7 +58,7 @@ const readNextConfig = () => {
         }
     }
     else {
-        console.log("No configData found");
+        console.log("No configData found, returning default config");
         return next_generator_config_1.defaultConfig;
     }
 };
