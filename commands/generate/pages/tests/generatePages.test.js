@@ -8,7 +8,7 @@ describe(`Test generating all page routes for a model with valid input`, () => {
   beforeAll(() => {
     fs.mkdirSync.mockClear();
     fs.writeFileSync.mockClear();
-    generatePages(["generate", "p", "car"]);
+    generatePages(["generate", "p", "car", "make:String", "model:String"]);
   });
 
   it(`"fs.mkdirSync" should be called with "pages,pages/cars" `, () => {
