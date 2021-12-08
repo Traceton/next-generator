@@ -16,25 +16,33 @@ export const generatePages = async (userInput: string[]) => {
   if (!modelName) {
     return `no modelName recieved`;
   }
+  if (!modelItems) {
+    return `no modelItems recieved`;
+  }
 
   const upperCaseFirstLetterModelName =
-    modelName.charAt(0).toUpperCase() + modelName.slice(1);
+  modelName.charAt(0).toUpperCase() + modelName.slice(1);
 
-  // Gets any dynamic data that the page generators will need.
-  const finalDynamicData = getDynamicDataForPages(modelName, modelItems)
+ 
+    // Gets any dynamic data that the page generators will need.
+    const finalDynamicData = getDynamicDataForPages(modelName, modelItems)
 
-  // generates the index page
-  const indexPage = generateIndex(modelName, finalDynamicData.finalSchemaItemsForIndex)
+    // generates the index page
+    const indexPage = generateIndex(modelName, finalDynamicData.finalSchemaItemsForIndex)
 
-  //  generates the dynamic page
-  const dynamicPage = generateDynamic(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage)
+    //  generates the dynamic page
+    const dynamicPage = generateDynamic(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage)
 
-  // generates the create page
-  const createPage = generateCreate(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems)
+    // generates the create page
+    const createPage = generateCreate(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems)
 
-  // generates the edit page
-  const editPage = generateEdit(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems)
+    // generates the edit page
+    const editPage = generateEdit(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems)
 
+ 
+  
+
+  
 
   if (!existsSync(`pages`)) {
     createDirectory("pages");

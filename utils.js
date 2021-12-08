@@ -30,6 +30,9 @@ const createFile = (filePath, fileContent) => {
 exports.createFile = createFile;
 const readNextConfig = () => {
     const rawConfigFile = fs_1.default.readFileSync('nextGenConfig.json');
+    if (!rawConfigFile) {
+        console.log("no config file found");
+    }
     const configData = JSON.parse(rawConfigFile.toString());
     if (configData) {
         if (next_generator_config_1.acceptedDatabases.includes(configData.database)) {

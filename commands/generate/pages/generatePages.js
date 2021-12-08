@@ -14,6 +14,9 @@ const generatePages = async (userInput) => {
     if (!modelName) {
         return `no modelName recieved`;
     }
+    if (!modelItems) {
+        return `no modelItems recieved`;
+    }
     const upperCaseFirstLetterModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
     const finalDynamicData = (0, getDynamicData_1.getDynamicDataForPages)(modelName, modelItems);
     const indexPage = (0, generateIndex_1.generateIndex)(modelName, finalDynamicData.finalSchemaItemsForIndex);

@@ -33,6 +33,9 @@ export const createFile = (filePath: string, fileContent: string) => {
 export const readNextConfig = () => {
   // reads json from nextGenConfig.json
   const rawConfigFile = fs.readFileSync('nextGenConfig.json');
+  if (!rawConfigFile) {
+    console.log("no config file found")
+  }
   // parses raw config file into json
   const configData = JSON.parse(rawConfigFile.toString())
 
