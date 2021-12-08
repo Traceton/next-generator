@@ -32,12 +32,19 @@ export const createFile = (filePath: string, fileContent: string) => {
 // example of next config format given in nextGenConfigExample.json
 export const readNextConfig = () => {
   // reads json from nextGenConfig.json
-  const rawConfigFile = fs.readFileSync('nextGenConfig.json');
-  if (!rawConfigFile) {
-    console.log("no config file found")
+  // const rawConfigFile = fs.readFileSync('nextGenConfig.json').toString();
+  
+  let configData;
+
+  try {
+    const rawConfigFile = fs.readFileSync('nextGenConfig.json').toString();
+    if (!rawConfigFile) {
+      console.log("no config file found")
+    }
+    configData = JSON.parse(rawConfigFile)
+  } catch (error) {
+    console.log(error)
   }
-  // parses raw config file into json
-  const configData = JSON.parse(rawConfigFile.toString())
 
   if (configData) {
     // checks if the database entered by the user is currently accepted.

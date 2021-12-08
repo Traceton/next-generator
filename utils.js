@@ -29,11 +29,17 @@ const createFile = (filePath, fileContent) => {
 };
 exports.createFile = createFile;
 const readNextConfig = () => {
-    const rawConfigFile = fs_1.default.readFileSync('nextGenConfig.json');
-    if (!rawConfigFile) {
-        console.log("no config file found");
+    let configData;
+    try {
+        const rawConfigFile = fs_1.default.readFileSync('nextGenConfig.json').toString();
+        if (!rawConfigFile) {
+            console.log("no config file found");
+        }
+        configData = JSON.parse(rawConfigFile);
     }
-    const configData = JSON.parse(rawConfigFile.toString());
+    catch (error) {
+        console.log(error);
+    }
     if (configData) {
         if (next_generator_config_1.acceptedDatabases.includes(configData.database)) {
             if (next_generator_config_1.acceptedStyles.includes(configData.style)) {
