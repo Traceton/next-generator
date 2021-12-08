@@ -13,8 +13,6 @@ const getDynamicDataForPages = (modelName, modelItems) => {
             return (0, getDynamicTailwindcssData_1.getDynamicTailwindcssDataForPages)(modelName, modelItems);
             break;
         default:
-            const defaultMessage = `No Style found in nextGenConfig.json, using value of "none" for style`;
-            console.log(defaultMessage);
             return (0, getDynamicTailwindcssData_1.getDynamicTailwindcssDataForPages)(modelName, modelItems);
             break;
     }
