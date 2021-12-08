@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.readNextConfig = exports.createFile = exports.createDirectory = void 0;
 const fs_1 = __importDefault(require("fs"));
+const next_generator_config_1 = require("./next-generator-config");
 const createDirectory = (directoryPath) => {
     if (!directoryPath) {
         console.log(`no directoryPath recieved`);
@@ -30,11 +31,9 @@ exports.createFile = createFile;
 const readNextConfig = () => {
     const rawConfigFile = fs_1.default.readFileSync('nextGenConfig.json');
     const configData = JSON.parse(rawConfigFile.toString());
-    let acceptedDatabases = ["mongodb"];
-    let acceptedStyles = ["none", "tailwindcss"];
     if (configData) {
-        if (acceptedDatabases.includes(configData.database)) {
-            if (acceptedStyles.includes(configData.style)) {
+        if (next_generator_config_1.acceptedDatabases.includes(configData.database)) {
+            if (next_generator_config_1.acceptedStyles.includes(configData.style)) {
                 return configData;
             }
             else {

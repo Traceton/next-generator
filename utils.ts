@@ -1,4 +1,5 @@
 import fs from "fs";
+import { acceptedDatabases,acceptedStyles } from "./next-generator-config"
 
 
 export const createDirectory = (directoryPath: string) => {
@@ -27,18 +28,13 @@ export const createFile = (filePath: string, fileContent: string) => {
   return `file created`;
 };
 
-
+// accepted databases & styles located in next-generator-config.ts
 // example of next config format given in nextGenConfigExample.json
 export const readNextConfig = () => {
   // reads json from nextGenConfig.json
   const rawConfigFile = fs.readFileSync('nextGenConfig.json');
   // parses raw config file into json
   const configData = JSON.parse(rawConfigFile.toString())
-
-  // all accepted databases should be listed here
-  let acceptedDatabases = ["mongodb"]
-  // all accepted styles should be listed here
-  let acceptedStyles = ["none", "tailwindcss"];
 
   if (configData) {
     // checks if the database entered by the user is currently accepted.
