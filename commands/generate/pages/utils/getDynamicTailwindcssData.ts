@@ -1,5 +1,5 @@
 // Get the dynamic data for pages using tailwindcss for style in their config.
-export const getDynamicDataForPages = (modelName: string, modelItems: string[]) => {
+export const getDynamicTailwindcssDataForPages = (modelName: string, modelItems: string[]) => {
     let neWModelSchemaItemsForIndex: string[] = [];
   
     let neWModelSchemaItemsForDynamicPage: string[] = [];
