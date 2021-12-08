@@ -44,19 +44,18 @@ export const readNextConfig = () => {
       configData = defaultConfig
     } else {
       configData = JSON.parse(rawConfigFile)
+      console.log(`nextGenConfig.json found using ${configData.database} and ${configData.style}`)
     }
   } catch (error) {
     console.log(error)
   }
-
-  // currently trying to get the config data to export from this function correctly.
-  console.log(`configData -> ${JSON.stringify(configData)}`)
 
   if (configData) {
     // checks if the database entered by the user is currently accepted.
     if (acceptedDatabases.includes(configData.database)) {
       // checks if the style entered by the user is currently accepted.
       if (acceptedStyles.includes(configData.style)) {
+        console.log(`database of ${configData.database} and style of ${configData.style} both accepted.`)
         return configData
       } else {
         console.log(`unknown style: ${configData.style}`)

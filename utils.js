@@ -39,15 +39,16 @@ const readNextConfig = () => {
         }
         else {
             configData = JSON.parse(rawConfigFile);
+            console.log(`nextGenConfig.json found using ${configData.database} and ${configData.style}`);
         }
     }
     catch (error) {
         console.log(error);
     }
-    console.log(`configData -> ${JSON.stringify(configData)}`);
     if (configData) {
         if (next_generator_config_1.acceptedDatabases.includes(configData.database)) {
             if (next_generator_config_1.acceptedStyles.includes(configData.style)) {
+                console.log(`database of ${configData.database} and style of ${configData.style} both accepted.`);
                 return configData;
             }
             else {
