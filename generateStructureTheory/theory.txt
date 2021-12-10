@@ -3,4 +3,4 @@ The goal of this restructuring is to help make it easier to understand and to co
 
  Ideally somebody will set a value for something like "page_type" or "style" in the nextGenConfig.json file.
  Based on that value, the generate_pages_controller will call the correct set of pages to be generated. 
- Basically acting as a router, which points to nicely packed components that pertain to the value of page_type or style etc.
+ Basically acting as a router, which points to nicely packed components that pertain to the value of page_type, style, database, etc...
