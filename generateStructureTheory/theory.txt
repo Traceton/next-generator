@@ -10,3 +10,7 @@ The goal of this restructuring is to help make it easier to understand and to co
 Pros: Easier to read the file structure and create new generators based on the NextGenConfig.json
 
 Cons: More code needs to be replicated(but probably needs to be anyways.)
+
+
+
+Move generateCrud.ts into the new generate folder
