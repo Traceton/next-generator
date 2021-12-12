@@ -12,5 +12,4 @@ Pros: Easier to read the file structure and create new generators based on the N
 Cons: More code needs to be replicated(but probably needs to be anyways.)
 
 
-
 Move generateCrud.ts into the new generate folder
