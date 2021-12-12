@@ -7,7 +7,7 @@ const generateModel_1 = require("./models/generateModel");
 const generateApiRoutes_1 = require("./apiRoutes.js/generateApiRoutes");
 const generateEmptyApiRoutes_1 = require("./apiRoutes.js/generateEmptyApiRoutes");
 const generateRestTest_1 = require("./tests/generateRestTest");
-const generatePages_1 = require("./pages/generatePages");
+const generate_pages_controller_1 = require("./pages/generate_pages_controller");
 const generateEmptyPages_1 = require("./pages/generateEmptyPages");
 const generatorController = (userInput) => {
     let configData = (0, utils_1.readNextConfig)();
@@ -28,7 +28,7 @@ const generatorController = (userInput) => {
         (0, generateRestTest_1.generateRestTest)(userInput);
     }
     else if (userInput[1] === "pages" || userInput[1] === "p") {
-        (0, generatePages_1.generatePages)(userInput);
+        (0, generate_pages_controller_1.generatePages)(userInput);
     }
     else if (userInput[1] === "empty-pages" || userInput[1] === "e-p") {
         (0, generateEmptyPages_1.generateEmptyPages)(userInput);

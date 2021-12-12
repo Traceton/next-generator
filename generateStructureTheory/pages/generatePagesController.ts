@@ -1,1 +1,0 @@
-// this is generatePages.ts from old method

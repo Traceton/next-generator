@@ -4,7 +4,7 @@ import { generateModel } from "./models/generateModel"
 import { generateApiRoutes } from "./apiRoutes.js/generateApiRoutes"
 import { generateEmptyApiRoutes } from "./apiRoutes.js/generateEmptyApiRoutes"
 import { generateRestTest } from "./tests/generateRestTest"
-import { generatePages } from "./pages/generatePages"
+import { generatePages } from "./pages/generate_pages_controller"
 import { generateEmptyPages } from "./pages/generateEmptyPages"
 
 export const generatorController = (userInput: string[]) => {

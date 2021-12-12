@@ -13,3 +13,5 @@ Cons: More code needs to be replicated(but probably needs to be anyways.)
 
 
 Move generateCrud.ts into the new generate folder
+
+use page_type over style
