@@ -1,6 +1,5 @@
 import fs from "fs";
-import { defaultConfig,acceptedDatabases,acceptedStyles } from "./next-generator-config"
-
+import { defaultConfig, acceptedDatabases, acceptedPageTypes } from "./nextGeneratorConfig"
 
 export const createDirectory = (directoryPath: string) => {
   if (!directoryPath) {
@@ -37,7 +36,7 @@ export const readNextConfig = () => {
 
   try {
     // reads json from nextGenConfig.json
-    const rawConfigFile = fs.readFileSync(path,{ encoding: "utf8" });
+    const rawConfigFile = fs.readFileSync(path, { encoding: "utf8" });
     // If no config file was found, uses the default config.
     if (!rawConfigFile || rawConfigFile == undefined) {
       console.log("no config file found, using default config")
@@ -52,11 +51,11 @@ export const readNextConfig = () => {
   if (configData) {
     // checks if the database entered by the user is currently accepted.
     if (acceptedDatabases.includes(configData.database)) {
-      // checks if the style entered by the user is currently accepted.
-      if (acceptedStyles.includes(configData.style)) {
+      // checks if the pageType entered by the user is currently accepted.
+      if (acceptedPageTypes.includes(configData.pageType)) {
         return configData
       } else {
-        console.log(`unknown style: ${configData.style}`)
+        console.log(`unknown pageType: ${configData.pageType}`)
       }
     } else {
       console.log(`unknown database: ${configData.database}`)

@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.readNextConfig = exports.createFile = exports.createDirectory = void 0;
 const fs_1 = __importDefault(require("fs"));
-const next_generator_config_1 = require("./next-generator-config");
+const nextGeneratorConfig_1 = require("./nextGeneratorConfig");
 const createDirectory = (directoryPath) => {
     if (!directoryPath) {
         console.log(`no directoryPath recieved`);
@@ -35,7 +35,7 @@ const readNextConfig = () => {
         const rawConfigFile = fs_1.default.readFileSync(path, { encoding: "utf8" });
         if (!rawConfigFile || rawConfigFile == undefined) {
             console.log("no config file found, using default config");
-            configData = next_generator_config_1.defaultConfig;
+            configData = nextGeneratorConfig_1.defaultConfig;
         }
         else {
             configData = JSON.parse(rawConfigFile);
@@ -45,12 +45,12 @@ const readNextConfig = () => {
         console.log(error);
     }
     if (configData) {
-        if (next_generator_config_1.acceptedDatabases.includes(configData.database)) {
-            if (next_generator_config_1.acceptedStyles.includes(configData.style)) {
+        if (nextGeneratorConfig_1.acceptedDatabases.includes(configData.database)) {
+            if (nextGeneratorConfig_1.acceptedPageTypes.includes(configData.pageType)) {
                 return configData;
             }
             else {
-                console.log(`unknown style: ${configData.style}`);
+                console.log(`unknown pageType: ${configData.pageType}`);
             }
         }
         else {
@@ -59,7 +59,7 @@ const readNextConfig = () => {
     }
     else {
         console.log("No configData found, returning default config");
-        return next_generator_config_1.defaultConfig;
+        return nextGeneratorConfig_1.defaultConfig;
     }
 };
 exports.readNextConfig = readNextConfig;

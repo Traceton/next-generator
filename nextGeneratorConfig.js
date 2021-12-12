@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.acceptedStyles = exports.acceptedDatabases = exports.defaultConfig = void 0;
+exports.acceptedPageTypes = exports.acceptedDatabases = exports.defaultConfig = void 0;
 exports.defaultConfig = {
-    "database": "mongodb",
+    "pageType": "mongodb",
     "style": "tailwindcss"
 };
 exports.acceptedDatabases = ["mongodb"];
-exports.acceptedStyles = ["none", "tailwindcss"];
+exports.acceptedPageTypes = ["none", "tailwindcss"];
