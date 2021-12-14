@@ -1,3 +1,5 @@
+// This will be the controller for what pages are generated based on the 
+
 import { createDirectory, createFile } from "../../../utils";
 import { existsSync } from "fs";
 import { getDynamicDataForPages } from "./utils/getDynamicData"

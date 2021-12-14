@@ -1,3 +1,4 @@
+
 import { readNextConfig } from "../../utils"
 import { generateCrud } from "./comboGenerators/generateCrud"
 import { generateModel } from "./models/generateModel"
