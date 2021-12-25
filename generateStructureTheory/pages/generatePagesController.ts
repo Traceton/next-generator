@@ -10,7 +10,7 @@ import { generateEdit } from "./edit/generateEdit"
 
 // g p truck make:String model:String
 
-export const generatePages = async (userInput: string[]) => {
+export const generatePagesController = async (userInput: string[]) => {
   const modelName = userInput[2];
 
   const modelItems = userInput.slice(3);

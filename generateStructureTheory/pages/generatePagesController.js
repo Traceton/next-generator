@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generatePages = void 0;
+exports.generatePagesController = void 0;
 const utils_1 = require("../../../utils");
 const fs_1 = require("fs");
 const getDynamicData_1 = require("./utils/getDynamicData");
@@ -8,7 +8,7 @@ const generateIndex_1 = require("./index/generateIndex");
 const generateDynamic_1 = require("./dynamic/generateDynamic");
 const generateCreate_1 = require("./create/generateCreate");
 const generateEdit_1 = require("./edit/generateEdit");
-const generatePages = async (userInput) => {
+const generatePagesController = async (userInput) => {
     const modelName = userInput[2];
     const modelItems = userInput.slice(3);
     if (!modelName) {
@@ -42,4 +42,4 @@ const generatePages = async (userInput) => {
     (0, utils_1.createFile)(`pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`, createPage);
     (0, utils_1.createFile)(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`, editPage);
 };
-exports.generatePages = generatePages;
+exports.generatePagesController = generatePagesController;
