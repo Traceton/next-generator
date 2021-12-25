@@ -1,10 +1,10 @@
 import { createDirectory, createFile } from "../../../../utils";
 import { existsSync } from "fs";
-import { getDynamicDataForPages } from "./utils/getDynamicData"
-import { generateIndex } from "./index/generateIndex"
-import { generateDynamic } from "./dynamic/generateDynamic"
-import { generateCreate } from "./create/generateCreate"
-import { generateEdit } from "./edit/generateEdit"
+import { getDynamicTailwindcssData } from "./getDynamicTailwindcssData"
+import { generateIndex } from "./generateIndex"
+import { generateDynamic } from "./generateDynamic"
+import { generateCreate } from "./generateCreate"
+import { generateEdit } from "./generateEdit"
 
 export const tailwindcssPageController = async (userInput: string[]) => {
     const modelName = userInput[2];
@@ -23,7 +23,7 @@ export const tailwindcssPageController = async (userInput: string[]) => {
 
 
   // Gets any dynamic data that the page generators will need.
-  const finalDynamicData = getDynamicDataForPages(modelName, modelItems)
+  const finalDynamicData = getDynamicTailwindcssData(modelName, modelItems)
 
   // generates the index page
   const indexPage = generateIndex(modelName, finalDynamicData.finalSchemaItemsForIndex)

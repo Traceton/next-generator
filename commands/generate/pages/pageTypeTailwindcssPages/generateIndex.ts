@@ -1,6 +1,6 @@
-import { getUpperCaseFirstLetter } from "../utils/pagesUtils"
+import { getUpperCaseFirstLetter } from "./pagesUtils"
 
-export const tailwindcssIndex = (modelName: string, finalSchemaItemsForIndex: string) => {
+export const generateIndex = (modelName: string, finalSchemaItemsForIndex: string) => {
 
     let upperCaseFirstLetterModelName = getUpperCaseFirstLetter(modelName)
 

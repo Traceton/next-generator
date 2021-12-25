@@ -3,11 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.tailwindcssPageController = void 0;
 const utils_1 = require("../../../../utils");
 const fs_1 = require("fs");
-const getDynamicData_1 = require("./utils/getDynamicData");
-const generateIndex_1 = require("./index/generateIndex");
-const generateDynamic_1 = require("./dynamic/generateDynamic");
-const generateCreate_1 = require("./create/generateCreate");
-const generateEdit_1 = require("./edit/generateEdit");
+const getDynamicTailwindcssData_1 = require("./getDynamicTailwindcssData");
+const generateIndex_1 = require("./generateIndex");
+const generateDynamic_1 = require("./generateDynamic");
+const generateCreate_1 = require("./generateCreate");
+const generateEdit_1 = require("./generateEdit");
 const tailwindcssPageController = async (userInput) => {
     const modelName = userInput[2];
     const modelItems = userInput.slice(3);
@@ -18,7 +18,7 @@ const tailwindcssPageController = async (userInput) => {
         return `no modelItems recieved`;
     }
     const upperCaseFirstLetterModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
-    const finalDynamicData = (0, getDynamicData_1.getDynamicDataForPages)(modelName, modelItems);
+    const finalDynamicData = (0, getDynamicTailwindcssData_1.getDynamicTailwindcssData)(modelName, modelItems);
     const indexPage = (0, generateIndex_1.generateIndex)(modelName, finalDynamicData.finalSchemaItemsForIndex);
     const dynamicPage = (0, generateDynamic_1.generateDynamic)(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage);
     const createPage = (0, generateCreate_1.generateCreate)(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems);

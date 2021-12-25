@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.tailwindcssIndex = void 0;
-const pagesUtils_1 = require("../utils/pagesUtils");
-const tailwindcssIndex = (modelName, finalSchemaItemsForIndex) => {
+exports.generateIndex = void 0;
+const pagesUtils_1 = require("./pagesUtils");
+const generateIndex = (modelName, finalSchemaItemsForIndex) => {
     let upperCaseFirstLetterModelName = (0, pagesUtils_1.getUpperCaseFirstLetter)(modelName);
     const tailwindcssIndex = `
     import Link from 'next/link'
@@ -76,4 +76,4 @@ const tailwindcssIndex = (modelName, finalSchemaItemsForIndex) => {
   `;
     return tailwindcssIndex;
 };
-exports.tailwindcssIndex = tailwindcssIndex;
+exports.generateIndex = generateIndex;

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDynamicTailwindcssDataForPages = void 0;
-const getDynamicTailwindcssDataForPages = (modelName, modelItems) => {
+exports.getDynamicTailwindcssData = void 0;
+const getDynamicTailwindcssData = (modelName, modelItems) => {
     let neWModelSchemaItemsForIndex = [];
     let neWModelSchemaItemsForDynamicPage = [];
     let jsonBodyForForm = [];
@@ -89,4 +89,4 @@ const getDynamicTailwindcssDataForPages = (modelName, modelItems) => {
     };
     return finalDynamicData;
 };
-exports.getDynamicTailwindcssDataForPages = getDynamicTailwindcssDataForPages;
+exports.getDynamicTailwindcssData = getDynamicTailwindcssData;
