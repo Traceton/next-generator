@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.tailwindcssPageController = void 0;
-const utils_1 = require("../../../utils");
+const utils_1 = require("../../../../utils");
 const fs_1 = require("fs");
 const getDynamicData_1 = require("./utils/getDynamicData");
 const generateIndex_1 = require("./index/generateIndex");

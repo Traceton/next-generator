@@ -1,5 +1,5 @@
 // This will call the correct page type depending on the config page.
-import { readNextConfig } from "../../utils"
+import { readNextConfig } from "../../../utils"
 import {nonePageController} from "./pageTypeNonePages/nonePageController"
 import { tailwindcssPageController } from "./pageTypeTailwindcssPages/tailwindcssPageController";
 

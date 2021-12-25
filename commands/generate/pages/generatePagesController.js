@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generatePagesController = void 0;
-const utils_1 = require("../../utils");
+const utils_1 = require("../../../utils");
 const nonePageController_1 = require("./pageTypeNonePages/nonePageController");
 const tailwindcssPageController_1 = require("./pageTypeTailwindcssPages/tailwindcssPageController");
 const generatePagesController = async (userInput) => {

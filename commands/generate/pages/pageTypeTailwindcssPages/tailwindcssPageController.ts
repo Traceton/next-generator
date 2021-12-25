@@ -1,4 +1,4 @@
-import { createDirectory, createFile } from "../../../utils";
+import { createDirectory, createFile } from "../../../../utils";
 import { existsSync } from "fs";
 import { getDynamicDataForPages } from "./utils/getDynamicData"
 import { generateIndex } from "./index/generateIndex"
@@ -6,10 +6,8 @@ import { generateDynamic } from "./dynamic/generateDynamic"
 import { generateCreate } from "./create/generateCreate"
 import { generateEdit } from "./edit/generateEdit"
 
-// g p truck make:String model:String
-
-export const generatePages = async (userInput: string[]) => {
-  const modelName = userInput[2];
+export const tailwindcssPageController = async (userInput: string[]) => {
+    const modelName = userInput[2];
 
   const modelItems = userInput.slice(3);
 
@@ -21,28 +19,28 @@ export const generatePages = async (userInput: string[]) => {
   }
 
   const upperCaseFirstLetterModelName =
-  modelName.charAt(0).toUpperCase() + modelName.slice(1);
+    modelName.charAt(0).toUpperCase() + modelName.slice(1);
 
- 
-    // Gets any dynamic data that the page generators will need.
-    const finalDynamicData = getDynamicDataForPages(modelName, modelItems)
 
-    // generates the index page
-    const indexPage = generateIndex(modelName, finalDynamicData.finalSchemaItemsForIndex)
+  // Gets any dynamic data that the page generators will need.
+  const finalDynamicData = getDynamicDataForPages(modelName, modelItems)
 
-    //  generates the dynamic page
-    const dynamicPage = generateDynamic(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage)
+  // generates the index page
+  const indexPage = generateIndex(modelName, finalDynamicData.finalSchemaItemsForIndex)
 
-    // generates the create page
-    const createPage = generateCreate(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems)
+  //  generates the dynamic page
+  const dynamicPage = generateDynamic(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage)
 
-    // generates the edit page
-    const editPage = generateEdit(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems)
+  // generates the create page
+  const createPage = generateCreate(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems)
 
- 
-  
+  // generates the edit page
+  const editPage = generateEdit(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems)
 
-  
+
+
+
+
 
   if (!existsSync(`pages`)) {
     createDirectory("pages");
@@ -82,4 +80,4 @@ export const generatePages = async (userInput: string[]) => {
     `pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`,
     editPage
   );
-};
+}

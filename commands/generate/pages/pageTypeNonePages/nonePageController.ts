@@ -1,4 +1,4 @@
-import { createDirectory, createFile } from "../../../utils";
+import { createDirectory, createFile } from "../../../../utils";
 import { existsSync } from "fs";
 import { getDynamicDataForPages } from "./utils/getDynamicData"
 import { generateIndex } from "./index/generateIndex"
