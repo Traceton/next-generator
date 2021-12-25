@@ -1,12 +1,8 @@
-
 import { readNextConfig } from "../utils"
 import { generateCrud } from "./generateCrud"
 import { modelGeneratorController } from "./models/modelGeneratorController"
 import { generateApiRoutesController } from "./apiRoutes/generateApiRoutesController"
-// import { generateEmptyApiRoutes } from "./apiRoutes.js/generateEmptyApiRoutes"
-// import { generateRestTest } from "./tests/generateRestTest"
 import { generatePagesController } from "./pages/generatePagesController"
-// import { generateEmptyPages } from "./pages/generateEmptyPages"
 
 export const generatorController = (userInput: string[]) => {
 
