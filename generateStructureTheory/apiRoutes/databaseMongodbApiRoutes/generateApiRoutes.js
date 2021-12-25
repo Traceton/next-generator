@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateApiRoutes = void 0;
+const utils_1 = require("../../../utils");
 const fs_1 = require("fs");
 const generateApiRoutes = async (userInput) => {
     const modelName = userInput[2];
@@ -177,24 +178,24 @@ export default async (req, res) => {
   
   export default dbConnect;`;
     if (!(0, fs_1.existsSync)(`pages`)) {
-        await createDirectory("pages");
+        await (0, utils_1.createDirectory)("pages");
     }
     if (!(0, fs_1.existsSync)(`pages/api`)) {
-        await createDirectory("pages/api");
+        await (0, utils_1.createDirectory)("pages/api");
     }
     if (!(0, fs_1.existsSync)(`pages/api/${modelName}s`)) {
-        createDirectory(`pages/api/${modelName}s`);
+        (0, utils_1.createDirectory)(`pages/api/${modelName}s`);
     }
     if (!(0, fs_1.existsSync)(`utils`)) {
-        await createDirectory("utils");
+        await (0, utils_1.createDirectory)("utils");
     }
-    createFile(`utils/dbConnect.js`, dbConnectFile);
+    (0, utils_1.createFile)(`utils/dbConnect.js`, dbConnectFile);
     if (!(0, fs_1.existsSync)(`.env.local`)) {
-        await createFile(".env.local", `MONGODB_URI=your-database-string-here
+        await (0, utils_1.createFile)(".env.local", `MONGODB_URI=your-database-string-here
     MONGODB_DB=your-database-name-here    
     `);
     }
-    createFile(`pages/api/${modelName}s/index.js`, indexApiPage);
-    createFile(`pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
+    (0, utils_1.createFile)(`pages/api/${modelName}s/index.js`, indexApiPage);
+    (0, utils_1.createFile)(`pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
 };
 exports.generateApiRoutes = generateApiRoutes;

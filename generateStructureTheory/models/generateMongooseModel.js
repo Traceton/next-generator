@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateModel = void 0;
+const utils_1 = require("../../utils");
 const fs_1 = require("fs");
 const generateModel = async (userInput) => {
     let modelName = userInput[2];
@@ -52,12 +53,12 @@ const generateModel = async (userInput) => {
 
   module.exports = mongoose.models.${modelName} || mongoose.model("${modelName}", ${modelName}Schema);`;
         if (!(0, fs_1.existsSync)(`components`)) {
-            await createDirectory("components");
+            await (0, utils_1.createDirectory)("components");
         }
         if (!(0, fs_1.existsSync)(`components/models`)) {
-            await createDirectory("components/models");
+            await (0, utils_1.createDirectory)("components/models");
         }
-        createFile(`components/models/${upperCaseFirstLetterModelName}.js`, newModel);
+        (0, utils_1.createFile)(`components/models/${upperCaseFirstLetterModelName}.js`, newModel);
     }
     catch (error) {
         console.log(error);

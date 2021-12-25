@@ -1,4 +1,4 @@
-// import { createDirectory, createFile } from "../../../utils";
+import { createDirectory, createFile } from "../../../utils";
 import { existsSync } from "fs";
 
 // g r truck
