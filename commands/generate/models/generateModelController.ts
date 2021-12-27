@@ -1,5 +1,5 @@
 import { readNextConfig } from "../../../utils"
-import { generateMongooseModel } from "./databaseMongodb/generateMongooseModel" 
+import { generateMongooseModel } from "./databaseMongodbModels/generateMongooseModel" 
 
 export const generateModelController = (userInput: string[]) => {
     const configData = readNextConfig()
