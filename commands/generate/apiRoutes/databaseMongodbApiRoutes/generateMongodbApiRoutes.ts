@@ -1,7 +1,7 @@
 import { createDirectory, createFile } from "../../../../utils";
 import { existsSync } from "fs";
 
-// g r truck make:String model:String
+// g a-r truck make:String model:String
 
 export const generateMongodbApiRoutes = async (userInput: string[]) => {
   const modelName = userInput[2];
