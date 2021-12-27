@@ -1,15 +1,19 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateMongodbApiRoutes = void 0;
-const utils_1 = require("../../../../utils");
-const fs_1 = require("fs");
-const generateMongodbApiRoutes = async (userInput) => {
-    const modelName = userInput[2];
-    if (!modelName) {
-        return `no routeName recieved`;
-    }
-    const upperCaseFirstLetterModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
-    const indexApiPage = `
+import { createDirectory, createFile } from "../../../../utils";
+import { existsSync } from "fs";
+
+// g r truck make:String model:String
+
+export const generateMongodbApiRoutes = async (userInput: string[]) => {
+  const modelName = userInput[2];
+
+  if (!modelName) {
+    return `no routeName recieved`;
+  }
+
+  const upperCaseFirstLetterModelName =
+    modelName.charAt(0).toUpperCase() + modelName.slice(1);
+
+  const indexApiPage = `
 import ${upperCaseFirstLetterModelName} from "../../../components/models/${upperCaseFirstLetterModelName}";
 import dbConnect from "../../../utils/dbConnect";
 
@@ -66,7 +70,8 @@ export default async (req, res) => {
   }
 };
   `;
-    const dynamicApiPage = `
+
+  const dynamicApiPage = `
   import ${upperCaseFirstLetterModelName} from "../../../components/models/${upperCaseFirstLetterModelName}";
 import dbConnect from "../../../utils/dbConnect";
 
@@ -158,7 +163,8 @@ export default async (req, res) => {
 };
 
   `;
-    const dbConnectFile = `
+
+  const dbConnectFile = `
   import mongoose from "mongoose";
 
   const connection = {};
@@ -177,25 +183,35 @@ export default async (req, res) => {
   }
   
   export default dbConnect;`;
-    if (!(0, fs_1.existsSync)(`pages`)) {
-        await (0, utils_1.createDirectory)("pages");
-    }
-    if (!(0, fs_1.existsSync)(`pages/api`)) {
-        await (0, utils_1.createDirectory)("pages/api");
-    }
-    if (!(0, fs_1.existsSync)(`pages/api/${modelName}s`)) {
-        (0, utils_1.createDirectory)(`pages/api/${modelName}s`);
-    }
-    if (!(0, fs_1.existsSync)(`utils`)) {
-        await (0, utils_1.createDirectory)("utils");
-    }
-    (0, utils_1.createFile)(`utils/dbConnect.js`, dbConnectFile);
-    if (!(0, fs_1.existsSync)(`.env.local`)) {
-        await (0, utils_1.createFile)(".env.local", `MONGODB_URI=your-database-string-here
+
+  if (!existsSync(`pages`)) {
+    await createDirectory("pages");
+  }
+
+  if (!existsSync(`pages/api`)) {
+    await createDirectory("pages/api");
+  }
+
+  if (!existsSync(`pages/api/${modelName}s`)) {
+    createDirectory(`pages/api/${modelName}s`);
+  }
+
+  if (!existsSync(`utils`)) {
+    await createDirectory("utils");
+  }
+
+  createFile(`utils/dbConnect.js`, dbConnectFile);
+
+  if (!existsSync(`.env.local`)) {
+    await createFile(
+      ".env.local",
+      `MONGODB_URI=your-database-string-here
     MONGODB_DB=your-database-name-here    
-    `);
-    }
-    (0, utils_1.createFile)(`pages/api/${modelName}s/index.js`, indexApiPage);
-    (0, utils_1.createFile)(`pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
+    `
+    );
+  }
+
+  createFile(`pages/api/${modelName}s/index.js`, indexApiPage);
+  createFile(`pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
 };
-exports.generateMongodbApiRoutes = generateMongodbApiRoutes;
+

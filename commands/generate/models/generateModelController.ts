@@ -6,7 +6,6 @@ export const generateModelController = (userInput: string[]) => {
 
     if (configData.database == "none" || !configData.database) {
         // Do nothing, or perhaps use something as a default.
-        // nonePageController(userInput)
       } else if (configData.database == "mongodb") {
         generateMongooseModel(userInput)
       }
