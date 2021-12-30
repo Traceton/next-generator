@@ -1,3 +1,9 @@
+
+// NOTICE
+// THIS IS A BLANK TEMPLATE AND HAS NOT BEEN CUSTOMIZED TO CREATE PAGES THAT HAVE NO STYLE. DEC 30, 2021.
+
+
+
 // import { createDirectory, createFile } from "../../../../utils";
 // import { existsSync } from "fs";
 // import { getDynamicDataForPages } from "./getDynamicData"
