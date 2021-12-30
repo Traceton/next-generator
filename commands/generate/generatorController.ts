@@ -1,5 +1,5 @@
 import { readNextConfig } from "../../utils"
-import { generateCrud } from "./generateCrud"
+import { generateCrudController } from "./generateCrudController"
 import { generateModelController } from "./models/generateModelController"
 import { generateApiRoutesController } from "./apiRoutes/generateApiRoutesController"
 import { generatePagesController } from "./pages/generatePagesController"
@@ -12,7 +12,7 @@ export const generatorController = (userInput: string[]) => {
     if (userInput[1] === "model" || userInput[1] === "m") {
         generateModelController(userInput);
     } else if (userInput[1] === "crud" || userInput[1] === "c") {
-        generateCrud(userInput);
+        generateCrudController(userInput);
     } else if (userInput[1] === "api-routes" || userInput[1] === "a-r") {
         generateApiRoutesController(userInput);
     } else if (userInput[1] === "empty-api-routes" || userInput[1] === "e-a-r") {
