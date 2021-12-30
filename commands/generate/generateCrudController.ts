@@ -1,4 +1,3 @@
-
 import { generateModelController } from "./models/generateModelController";
 import { generateApiRoutesController} from "./apiRoutes/generateApiRoutesController"
 import { generatePagesController } from "./pages/generatePagesController";
