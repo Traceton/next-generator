@@ -1,3 +1,4 @@
+// Generate the dynamic tailwindcss page.
 export const generateDynamic = (modelName: string, upperCaseFirstLetterModelName: string, finalSchemaItemsForDynamicPage: string) => {
 
   const dynamicPage = `

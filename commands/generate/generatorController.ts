@@ -4,6 +4,7 @@ import { generateModelController } from "./models/generateModelController"
 import { generateApiRoutesController } from "./apiRoutes/generateApiRoutesController"
 import { generatePagesController } from "./pages/generatePagesController"
 
+// Routes the userInput to the correct controller/generator based on the command name. 
 export const generatorController = (userInput: string[]) => {
 
     let configData = readNextConfig()
@@ -16,13 +17,13 @@ export const generatorController = (userInput: string[]) => {
     } else if (userInput[1] === "api-routes" || userInput[1] === "a-r") {
         generateApiRoutesController(userInput);
     } else if (userInput[1] === "empty-api-routes" || userInput[1] === "e-a-r") {
-        // generateEmptyApiRoutes(userInput);
+        // NOT IMPLEMENTED YET: generateEmptyApiRoutes(userInput);
     } else if (userInput[1] === "tests" || userInput[1] === "t") {
-        // generateRestTest(userInput);
+        // NOT IMPLEMENTED YET: generateRestTest(userInput);
     } else if (userInput[1] === "pages" || userInput[1] === "p") {
         generatePagesController(userInput);
     } else if (userInput[1] === "empty-pages" || userInput[1] === "e-p") {
-        // generateEmptyPages(userInput);
+        // NOT IMPLEMENTED YET: generateEmptyPages(userInput);
     } else {
         console.log(`Sorry, that command wasnt recognized`);
     }

@@ -1,9 +1,5 @@
-// import { readNextConfig } from "../../../../utils"
-
+// Generate the edit tailwindcss page.
 export const generateEdit = (modelName: string, upperCaseFirstLetterModelName: string, finalJsonBodyItems: string, finalEditFormFieldItems: string) => {
-
-  // Checks next config for issues and alerts user accordingly
-  // const { database, style } = readNextConfig()
 
   const editPage = `
   import { useRouter } from "next/router";

@@ -8,6 +8,9 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
+// The starting point of the command line interface of next-generator
+// takes a users input and routes it properly based on the input.
+
 const recursiveReadline = () => {
 
   // Checks next config for issues and alerts user accordingly

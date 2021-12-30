@@ -1,7 +1,10 @@
-// This will be a controller that routes the users input to the correct generator depending on the nextGenConfig.
 import { readNextConfig } from "../../../utils"
 import { generateMongodbApiRoutes } from "./databaseMongodbApiRoutes/generateMongodbApiRoutes"
 
+// Command to use this generator below:
+// generate api-routes truck make:String model:String
+
+// The controller that routes user input to the correct api routes generator/controller depending on database in nextGenConfig
 export const generateApiRoutesController = (userInput: string[]) => {
 const configData = readNextConfig()
 

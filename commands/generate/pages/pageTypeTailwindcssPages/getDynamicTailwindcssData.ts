@@ -1,4 +1,4 @@
-// Get the dynamic data for pages using tailwindcss for style in their config.
+// Get the dynamic data for pages using tailwindcss for pageType in their config.
 export const getDynamicTailwindcssData = (modelName: string, modelItems: string[]) => {
   let neWModelSchemaItemsForIndex: string[] = [];
 

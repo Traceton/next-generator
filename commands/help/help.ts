@@ -1,4 +1,4 @@
-// help
+// The response the help command will generate if called in the command line interface.
 
  export const help = async () => {
     console.log(`***** User Guide ***** \n `);

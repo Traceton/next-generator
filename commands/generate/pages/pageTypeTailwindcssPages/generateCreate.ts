@@ -1,3 +1,4 @@
+// Generate the create tailwindcss page.
 export const generateCreate = (modelName: string, upperCaseFirstLetterModelName: string, finalJsonBodyItems: string, finalFormFieldItems: string) => {
 
   const createPage = `

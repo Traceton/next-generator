@@ -6,6 +6,7 @@ import { generateDynamic } from "./generateDynamic"
 import { generateCreate } from "./generateCreate"
 import { generateEdit } from "./generateEdit"
 
+// The controller that determines how to generate the pages for a tailwindcss pageType in the nextGenConfig.
 export const tailwindcssPageController = async (userInput: string[]) => {
     const modelName = userInput[2];
 

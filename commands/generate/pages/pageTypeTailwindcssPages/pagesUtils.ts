@@ -1,3 +1,4 @@
+// A place for helper functions that pertain to tailwindcss pages
 export const getUpperCaseFirstLetter = (modelName: string) => {
 
     if (modelName) {
