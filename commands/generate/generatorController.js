@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generatorController = void 0;
 const utils_1 = require("../../utils");
-const generateCrud_1 = require("./generateCrud");
+const generateCrudController_1 = require("./generateCrudController");
 const generateModelController_1 = require("./models/generateModelController");
 const generateApiRoutesController_1 = require("./apiRoutes/generateApiRoutesController");
 const generatePagesController_1 = require("./pages/generatePagesController");
@@ -13,7 +13,7 @@ const generatorController = (userInput) => {
         (0, generateModelController_1.generateModelController)(userInput);
     }
     else if (userInput[1] === "crud" || userInput[1] === "c") {
-        (0, generateCrud_1.generateCrud)(userInput);
+        (0, generateCrudController_1.generateCrudController)(userInput);
     }
     else if (userInput[1] === "api-routes" || userInput[1] === "a-r") {
         (0, generateApiRoutesController_1.generateApiRoutesController)(userInput);
