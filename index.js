@@ -22,7 +22,7 @@ const recursiveReadline = () => {
                 break;
             case "help":
             case "h":
-                (0, help_1.help)();
+                (0, help_1.generateHelp)();
                 break;
             case "generate":
             case "g":

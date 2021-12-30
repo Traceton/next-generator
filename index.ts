@@ -1,6 +1,6 @@
 import readline from "readline"
 import { generatorController } from "./commands/generate/generatorController"
-import { help } from "./commands/help/help"
+import { generateHelp } from "./commands/help/help"
 import { readNextConfig } from "./utils"
 
 const rl = readline.createInterface({
@@ -25,7 +25,7 @@ const recursiveReadline = () => {
         break;
       case "help":
       case "h":
-        help();
+        generateHelp();
         break;
       case "generate":
       case "g":

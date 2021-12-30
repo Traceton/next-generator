@@ -1,6 +1,6 @@
 // The response the help command will generate if called in the command line interface.
 
- export const help = async () => {
+ export const generateHelp = async () => {
     console.log(`***** User Guide ***** \n `);
     console.log(` Commands:  \n `);
     console.log(` exit or e - exit next-generator build mode.  \n `);

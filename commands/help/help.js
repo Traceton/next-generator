@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.help = void 0;
-const help = async () => {
+exports.generateHelp = void 0;
+const generateHelp = async () => {
     console.log(`***** User Guide ***** \n `);
     console.log(` Commands:  \n `);
     console.log(` exit or e - exit next-generator build mode.  \n `);
@@ -22,4 +22,4 @@ const help = async () => {
     console.log(` pages or p - Example : "generate pages vehicle year:Number make:String model:String"  \n  \n `);
     console.log(`***** End of User Guide *****`);
 };
-exports.help = help;
+exports.generateHelp = generateHelp;
