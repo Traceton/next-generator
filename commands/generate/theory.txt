@@ -1,0 +1,17 @@
+The goal of this restructuring is to help make it easier to understand and to compartmentalize the different code that can be generated.
+ The old way of generating pages for example, was very specific, and might not work for a different type of pages later on. 
+
+ Ideally somebody will set a value for something like "page_type" or "style" in the nextGenConfig.json file.
+ Based on that value, the generate_pages_controller or the generate_api_routes_controller will call the correct set of pages or api routes to be generated. 
+ Basically acting as a router, which points to nicely packed components that pertain to the value of page_type, style, database, etc...
+
+
+ 
+Pros: Easier to read the file structure and create new generators based on the NextGenConfig.json
+
+Cons: More code needs to be replicated(but probably needs to be anyways.)
+
+
+Move generateCrud.ts into the new generate folder
+
+use page_type over style
