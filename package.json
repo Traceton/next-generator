@@ -2,9 +2,11 @@
   "name": "next-generator",
   "version": "1.1.12",
   "description": "Your Next.js route, model, and page generator.",
-  "main": "index.js",
+  "main": "./bin/index.js",
+  "bin": {
+    "nextGen": "./bin/index.js"
+  },
   "scripts": {
-    "Next-generator": "node index.js",
     "test": "jest "
   },
   "repository": {

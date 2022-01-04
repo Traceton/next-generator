@@ -1,7 +1,9 @@
-import readline from "readline"
-import { generatorController } from "./commands/generate/generatorController"
-import { generateHelp } from "./commands/help/generateHelp"
-import { readNextConfig } from "./utils"
+#! /usr/bin/env node
+
+let readline = require('readline');
+let { generatorController } = require('../commands/generate/generatorController');
+let { generateHelp } = require('../commands/help/generateHelp');
+let { readNextConfig } = require('../utils');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -16,7 +18,7 @@ const recursiveReadline = () => {
   // Checks next config for issues and alerts user accordingly
   readNextConfig()
 
-  rl.question("next-generator command: ", function (answer: string) {
+  rl.question("next-generator command: ", function (answer) {
     let userInput = answer.trim().split(" ");
     switch (userInput[0]) {
       case "exit":
