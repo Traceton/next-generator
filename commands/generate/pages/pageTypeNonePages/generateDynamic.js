@@ -13,8 +13,6 @@ const generateDynamic = (modelName, upperCaseFirstLetterModelName, finalSchemaIt
     const ${modelName} = props.${modelName}
   
     return (
-      <div>
-        <div>
           <div>
             <form >
               <div>
@@ -42,8 +40,6 @@ const generateDynamic = (modelName, upperCaseFirstLetterModelName, finalSchemaIt
               </div>
             </form>
           </div>
-        </div>
-      </div>
     );
   }
   

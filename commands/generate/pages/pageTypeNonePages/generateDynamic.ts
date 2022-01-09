@@ -11,8 +11,6 @@ export const generateDynamic = (modelName: string, upperCaseFirstLetterModelName
     const ${modelName} = props.${modelName}
   
     return (
-      <div>
-        <div>
           <div>
             <form >
               <div>
@@ -40,8 +38,6 @@ export const generateDynamic = (modelName: string, upperCaseFirstLetterModelName
               </div>
             </form>
           </div>
-        </div>
-      </div>
     );
   }
   
