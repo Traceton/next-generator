@@ -1,6 +1,6 @@
 import { createFile } from "../../utils";
 
-// generates a mongoose/mongodb model using userInput. 
+// generates a nextGenConfig.json file with some default values.
 export const generateInit = async (userInput: string[]) => {
 
     try {
