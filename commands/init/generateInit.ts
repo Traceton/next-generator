@@ -5,10 +5,10 @@ export const generateInit = async (userInput: string[]) => {
 
     try {
         const nextGenConfig = `
-            {
-                "database": "mongodb",
-                "pageType": "tailwindcss"
-            }`
+{
+    "database": "mongodb",
+    "pageType": "tailwindcss"
+}`
         
         createFile(
             `nextGenConfig.json`,

@@ -5,10 +5,10 @@ const utils_1 = require("../../utils");
 const generateInit = async (userInput) => {
     try {
         const nextGenConfig = `
-            {
-                "database": "mongodb",
-                "pageType": "tailwindcss"
-            }`;
+{
+    "database": "mongodb",
+    "pageType": "tailwindcss"
+}`;
         (0, utils_1.createFile)(`nextGenConfig.json`, nextGenConfig);
     }
     catch (error) {
