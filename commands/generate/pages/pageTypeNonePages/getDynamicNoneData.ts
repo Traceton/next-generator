@@ -15,36 +15,34 @@ export const getDynamicNoneData = (modelName: string, modelItems: string[]) => {
     let entry = unSplitEntry.split(":");
     let entryName = entry[0];
 
-    let modelFieldForIndex = `<p className=^text-lg text-gray-500 truncate^>${entryName}: {${modelName}.${entryName}}</p> `
-    let modelFieldForDynamicPage = `<div className=^sm:col-span-6^><label htmlFor=^${entryName}^ className=^block text-3xl font-light text-gray-700^>${entryName}</label><div className=^mt-1 flex rounded-md shadow-sm^><h1 id=^year^>{props.${modelName}.${entryName}}</h1></div></div>`
+    let modelFieldForIndex = `<p>${entryName}: {${modelName}.${entryName}}</p> `
+    let modelFieldForDynamicPage = `<div><label htmlFor=^${entryName}^>${entryName}</label><div><h1 id=^year^>{props.${modelName}.${entryName}}</h1></div></div>`
     let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
-    let formField = `<div className="sm:col-span-6">
-                          <label htmlFor="${entryName}" className="block text-3xl font-light text-gray-700">
+    let formField = `<div>
+                          <label htmlFor="${entryName}">
                             ${entryName}
                           </label>
-                          <div className="mt-1 flex rounded-md shadow-sm">
+                          <div>
                             <input
                               type="text"
                               name="${entryName}"
                               id="${entryName}"
                               autoComplete="${entryName}"
-                              className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
                             />
                           </div>
                         </div>`;
 
-    let editFormField = `<div className="sm:col-span-6">
-        <label htmlFor="${entryName}" className="block text-3xl font-light text-gray-700">
+    let editFormField = `<div>
+        <label htmlFor="${entryName}">
           ${entryName}
         </label>
-        <div className="mt-1 flex rounded-md shadow-sm">
+        <div>
           <input
           defaultValue={props.${modelName}.${entryName}}
             type="text"
             name="${entryName}"
             id="${entryName}"
             autoComplete="${entryName}"
-            className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
           />
         </div>
       </div>`;
