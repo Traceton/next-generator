@@ -27,8 +27,6 @@ const generateCreate = (modelName, upperCaseFirstLetterModelName, finalJsonBodyI
     };
   
     return (
-      <div>
-        <div>
           <div>
             <form onSubmit={createNew${upperCaseFirstLetterModelName}}>
               <div>
@@ -56,8 +54,6 @@ const generateCreate = (modelName, upperCaseFirstLetterModelName, finalJsonBodyI
               </div>
             </form>
           </div>
-        </div>
-      </div>
     );
   }
     `;

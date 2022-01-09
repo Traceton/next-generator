@@ -25,8 +25,6 @@ export const generateCreate = (modelName: string, upperCaseFirstLetterModelName:
     };
   
     return (
-      <div>
-        <div>
           <div>
             <form onSubmit={createNew${upperCaseFirstLetterModelName}}>
               <div>
@@ -54,8 +52,6 @@ export const generateCreate = (modelName: string, upperCaseFirstLetterModelName:
               </div>
             </form>
           </div>
-        </div>
-      </div>
     );
   }
     `;
