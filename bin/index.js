@@ -15,7 +15,6 @@ const rl = readline.createInterface({
 // takes a users input and routes it properly based on the input.
 
 const recursiveReadline = () => {
-
   // Checks next config for issues and alerts user accordingly
   readNextConfig()
 
