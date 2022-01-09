@@ -7,7 +7,7 @@ const generateInit = async (userInput) => {
         const nextGenConfig = `
 {
     "database": "mongodb",
-    "pageType": "tailwindcss"
+    "pageType": "none"
 }`;
         (0, utils_1.createFile)(`nextGenConfig.json`, nextGenConfig);
     }
