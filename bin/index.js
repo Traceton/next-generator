@@ -2,6 +2,7 @@
 
 let readline = require('readline');
 let { generatorController } = require('../commands/generate/generatorController');
+let { generateInit } = require('../commands/init/generateInit')
 let { generateHelp } = require('../commands/help/generateHelp');
 let { readNextConfig } = require('../utils');
 
@@ -20,10 +21,14 @@ const recursiveReadline = () => {
 
   rl.question("next-generator command: ", function (answer) {
     let userInput = answer.trim().split(" ");
+
     switch (userInput[0]) {
+      case "init":
+        generateInit();
+        break;
       case "exit":
       case "e":
-        rl.close();
+        console.log("use: ctrl c")
         break;
       case "help":
       case "h":
