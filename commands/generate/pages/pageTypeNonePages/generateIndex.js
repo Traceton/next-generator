@@ -9,8 +9,6 @@ const generateIndex = (modelName, finalSchemaItemsForIndex) => {
 
     export default function ${upperCaseFirstLetterModelName}(props) {
       return (
-        <div>
-          <div>
             <div>
               <div>
                 <div>
@@ -43,8 +41,6 @@ const generateIndex = (modelName, finalSchemaItemsForIndex) => {
                 ))}
               </div>
             </div>
-          </div>
-        </div>
       );
     }
 
