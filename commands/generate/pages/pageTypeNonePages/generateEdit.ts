@@ -44,8 +44,6 @@ export const generateEdit = (modelName: string, upperCaseFirstLetterModelName: s
     }
   
     return (
-      <div>
-        <div>
           <div>
             <form onSubmit={update${upperCaseFirstLetterModelName}}>
               <div>
@@ -79,8 +77,6 @@ export const generateEdit = (modelName: string, upperCaseFirstLetterModelName: s
               </div>
             </form>
           </div>
-        </div>
-      </div>
     );
   }
   

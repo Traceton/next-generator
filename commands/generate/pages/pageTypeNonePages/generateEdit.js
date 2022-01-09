@@ -46,8 +46,6 @@ const generateEdit = (modelName, upperCaseFirstLetterModelName, finalJsonBodyIte
     }
   
     return (
-      <div>
-        <div>
           <div>
             <form onSubmit={update${upperCaseFirstLetterModelName}}>
               <div>
@@ -81,8 +79,6 @@ const generateEdit = (modelName, upperCaseFirstLetterModelName, finalJsonBodyIte
               </div>
             </form>
           </div>
-        </div>
-      </div>
     );
   }
   
