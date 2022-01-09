@@ -25,28 +25,26 @@ export const generateCreate = (modelName: string, upperCaseFirstLetterModelName:
     };
   
     return (
-      <div className="bg-gray-700 h-screen">
-        <div className="p-2">
-          <div className=" m-4 p-4 rounded-md bg-gray-400 font-light space-y-8 ">
+      <div>
+        <div>
+          <div>
             <form onSubmit={createNew${upperCaseFirstLetterModelName}}>
               <div>
-                <h3 className="text-4xl leading-6 font-light text-gray-900">Create New ${upperCaseFirstLetterModelName}</h3>
+                <h3>Create New ${upperCaseFirstLetterModelName}</h3>
               </div>
   
-              <div className="text-xl mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+              <div>
               ${finalFormFieldItems} 
-                <div className="m-2 p-2 w-full">
-                  <div className="  flex justify-start">
+                <div>
+                  <div>
                     <button
                       onClick={() => router.back()}
                       type="button"
-                      className="m-1 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xl font-light rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                       Back
                     </button>
                     <button
                       type="submit"
-                      className="m-1 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xl font-light rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                       Save
                     </button>
