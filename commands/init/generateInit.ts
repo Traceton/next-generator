@@ -7,7 +7,7 @@ export const generateInit = async (userInput: string[]) => {
         const nextGenConfig = `
 {
     "database": "mongodb",
-    "pageType": "tailwindcss"
+    "pageType": "none"
 }`
         
         createFile(
