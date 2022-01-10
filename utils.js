@@ -7,12 +7,11 @@ exports.readNextConfig = exports.createFile = exports.createDirectory = void 0;
 const fs_1 = __importDefault(require("fs"));
 const nextGeneratorConfig_1 = require("./nextGeneratorConfig");
 const createDirectory = (directoryPath) => {
-    let configData = (0, exports.readNextConfig)();
     if (!directoryPath) {
         console.log(`no directoryPath recieved`);
         return `no directoryPath recieved`;
     }
-    fs_1.default.mkdirSync(`${configData.projectRootPath}${directoryPath}`, { recursive: true });
+    fs_1.default.mkdirSync(directoryPath, { recursive: true });
     return `directory created`;
 };
 exports.createDirectory = createDirectory;

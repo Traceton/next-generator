@@ -2,9 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateMongooseModel = void 0;
 const utils_1 = require("../../../../utils");
+const utils_2 = require("../../../../utils");
 const fs_1 = require("fs");
 const generateMongooseModel = async (userInput) => {
     let modelName = userInput[2];
+    let configData = (0, utils_2.readNextConfig)();
     if (modelName === undefined || modelName === "undefined") {
         console.log(`must enter a model name`);
         return `must enter a model name`;
@@ -52,13 +54,13 @@ const generateMongooseModel = async (userInput) => {
   }); \n
 
   module.exports = mongoose.models.${modelName} || mongoose.model("${modelName}", ${modelName}Schema);`;
-        if (!(0, fs_1.existsSync)(`components`)) {
-            await (0, utils_1.createDirectory)("components");
+        if (!(0, fs_1.existsSync)(`${configData.projectRootPath}components`)) {
+            await (0, utils_1.createDirectory)(`${configData.projectRootPath}components`);
         }
-        if (!(0, fs_1.existsSync)(`components/models`)) {
-            await (0, utils_1.createDirectory)("components/models");
+        if (!(0, fs_1.existsSync)(`${configData.projectRootPath}components/models`)) {
+            await (0, utils_1.createDirectory)(`${configData.projectRootPath}components/models`);
         }
-        (0, utils_1.createFile)(`components/models/${upperCaseFirstLetterModelName}.js`, newModel);
+        (0, utils_1.createFile)(`${configData.projectRootPath}components/models/${upperCaseFirstLetterModelName}.js`, newModel);
     }
     catch (error) {
         console.log(error);
