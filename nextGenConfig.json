@@ -2,8 +2,5 @@
 {
     "database": "mongodb",
     "pageType": "tailwindcss",
-    "projectRootPath":"",
-    "generateApiRoutesAt":"pages/api/",
-    "generateModelsAt":"components/models/",
-    "generatePagesAt":"pages/"
+    "projectRootPath":""
 }
