@@ -1,9 +1,11 @@
-import { createDirectory, createFile } from "../../../../utils";
+import { createDirectory, createFile, readNextConfig } from "../../../../utils";
 import { existsSync } from "fs";
 
 // generates a mongoose/mongodb model using userInput. 
 export const generateMongooseModel = async (userInput: string[]) => {
   let modelName = userInput[2];
+
+  let configData = readNextConfig()
 
   if (modelName === undefined || modelName === "undefined") {
     console.log(`must enter a model name`);
@@ -65,16 +67,16 @@ export const generateMongooseModel = async (userInput: string[]) => {
 
   module.exports = mongoose.models.${modelName} || mongoose.model("${modelName}", ${modelName}Schema);`;
 
-    if (!existsSync(`components`)) {
-      await createDirectory("components");
+    if (!existsSync(`${configData.projectRootPath}components`)) {
+      await createDirectory(`${configData.projectRootPath}components`);
     }
 
-    if (!existsSync(`components/models`)) {
-      await createDirectory("components/models");
+    if (!existsSync(`${configData.projectRootPath}components/models`)) {
+      await createDirectory(`${configData.projectRootPath}components/models`);
     }
 
     createFile(
-      `components/models/${upperCaseFirstLetterModelName}.js`,
+      `${configData.projectRootPath}components/models/${upperCaseFirstLetterModelName}.js`,
       newModel
     );
   } catch (error) {

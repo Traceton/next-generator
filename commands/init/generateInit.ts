@@ -1,17 +1,20 @@
-import { createFile } from "../../utils";
+import { createFile, readNextConfig } from "../../utils";
 
 // generates a nextGenConfig.json file with some default values.
 export const generateInit = async (userInput: string[]) => {
+
+    let configData = readNextConfig()
 
     try {
         const nextGenConfig = `
 {
     "database": "mongodb",
-    "pageType": "none"
+    "pageType": "none",
+    "projectRootPath":""
 }`
         
         createFile(
-            `nextGenConfig.json`,
+            `${configData.projectRootPath}nextGenConfig.json`,
             nextGenConfig
         );
 
