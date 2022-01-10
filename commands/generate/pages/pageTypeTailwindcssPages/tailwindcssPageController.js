@@ -25,7 +25,7 @@ const tailwindcssPageController = async (userInput) => {
     const createPage = (0, generateCreate_1.generateCreate)(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems);
     const editPage = (0, generateEdit_1.generateEdit)(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems);
     if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages`)) {
-        (0, utils_1.createDirectory)(`${configData.projectRootPath}pages`);
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}pages2`);
     }
     if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages/${modelName}s`)) {
         (0, utils_1.createDirectory)(`${configData.projectRootPath}pages/${modelName}s`);
