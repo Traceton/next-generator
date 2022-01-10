@@ -53,13 +53,13 @@ export const tailwindcssPageController = async (userInput: string[]) => {
   //   createDirectory(`${configData.projectRootPath}pages/${modelName}s`);
   // }
 
-  if (
-    !existsSync(`${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)
-  ) {
-    createDirectory(
-      `${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`
-    );
-  }
+  // if (
+  //   !existsSync(`${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)
+  // ) {
+  //   createDirectory(
+  //     `${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`
+  //   );
+  // }
 
   if (!existsSync(`${configData.projectRootPath}.env.local`)) {
     createFile(
