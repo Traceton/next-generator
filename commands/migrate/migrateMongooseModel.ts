@@ -1,7 +1,7 @@
 import { createDirectory, createFile, readNextConfig } from "../../utils";
 import { existsSync } from "fs";
 
-// generates a mongoose/mongodb model using userInput. 
+// migrates a mongoose/mongodb model using userInput. 
 export const generateMongooseModel = async (userInput: string[]) => {
   let modelName = userInput[2];
 
