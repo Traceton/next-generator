@@ -1,5 +1,4 @@
-import { createDirectory, createFile } from "../../../../utils";
-import { readNextConfig } from "../../../../utils";
+import { createDirectory, createFile, readNextConfig } from "../../../../utils";
 import { existsSync } from "fs";
 
 // generates a mongoose/mongodb model using userInput. 

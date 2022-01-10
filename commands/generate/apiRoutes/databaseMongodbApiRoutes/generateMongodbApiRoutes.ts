@@ -1,8 +1,10 @@
-import { createDirectory, createFile } from "../../../../utils";
+import { createDirectory, createFile, readNextConfig } from "../../../../utils";
 import { existsSync } from "fs";
 
 export const generateMongodbApiRoutes = async (userInput: string[]) => {
   const modelName = userInput[2];
+
+  let configData = readNextConfig()
 
   if (!modelName) {
     return `no routeName recieved`;
@@ -182,34 +184,34 @@ export default async (req, res) => {
   
   export default dbConnect;`;
 
-  if (!existsSync(`pages`)) {
-    await createDirectory("pages");
+  if (!existsSync(`${configData.projectRootPath}pages`)) {
+     createDirectory("${configData.projectRootPath}pages");
   }
 
-  if (!existsSync(`pages/api`)) {
-    await createDirectory("pages/api");
+  if (!existsSync(`${configData.projectRootPath}pages/api`)) {
+     createDirectory(`${configData.projectRootPath}pages/api`);
   }
 
-  if (!existsSync(`pages/api/${modelName}s`)) {
-    createDirectory(`pages/api/${modelName}s`);
+  if (!existsSync(`${configData.projectRootPath}pages/api/${modelName}s`)) {
+    createDirectory(`${configData.projectRootPath}pages/api/${modelName}s`);
   }
 
-  if (!existsSync(`utils`)) {
-    await createDirectory("utils");
+  if (!existsSync(`${configData.projectRootPath}utils`)) {
+     createDirectory(`${configData.projectRootPath}utils`);
   }
 
-  createFile(`utils/dbConnect.js`, dbConnectFile);
+  createFile(`${configData.projectRootPath}utils/dbConnect.js`, dbConnectFile);
 
-  if (!existsSync(`.env.local`)) {
-    await createFile(
-      ".env.local",
+  if (!existsSync(`${configData.projectRootPath}.env.local`)) {
+     createFile(
+      `${configData.projectRootPath}.env.local`,
       `MONGODB_URI=your-database-string-here
     MONGODB_DB=your-database-name-here    
     `
     );
   }
 
-  createFile(`pages/api/${modelName}s/index.js`, indexApiPage);
-  createFile(`pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
+  createFile(`${configData.projectRootPath}pages/api/${modelName}s/index.js`, indexApiPage);
+  createFile(`${configData.projectRootPath}pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
 };
 

@@ -2,11 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateMongooseModel = void 0;
 const utils_1 = require("../../../../utils");
-const utils_2 = require("../../../../utils");
 const fs_1 = require("fs");
 const generateMongooseModel = async (userInput) => {
     let modelName = userInput[2];
-    let configData = (0, utils_2.readNextConfig)();
+    let configData = (0, utils_1.readNextConfig)();
     if (modelName === undefined || modelName === "undefined") {
         console.log(`must enter a model name`);
         return `must enter a model name`;

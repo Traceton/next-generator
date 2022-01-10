@@ -5,6 +5,7 @@ const utils_1 = require("../../../../utils");
 const fs_1 = require("fs");
 const generateMongodbApiRoutes = async (userInput) => {
     const modelName = userInput[2];
+    let configData = (0, utils_1.readNextConfig)();
     if (!modelName) {
         return `no routeName recieved`;
     }
@@ -177,25 +178,25 @@ export default async (req, res) => {
   }
   
   export default dbConnect;`;
-    if (!(0, fs_1.existsSync)(`pages`)) {
-        await (0, utils_1.createDirectory)("pages");
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages`)) {
+        (0, utils_1.createDirectory)("${configData.projectRootPath}pages");
     }
-    if (!(0, fs_1.existsSync)(`pages/api`)) {
-        await (0, utils_1.createDirectory)("pages/api");
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages/api`)) {
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}pages/api`);
     }
-    if (!(0, fs_1.existsSync)(`pages/api/${modelName}s`)) {
-        (0, utils_1.createDirectory)(`pages/api/${modelName}s`);
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages/api/${modelName}s`)) {
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}pages/api/${modelName}s`);
     }
-    if (!(0, fs_1.existsSync)(`utils`)) {
-        await (0, utils_1.createDirectory)("utils");
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}utils`)) {
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}utils`);
     }
-    (0, utils_1.createFile)(`utils/dbConnect.js`, dbConnectFile);
-    if (!(0, fs_1.existsSync)(`.env.local`)) {
-        await (0, utils_1.createFile)(".env.local", `MONGODB_URI=your-database-string-here
+    (0, utils_1.createFile)(`${configData.projectRootPath}utils/dbConnect.js`, dbConnectFile);
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}.env.local`)) {
+        (0, utils_1.createFile)(`${configData.projectRootPath}.env.local`, `MONGODB_URI=your-database-string-here
     MONGODB_DB=your-database-name-here    
     `);
     }
-    (0, utils_1.createFile)(`pages/api/${modelName}s/index.js`, indexApiPage);
-    (0, utils_1.createFile)(`pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
+    (0, utils_1.createFile)(`${configData.projectRootPath}pages/api/${modelName}s/index.js`, indexApiPage);
+    (0, utils_1.createFile)(`${configData.projectRootPath}pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
 };
 exports.generateMongodbApiRoutes = generateMongodbApiRoutes;
