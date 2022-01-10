@@ -46,18 +46,18 @@ export const tailwindcssPageController = async (userInput: string[]) => {
 
 
   if (!existsSync(`${configData.projectRootPath}pages`)) {
-    createDirectory(`${configData.projectRootPath}pages2`);
+    createDirectory(`${configData.projectRootPath}pages`);
   }
 
   if (!existsSync(`${configData.projectRootPath}pages/${modelName}s`)) {
-    createDirectory(`${configData.projectRootPath}pages3/${modelName}s`);
+    createDirectory(`${configData.projectRootPath}pages/${modelName}s`);
   }
 
   if (
     !existsSync(`${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)
   ) {
     createDirectory(
-      `${configData.projectRootPath}pages4/${modelName}s/edit${upperCaseFirstLetterModelName}s`
+      `${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`
     );
   }
 
@@ -70,17 +70,17 @@ export const tailwindcssPageController = async (userInput: string[]) => {
     );
   }
 
-  createFile(`${configData.projectRootPath}pages5/${modelName}s/index.js`, indexPage);
+  createFile(`${configData.projectRootPath}pages/${modelName}s/index.js`, indexPage);
 
-  createFile(`${configData.projectRootPath}pages6/${modelName}s/[${modelName}Id].js`, dynamicPage);
+  createFile(`${configData.projectRootPath}pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
 
   createFile(
-    `${configData.projectRootPath}pages7/${modelName}s/create${upperCaseFirstLetterModelName}.js`,
+    `${configData.projectRootPath}pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`,
     createPage
   );
 
   createFile(
-    `${configData.projectRootPath}pages8/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`,
+    `${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`,
     editPage
   );
 }
