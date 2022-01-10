@@ -179,7 +179,7 @@ export default async (req, res) => {
   
   export default dbConnect;`;
     if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages`)) {
-        (0, utils_1.createDirectory)("${configData.projectRootPath}pages");
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}pages`);
     }
     if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages/api`)) {
         (0, utils_1.createDirectory)(`${configData.projectRootPath}pages/api`);

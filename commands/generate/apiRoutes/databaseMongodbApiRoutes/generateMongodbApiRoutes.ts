@@ -185,7 +185,7 @@ export default async (req, res) => {
   export default dbConnect;`;
 
   if (!existsSync(`${configData.projectRootPath}pages`)) {
-     createDirectory("${configData.projectRootPath}pages");
+     createDirectory(`${configData.projectRootPath}pages`);
   }
 
   if (!existsSync(`${configData.projectRootPath}pages/api`)) {
