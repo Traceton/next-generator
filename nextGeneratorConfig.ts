@@ -1,7 +1,7 @@
 // default config if one isnt found
 export const defaultConfig = {
     "database": "mongodb",
-    "pageType": "tailwindcss"
+    "pageType": "none"
 }
 // all accepted databases should be listed here
 export const acceptedDatabases = ["mongodb"]
