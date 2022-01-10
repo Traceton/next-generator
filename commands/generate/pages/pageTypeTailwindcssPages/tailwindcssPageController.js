@@ -24,14 +24,14 @@ const tailwindcssPageController = async (userInput) => {
     const dynamicPage = (0, generateDynamic_1.generateDynamic)(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage);
     const createPage = (0, generateCreate_1.generateCreate)(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems);
     const editPage = (0, generateEdit_1.generateEdit)(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems);
-    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}.env.local`)) {
-        (0, utils_1.createFile)(`${configData.projectRootPath}.env.local`, ` MONGODB_URI=your-database-string-here 
-        NEXT_PUBLIC_HOST_URL=http://localhost:3000
-    `);
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages`)) {
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}pages2`);
     }
-    (0, utils_1.createFile)(`${configData.projectRootPath}pages/${modelName}s/index.js`, indexPage);
-    (0, utils_1.createFile)(`${configData.projectRootPath}pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
-    (0, utils_1.createFile)(`${configData.projectRootPath}pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`, createPage);
-    (0, utils_1.createFile)(`${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`, editPage);
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages/${modelName}s`)) {
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}pages3/${modelName}s`);
+    }
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)) {
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}pages4/${modelName}s/edit${upperCaseFirstLetterModelName}s`);
+    }
 };
 exports.tailwindcssPageController = tailwindcssPageController;

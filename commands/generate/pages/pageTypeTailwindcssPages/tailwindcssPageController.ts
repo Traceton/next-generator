@@ -45,42 +45,42 @@ export const tailwindcssPageController = async (userInput: string[]) => {
 
 
 
-  // if (!existsSync(`${configData.projectRootPath}pages`)) {
-  //   createDirectory(`${configData.projectRootPath}pages`);
-  // }
+  if (!existsSync(`${configData.projectRootPath}pages`)) {
+    createDirectory(`${configData.projectRootPath}pages2`);
+  }
 
-  // if (!existsSync(`${configData.projectRootPath}pages/${modelName}s`)) {
-  //   createDirectory(`${configData.projectRootPath}pages/${modelName}s`);
-  // }
+  if (!existsSync(`${configData.projectRootPath}pages/${modelName}s`)) {
+    createDirectory(`${configData.projectRootPath}pages3/${modelName}s`);
+  }
 
-  // if (
-  //   !existsSync(`${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)
-  // ) {
-  //   createDirectory(
-  //     `${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`
-  //   );
-  // }
-
-  if (!existsSync(`${configData.projectRootPath}.env.local`)) {
-    createFile(
-      `${configData.projectRootPath}.env.local`,
-      ` MONGODB_URI=your-database-string-here 
-        NEXT_PUBLIC_HOST_URL=http://localhost:3000
-    `
+  if (
+    !existsSync(`${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)
+  ) {
+    createDirectory(
+      `${configData.projectRootPath}pages4/${modelName}s/edit${upperCaseFirstLetterModelName}s`
     );
   }
 
-  createFile(`${configData.projectRootPath}pages/${modelName}s/index.js`, indexPage);
+  // if (!existsSync(`${configData.projectRootPath}.env.local`)) {
+  //   createFile(
+  //     `${configData.projectRootPath}.env.local`,
+  //     ` MONGODB_URI=your-database-string-here 
+  //       NEXT_PUBLIC_HOST_URL=http://localhost:3000
+  //   `
+  //   );
+  // }
 
-  createFile(`${configData.projectRootPath}pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
+  // createFile(`${configData.projectRootPath}pages/${modelName}s/index.js`, indexPage);
 
-  createFile(
-    `${configData.projectRootPath}pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`,
-    createPage
-  );
+  // createFile(`${configData.projectRootPath}pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
 
-  createFile(
-    `${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`,
-    editPage
-  );
+  // createFile(
+  //   `${configData.projectRootPath}pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`,
+  //   createPage
+  // );
+
+  // createFile(
+  //   `${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`,
+  //   editPage
+  // );
 }
