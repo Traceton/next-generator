@@ -10,7 +10,7 @@ import { generateEdit } from "./generateEdit"
 export const tailwindcssPageController = async (userInput: string[]) => {
   const modelName = userInput[2];
 
-  let configData = readNextConfig()
+  let configData = await readNextConfig()
 
   const modelItems = userInput.slice(3);
 

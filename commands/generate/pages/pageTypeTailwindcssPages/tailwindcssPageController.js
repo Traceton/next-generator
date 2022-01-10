@@ -10,7 +10,7 @@ const generateCreate_1 = require("./generateCreate");
 const generateEdit_1 = require("./generateEdit");
 const tailwindcssPageController = async (userInput) => {
     const modelName = userInput[2];
-    let configData = (0, utils_1.readNextConfig)();
+    let configData = await (0, utils_1.readNextConfig)();
     const modelItems = userInput.slice(3);
     if (!modelName) {
         return `no modelName recieved`;
