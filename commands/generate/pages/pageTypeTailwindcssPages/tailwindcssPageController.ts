@@ -70,17 +70,17 @@ export const tailwindcssPageController = async (userInput: string[]) => {
     );
   }
 
-  createFile(`${configData.projectRootPath}pages/${modelName}s/index.js`, indexPage);
+  createFile(`${configData.projectRootPath}pages5/${modelName}s/index.js`, indexPage);
 
-  createFile(`${configData.projectRootPath}pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
+  createFile(`${configData.projectRootPath}pages6/${modelName}s/[${modelName}Id].js`, dynamicPage);
 
   createFile(
-    `${configData.projectRootPath}pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`,
+    `${configData.projectRootPath}pages7/${modelName}s/create${upperCaseFirstLetterModelName}.js`,
     createPage
   );
 
   createFile(
-    `${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`,
+    `${configData.projectRootPath}pages8/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`,
     editPage
   );
 }

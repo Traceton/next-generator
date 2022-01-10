@@ -38,9 +38,9 @@ const tailwindcssPageController = async (userInput) => {
         NEXT_PUBLIC_HOST_URL=http://localhost:3000
     `);
     }
-    (0, utils_1.createFile)(`${configData.projectRootPath}pages/${modelName}s/index.js`, indexPage);
-    (0, utils_1.createFile)(`${configData.projectRootPath}pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
-    (0, utils_1.createFile)(`${configData.projectRootPath}pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`, createPage);
-    (0, utils_1.createFile)(`${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`, editPage);
+    (0, utils_1.createFile)(`${configData.projectRootPath}pages5/${modelName}s/index.js`, indexPage);
+    (0, utils_1.createFile)(`${configData.projectRootPath}pages6/${modelName}s/[${modelName}Id].js`, dynamicPage);
+    (0, utils_1.createFile)(`${configData.projectRootPath}pages7/${modelName}s/create${upperCaseFirstLetterModelName}.js`, createPage);
+    (0, utils_1.createFile)(`${configData.projectRootPath}pages8/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`, editPage);
 };
 exports.tailwindcssPageController = tailwindcssPageController;
