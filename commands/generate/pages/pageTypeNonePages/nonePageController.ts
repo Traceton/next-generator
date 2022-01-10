@@ -45,9 +45,9 @@ export const nonePageController = async (userInput: string[]) => {
 
 
 
-  // if (!existsSync(`${configData.projectRootPath}pages`)) {
-  //   createDirectory(`${configData.projectRootPath}pages`);
-  // }
+  if (!existsSync(`${configData.projectRootPath}pages`)) {
+    createDirectory(`${configData.projectRootPath}pages`);
+  }
 
   if (!existsSync(`${configData.projectRootPath}pages/${modelName}s`)) {
     createDirectory(`${configData.projectRootPath}pages/${modelName}s`);
