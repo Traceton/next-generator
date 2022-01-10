@@ -45,13 +45,13 @@ export const tailwindcssPageController = async (userInput: string[]) => {
 
 
 
-  if (!existsSync(`${configData.projectRootPath}pages`)) {
-    createDirectory(`${configData.projectRootPath}pages`);
-  }
+  // if (!existsSync(`${configData.projectRootPath}pages`)) {
+  //   createDirectory(`${configData.projectRootPath}pages`);
+  // }
 
-  if (!existsSync(`${configData.projectRootPath}pages/${modelName}s`)) {
-    createDirectory(`${configData.projectRootPath}pages/${modelName}s`);
-  }
+  // if (!existsSync(`${configData.projectRootPath}pages/${modelName}s`)) {
+  //   createDirectory(`${configData.projectRootPath}pages/${modelName}s`);
+  // }
 
   if (
     !existsSync(`${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)
