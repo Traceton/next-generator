@@ -1,4 +1,5 @@
-import { readNextConfig } from "../../utils"
+import { existsSync } from "fs";
+import { createDirectory, readNextConfig } from "../../utils"
 import { generateCrudController } from "./generateCrudController"
 import { generateModelController } from "./models/generateModelController"
 import { generateApiRoutesController } from "./apiRoutes/generateApiRoutesController"
@@ -8,6 +9,14 @@ import { generatePagesController } from "./pages/generatePagesController"
 export const generatorController = (userInput: string[]) => {
 
     let configData = readNextConfig()
+
+    if (configData.projectRootPath) {
+        if (!existsSync(configData.projectRootPath)) {
+            createDirectory(configData.projectRootPath);
+          }
+    }
+
+
     console.log(configData)
 
     if (userInput[1] === "model" || userInput[1] === "m") {

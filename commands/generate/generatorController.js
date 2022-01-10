@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generatorController = void 0;
+const fs_1 = require("fs");
 const utils_1 = require("../../utils");
 const generateCrudController_1 = require("./generateCrudController");
 const generateModelController_1 = require("./models/generateModelController");
@@ -8,6 +9,11 @@ const generateApiRoutesController_1 = require("./apiRoutes/generateApiRoutesCont
 const generatePagesController_1 = require("./pages/generatePagesController");
 const generatorController = (userInput) => {
     let configData = (0, utils_1.readNextConfig)();
+    if (configData.projectRootPath) {
+        if (!(0, fs_1.existsSync)(configData.projectRootPath)) {
+            (0, utils_1.createDirectory)(configData.projectRootPath);
+        }
+    }
     console.log(configData);
     if (userInput[1] === "model" || userInput[1] === "m") {
         (0, generateModelController_1.generateModelController)(userInput);
