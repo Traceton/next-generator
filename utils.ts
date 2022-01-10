@@ -2,12 +2,15 @@ import fs from "fs";
 import { defaultConfig, acceptedDatabases, acceptedPageTypes } from "./nextGeneratorConfig"
 
 export const createDirectory = (directoryPath: string) => {
+
+  let configData = readNextConfig()
+
   if (!directoryPath) {
     console.log(`no directoryPath recieved`);
     return `no directoryPath recieved`;
   }
 
-  fs.mkdirSync(directoryPath, { recursive: true });
+  fs.mkdirSync(`${configData.projectRootPath}${directoryPath}`, { recursive: true });
   return `directory created`;
 };
 
