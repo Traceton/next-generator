@@ -1,5 +1,5 @@
 
-import { createDirectory, createFile } from "../../../../utils";
+import { createDirectory, createFile, readNextConfig } from "../../../../utils";
 import { existsSync } from "fs";
 import { getDynamicNoneData } from "./getDynamicNoneData"
 import { generateIndex } from "./generateIndex"
@@ -8,7 +8,9 @@ import { generateCreate } from "./generateCreate"
 import { generateEdit } from "./generateEdit"
 
 export const nonePageController = async (userInput: string[]) => {
-    const modelName = userInput[2];
+  const modelName = userInput[2];
+
+  let configData = readNextConfig()
 
   const modelItems = userInput.slice(3);
 
@@ -43,42 +45,42 @@ export const nonePageController = async (userInput: string[]) => {
 
 
 
-  if (!existsSync(`pages`)) {
-    createDirectory("pages");
+  if (!existsSync(`${configData.projectRootPath}pages`)) {
+    createDirectory(`${configData.projectRootPath}pages`);
   }
 
-  if (!existsSync(`pages/${modelName}s`)) {
-    createDirectory(`pages/${modelName}s`);
+  if (!existsSync(`${configData.projectRootPath}pages/${modelName}s`)) {
+    createDirectory(`${configData.projectRootPath}pages/${modelName}s`);
   }
 
   if (
-    !existsSync(`pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)
+    !existsSync(`${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)
   ) {
     createDirectory(
-      `pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`
+      `${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`
     );
   }
 
-  if (!existsSync(`.env.local`)) {
+  if (!existsSync(`${configData.projectRootPath}.env.local`)) {
     createFile(
-      ".env.local",
+      `${configData.projectRootPath}.env.local`,
       ` MONGODB_URI=your-database-string-here 
         NEXT_PUBLIC_HOST_URL=http://localhost:3000
     `
     );
   }
 
-  createFile(`pages/${modelName}s/index.js`, indexPage);
+  createFile(`${configData.projectRootPath}pages/${modelName}s/index.js`, indexPage);
 
-  createFile(`pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
+  createFile(`${configData.projectRootPath}pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
 
   createFile(
-    `pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`,
+    `${configData.projectRootPath}pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`,
     createPage
   );
 
   createFile(
-    `pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`,
+    `${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`,
     editPage
   );
 }
