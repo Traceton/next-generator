@@ -10,13 +10,13 @@
 
 ## :one: Install and setup:
 
-#### :heavy_exclamation_mark: mongoose will be required if you wish to utilize the models and api routes generated with next-generator. :heavy_exclamation_mark:
+#### :heavy_exclamation_mark: mongoose will be required if you wish to utilize the models and api routes generated with next-generator at this time. :heavy_exclamation_mark:
 
 ### :two: navigate to your desired directory, install Next.js
 
 `npx create-next-app your-app-name-here`
 
-### :three: Next, install the package below for best compatibility:
+### :three: Next, install the package below for best compatibility with mongodb:
 
 `npm i mongoose`
 
@@ -24,19 +24,14 @@
 
 `npm i next-generator -D`
 
-### :five: Next, navigate to your package.json file and copy the next-generator script given here and paste into your scripts:
-
-```
- "scripts": {
-    "next-generator": "node node_modules/next-generator/index.js"
-  }
-```
+### :five: Next, create your nextGenConfig by running:
+`nextGen`, wait for the command prompt, and run `init`
 
 ## :six: How To Use:
 
 Before running any commands you must start node-generator from the terminal inside of your apps directory:
 
-`npm run next-generator`
+`nextGen`
 
 ## :seven: :arrow_down: Start using:
 
