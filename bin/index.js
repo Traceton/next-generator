@@ -11,14 +11,14 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-process.argv.forEach(function (val, index, array) {
-  console.log(array);
-});
+console.log(process.argv[2])
 
 const readUserInput = () => {
-  
+  let OriginalCliInput = process.argv
+  let userInput = process.argv.slice(2)
+  console.log(userInput)
 }
-
+readUserInput()
 // The starting point of the command line interface of next-generator
 // takes a users input and routes it properly based on the input.
 
