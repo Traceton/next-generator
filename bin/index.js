@@ -6,7 +6,7 @@ let { generateHelp } = require('../commands/help/generateHelp');
 
 const readUserInput = () => {
   let OriginalCliInput = process.argv
-  let userInput = OriginalCliInput.argv.slice(2)
+  let userInput = OriginalCliInput.slice(2)
   if (!userInput) {
     console.log("no user input found")
   }
