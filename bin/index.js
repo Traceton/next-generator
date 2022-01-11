@@ -14,7 +14,7 @@ const rl = readline.createInterface({
 
 const readUserInput = () => {
   let OriginalCliInput = process.argv
-  let userInput = process.argv.slice(2).trim().split(" ");
+  let userInput = process.argv.slice(2)
   if (!userInput) {
     console.log("no user input found")
   }
