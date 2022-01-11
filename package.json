@@ -4,7 +4,8 @@
   "description": "Your Next.js route, model, and page generator.",
   "main": "./bin/index.js",
   "bin": {
-    "nextGen": "./bin/index.js"
+    "nextGen": "./bin/index.js",
+    "nextGen init": "./bin/init.js"
   },
   "scripts": {
     "test": "jest "
