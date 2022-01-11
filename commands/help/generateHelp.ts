@@ -3,6 +3,7 @@
  export const generateHelp = async () => {
     console.log(`***** User Guide ***** \n `);
     console.log(` Commands:  \n `);
+    console.log(` init - generate a nextGenConfig.json  \n `);
     console.log(` exit or e - exit next-generator build mode.  \n `);
     console.log(
       ` help or h - get help and view the latest commands for next-generator  \n `
