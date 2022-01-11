@@ -6,10 +6,10 @@ let { generateInit } = require('../commands/init/generateInit')
 let { generateHelp } = require('../commands/help/generateHelp');
 let { readNextConfig } = require('../utils');
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+// const rl = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout,
+// });
 
 
 const readUserInput = () => {
