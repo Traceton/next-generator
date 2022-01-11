@@ -1,23 +1,16 @@
 #! /usr/bin/env node
 
-let readline = require('readline');
 let { generatorController } = require('../commands/generate/generatorController');
 let { generateInit } = require('../commands/init/generateInit')
 let { generateHelp } = require('../commands/help/generateHelp');
-let { readNextConfig } = require('../utils');
-
-// const rl = readline.createInterface({
-//   input: process.stdin,
-//   output: process.stdout,
-// });
-
 
 const readUserInput = () => {
   let OriginalCliInput = process.argv
-  let userInput = process.argv.slice(2)
+  let userInput = OriginalCliInput.argv.slice(2)
   if (!userInput) {
     console.log("no user input found")
   }
+  
   return userInput
 }
 
@@ -25,7 +18,8 @@ const readUserInput = () => {
 // takes a users input and routes it properly based on the input.
 const nextGeneratorController = () => {
   let userInput =  readUserInput()
-  switch (userInput) {
+  
+  switch (userInput[0]) {
     case "init":
       generateInit();
       break;

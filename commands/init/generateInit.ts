@@ -1,9 +1,9 @@
-import { createFile, readNextConfig } from "../../utils";
+import { createFile } from "../../utils";
 
 // generates a nextGenConfig.json file with some default values.
 export const generateInit = async (userInput: string[]) => {
 
-    let configData = readNextConfig()
+
 
     try {
         const nextGenConfig = `
@@ -14,7 +14,7 @@ export const generateInit = async (userInput: string[]) => {
 }`
         
         createFile(
-            `${configData.projectRootPath}nextGenConfig.json`,
+            `nextGenConfig.json`,
             nextGenConfig
         );
 
