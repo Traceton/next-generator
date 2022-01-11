@@ -1,6 +1,7 @@
 # :rocket: next-generator
 
 ## Your Next.js route, model, and page generator. CRUD more quickly. (Create-Read-Update-Delete)
+:heavy_exclamation_mark: Be sure to check out the Wiki for more info :heavy_exclamation_mark:
 
 ### next-generator is a extremely easy to use npm package for people using Nextjs, mongoose(mongoDb), and tailwindCss(optional) for their project.
 
