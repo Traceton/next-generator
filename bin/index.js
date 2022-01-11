@@ -11,43 +11,37 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-console.log(process.argv[2])
 
 const readUserInput = () => {
   let OriginalCliInput = process.argv
-  let userInput = process.argv.slice(2)
-  console.log(userInput)
+  let userInput = process.argv.slice(2).trim().split(" ");
+  if (!userInput) {
+    console.log("no user input found")
+  }
+  return userInput
 }
-readUserInput()
+
 // The starting point of the command line interface of next-generator
 // takes a users input and routes it properly based on the input.
+const nextGeneratorController = () => {
+  let userInput =  readUserInput()
+  switch (userInput) {
+    case "init":
+      generateInit();
+      break;
+    case "exit":
+    case "e":
+      console.log("use: ctrl c")
+      break;
+    case "help":
+    case "h":
+      generateHelp();
+      break;
+    case "generate":
+    case "g":
+      generatorController(userInput);
+      break;
+  }
+}
 
-const recursiveReadline = () => {
-  // Checks next config for issues and alerts user accordingly
-  readNextConfig()
-
-  rl.question("next-generator command: ", function (answer) {
-    let userInput = answer.trim().split(" ");
-
-    switch (userInput[0]) {
-      case "init":
-        generateInit();
-        break;
-      case "exit":
-      case "e":
-        console.log("use: ctrl c")
-        break;
-      case "help":
-      case "h":
-        generateHelp();
-        break;
-      case "generate":
-      case "g":
-        generatorController(userInput);
-        break;
-    }
-    recursiveReadline();
-  });
-};
-
-recursiveReadline();
+nextGeneratorController();
