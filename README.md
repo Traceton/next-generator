@@ -26,12 +26,9 @@
 `npm i next-generator -D`
 
 ### :five: Next, create your nextGenConfig by running:
-`nextGen`, wait for the command prompt, and run `init`
+`nextGen init`
 
 ## :six: How To Use:
-
-### First, generate your nextGenConfig.json file
-`nextGen init`
 
 ### Get the most current commands with examples:
 
