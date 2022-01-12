@@ -35,9 +35,7 @@
 
 ### Get the most current commands with examples:
 
-```
-nextGen help
-```
+`nextGen help`
 
 ### Current commands:
 
