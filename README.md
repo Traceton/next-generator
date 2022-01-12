@@ -30,22 +30,13 @@
 
 ## :six: How To Use:
 
-Before running any commands you must start node-generator from the terminal inside of your apps directory:
-
-`nextGen`
-
-## :seven: :arrow_down: Start using:
+### First, generate your nextGenConfig.json file
+`nextGen init`
 
 ### Get the most current commands with examples:
 
 ```
-help
-```
-
-### Exit the generator
-
-```
-exit
+nextGen help
 ```
 
 ### Current commands:
@@ -55,31 +46,31 @@ exit
 ##### Don't forget to set a DATABASE_URL value in the .env file that is generated.
 
 ```
-Format : generate crud your-model-name field-name:data-type field-name:data-type
-Example : generate crud vehicle year:String make:String model:String
-Short hand example: g c vehicle year:String make:String model:String
+Format : nextGen generate crud your-model-name field-name:data-type field-name:data-type
+Example : nextGen generate crud vehicle year:String make:String model:String
+Short hand example: nextGen g c vehicle year:String make:String model:String
 ```
 
 ### generate a mongoose model:
 
 ```
-Format : generate model your-model-name field-name:data-type field-name:data-type
-Example : generate model vehicle year:String make:String model:String
-Short hand example: g m vehicle year:String make:String model:String
+Format : nextGen generate model your-model-name field-name:data-type field-name:data-type
+Example : nextGen generate model vehicle year:String make:String model:String
+Short hand example: nextGen g m vehicle year:String make:String model:String
 ```
 
 ### generate next js crud (Create-Read-Update-Delete) api routes.
 
 ```
-Format : generate api-routes your-model-name field-name:data-type field-name:data-type
-Example : generate api-routes vehicle year:String make:String model:String
-Short hand example: g a-r vehicle year:String make:String model:String
+Format : nextGen generate api-routes your-model-name field-name:data-type field-name:data-type
+Example : nextGen generate api-routes vehicle year:String make:String model:String
+Short hand example: nextGen g a-r vehicle year:String make:String model:String
 ```
 
 ### generate next js crud (Create-Read-Update-Delete) pages.
 
 ```
-Format : generate pages your-model-name field-name:data-type field-name:data-type
-Example : generate pages vehicle year:String make:String model:String
-Short hand example: g p vehicle year:String make:String model:String
+Format : nextGen generate pages your-model-name field-name:data-type field-name:data-type
+Example : nextGen generate pages vehicle year:String make:String model:String
+Short hand example: nextGen g p vehicle year:String make:String model:String
 ```
