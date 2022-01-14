@@ -7,4 +7,4 @@
 
 
 **Extra context or other helpful information to help reviewer:**
-corrects issue #
+- corrects issue #
