@@ -30,7 +30,7 @@ Changes that are cosmetic in nature and do not add anything substantial to the s
 
 * Ask any question about how to use Next Generator in the [Next Generator Discussions board(coming soon)](#).
 
-#### **Do you want to contribute to the Rails documentation?**
+#### **Do you want to contribute to the Next Generator documentation?**
 
 * Please read [Contributing to the Next Generator Documentation(coming soon)](#).
 
