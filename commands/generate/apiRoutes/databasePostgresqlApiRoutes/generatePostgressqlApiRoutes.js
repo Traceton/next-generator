@@ -1,19 +1,16 @@
-import { createDirectory, createFile, readNextConfig } from "../../../../utils";
-import { existsSync } from "fs";
-
-export const generatePostgresqlApiRoutes = async (userInput: string[]) => {
-  const modelName = userInput[2];
-
-  let configData = readNextConfig()
-
-  if (!modelName) {
-    return `no routeName recieved`;
-  }
-
-  const upperCaseFirstLetterModelName =
-    modelName.charAt(0).toUpperCase() + modelName.slice(1);
-
-  const indexApiPage = `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.generatePostgresqlApiRoutes = void 0;
+const utils_1 = require("../../../../utils");
+const fs_1 = require("fs");
+const generatePostgresqlApiRoutes = async (userInput) => {
+    const modelName = userInput[2];
+    let configData = (0, utils_1.readNextConfig)();
+    if (!modelName) {
+        return `no routeName recieved`;
+    }
+    const upperCaseFirstLetterModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
+    const indexApiPage = `
 import ${upperCaseFirstLetterModelName} from "../../../components/models/${upperCaseFirstLetterModelName}";
 import dbConnect from "../../../utils/dbConnect";
 
@@ -70,8 +67,7 @@ export default async (req, res) => {
   }
 };
   `;
-
-  const dynamicApiPage = `
+    const dynamicApiPage = `
   import ${upperCaseFirstLetterModelName} from "../../../components/models/${upperCaseFirstLetterModelName}";
 import dbConnect from "../../../utils/dbConnect";
 
@@ -163,8 +159,7 @@ export default async (req, res) => {
 };
 
   `;
-
-  const dbConnectFile = `
+    const dbConnectFile = `
   import mongoose from "mongoose";
 
   const connection = {};
@@ -183,35 +178,25 @@ export default async (req, res) => {
   }
   
   export default dbConnect;`;
-
-  if (!existsSync(`${configData.projectRootPath}pages`)) {
-     createDirectory(`${configData.projectRootPath}pages`);
-  }
-
-  if (!existsSync(`${configData.projectRootPath}pages/api`)) {
-     createDirectory(`${configData.projectRootPath}pages/api`);
-  }
-
-  if (!existsSync(`${configData.projectRootPath}pages/api/${modelName}s`)) {
-    createDirectory(`${configData.projectRootPath}pages/api/${modelName}s`);
-  }
-
-  if (!existsSync(`${configData.projectRootPath}utils`)) {
-     createDirectory(`${configData.projectRootPath}utils`);
-  }
-
-  createFile(`${configData.projectRootPath}utils/dbConnect.js`, dbConnectFile);
-
-  if (!existsSync(`${configData.projectRootPath}.env.local`)) {
-     createFile(
-      `${configData.projectRootPath}.env.local`,
-      `MONGODB_URI=your-database-string-here
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages`)) {
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}pages`);
+    }
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages/api`)) {
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}pages/api`);
+    }
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages/api/${modelName}s`)) {
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}pages/api/${modelName}s`);
+    }
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}utils`)) {
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}utils`);
+    }
+    (0, utils_1.createFile)(`${configData.projectRootPath}utils/dbConnect.js`, dbConnectFile);
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}.env.local`)) {
+        (0, utils_1.createFile)(`${configData.projectRootPath}.env.local`, `MONGODB_URI=your-database-string-here
     MONGODB_DB=your-database-name-here    
-    `
-    );
-  }
-
-  createFile(`${configData.projectRootPath}pages/api/${modelName}s/index.js`, indexApiPage);
-  createFile(`${configData.projectRootPath}pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
+    `);
+    }
+    (0, utils_1.createFile)(`${configData.projectRootPath}pages/api/${modelName}s/index.js`, indexApiPage);
+    (0, utils_1.createFile)(`${configData.projectRootPath}pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
 };
-
+exports.generatePostgresqlApiRoutes = generatePostgresqlApiRoutes;
