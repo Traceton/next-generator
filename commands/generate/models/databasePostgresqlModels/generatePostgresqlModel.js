@@ -55,7 +55,6 @@ const generatePostgresqlModel = async (userInput) => {
                 console.log("no prisma schema found, cannot modify");
             }
             else {
-                console.log(`prisma schema -> ${rawConfigFile}`);
                 fs_1.default.appendFile(path, newModel, function (error) {
                     if (error)
                         console.log(`prisma schema mod error -> ${error}`);
