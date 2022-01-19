@@ -162,25 +162,22 @@ export default async (req, res) => {
 };
 
   `;
-    const dbConnectFile = `
-  import mongoose from "mongoose";
+    const prismaInstanceFile = `
+  import { PrismaClient } from '@prisma/client'
 
-  const connection = {};
-  
-  async function dbConnect() {
-    if (connection.isConnected) {
-      return;
-    }
-  
-    const db = await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-  
-    connection.isConnected = db.connections[0].readyState;
-  }
-  
-  export default dbConnect;`;
+declare global {
+  // allow global 'var' declarations
+  // eslint-disable-next-line no-var
+  var prisma: PrismaClient | undefined
+}
+
+export const prisma =
+  global.prisma ||
+  new PrismaClient({
+    log: ['query'],
+  })
+
+if (process.env.NODE_ENV !== 'production') global.prisma = prisma`;
     if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages`)) {
         (0, utils_1.createDirectory)(`${configData.projectRootPath}pages`);
     }
@@ -193,7 +190,7 @@ export default async (req, res) => {
     if (!(0, fs_1.existsSync)(`${configData.projectRootPath}utils`)) {
         (0, utils_1.createDirectory)(`${configData.projectRootPath}utils`);
     }
-    (0, utils_1.createFile)(`${configData.projectRootPath}utils/dbConnect.js`, dbConnectFile);
+    (0, utils_1.createFile)(`${configData.projectRootPath}utils/prismaInstance.ts`, prismaInstanceFile);
     (0, utils_1.createFile)(`${configData.projectRootPath}pages/api/${modelName}s/index.js`, indexApiPage);
     (0, utils_1.createFile)(`${configData.projectRootPath}pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
 };
