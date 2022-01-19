@@ -64,6 +64,11 @@ const generatePostgresqlModel = async (userInput) => {
             }
             else {
                 console.log(`prisma schema -> ${rawConfigFile}`);
+                fs_1.default.appendFile(path, rawConfigFile, function (err) {
+                    if (err)
+                        throw err;
+                    console.log('Updated!');
+                });
             }
         }
         catch (error) {
