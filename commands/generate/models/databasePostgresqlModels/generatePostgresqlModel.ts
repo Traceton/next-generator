@@ -2,8 +2,8 @@ import { createDirectory, createFile, readNextConfig } from "../../../../utils";
 import { existsSync} from "fs";
 import fs from "fs";
 
-// generates a mongoose/mongodb model using userInput. 
-export const generateMongooseModel = async (userInput: string[]) => {
+// generates a Postgresql model using userInput. 
+export const generatePostgresqlModel = async (userInput: string[]) => {
     let modelName = userInput[2];
   
     let configData = readNextConfig()
@@ -71,7 +71,7 @@ export const generateMongooseModel = async (userInput: string[]) => {
     // try to modify the Prisma schema
     try {
         let path = `${configData.projectRootPath}/prisma/schema.prisma`
-        
+
         const rawConfigFile = fs.readFileSync(path, { encoding: "utf8" });
         if (!rawConfigFile || rawConfigFile == undefined) {
             console.log("no prisma schema found, cannot modify")

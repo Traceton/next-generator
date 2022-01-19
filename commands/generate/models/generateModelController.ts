@@ -1,4 +1,5 @@
 import { readNextConfig } from "../../../utils"
+import { generatePostgresqlModel } from "./databasePostgresqlModels/generatePostgresqlModel"
 import { generateMongooseModel } from "./databaseMongodbModels/generateMongooseModel" 
 
 // Command to use this generator below:
@@ -8,9 +9,16 @@ import { generateMongooseModel } from "./databaseMongodbModels/generateMongooseM
 export const generateModelController = (userInput: string[]) => {
     const configData = readNextConfig()
 
-    if (configData.database == "none" || configData.database == "postgresql" || !configData.database) {
-        // NOT IMPLEMENTED YET: Do nothing, or perhaps use something as a default.
-      } else if (configData.database == "mongodb") {
-        generateMongooseModel(userInput)
-      }
+    switch (configData.database) {
+      case "postgresql":
+        generatePostgresqlModel(userInput)
+          break;
+      case"mongodb":
+      generateMongooseModel(userInput)
+          break;  
+      default:
+          // Do nothing 
+          break;
+  }
+
 }

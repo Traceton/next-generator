@@ -3,11 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateMongooseModel = void 0;
+exports.generatePostgresqlModel = void 0;
 const utils_1 = require("../../../../utils");
 const fs_1 = require("fs");
 const fs_2 = __importDefault(require("fs"));
-const generateMongooseModel = async (userInput) => {
+const generatePostgresqlModel = async (userInput) => {
     let modelName = userInput[2];
     let configData = (0, utils_1.readNextConfig)();
     if (modelName === undefined || modelName === "undefined") {
@@ -84,4 +84,4 @@ const generateMongooseModel = async (userInput) => {
         return error;
     }
 };
-exports.generateMongooseModel = generateMongooseModel;
+exports.generatePostgresqlModel = generatePostgresqlModel;
