@@ -23,7 +23,7 @@ export const generatePostgresqlModel = async (userInput: string[]) => {
   
       let modelItems = userInput.slice(3);
   
-      let finalSchemaItems: string[] = [];
+      let neWModelSchemaItems: string[] = [];
   
       // maps through each command
       modelItems.map((unSplitEntry) => {
@@ -33,14 +33,12 @@ export const generatePostgresqlModel = async (userInput: string[]) => {
   
         const modelField = `${entryName} ${entryType}`
         
-        finalSchemaItems.push(modelField.replace(/,/g, ""));
+        neWModelSchemaItems.push(modelField.replace(/,/g, ""));
       });
   
-    //   let finalSchemaItems = neWModelSchemaItems
-    //     .toString()
-    //     .replace("[", "")
-    //     .replace("]", "")
-    //     .replace(/"/g, "");
+      let finalSchemaItems = neWModelSchemaItems
+        .toString()
+        .replace(/,/g, "");
   
       let newModel = `
       model ${upperCaseFirstLetterModelName} {

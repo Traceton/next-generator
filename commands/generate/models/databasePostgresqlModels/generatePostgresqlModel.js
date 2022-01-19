@@ -20,14 +20,17 @@ const generatePostgresqlModel = async (userInput) => {
     try {
         const upperCaseFirstLetterModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
         let modelItems = userInput.slice(3);
-        let finalSchemaItems = [];
+        let neWModelSchemaItems = [];
         modelItems.map((unSplitEntry) => {
             let entry = unSplitEntry.split(":");
             let entryName = entry[0];
             let entryType = entry[1];
             const modelField = `${entryName} ${entryType}`;
-            finalSchemaItems.push(modelField.replace(/,/g, ""));
+            neWModelSchemaItems.push(modelField.replace(/,/g, ""));
         });
+        let finalSchemaItems = neWModelSchemaItems
+            .toString()
+            .replace(/,/g, "");
         let newModel = `
       model ${upperCaseFirstLetterModelName} {
         id String @id @default(cuid())
