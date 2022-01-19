@@ -83,18 +83,19 @@ export const generatePostgresqlModel = async (userInput: string[]) => {
         console.log(error)
     }
   
-      if (!existsSync(`${configData.projectRootPath}components`)) {
-        await createDirectory(`${configData.projectRootPath}components`);
-      }
+    //   if (!existsSync(`${configData.projectRootPath}components`)) {
+    //     await createDirectory(`${configData.projectRootPath}components`);
+    //   }
   
-      if (!existsSync(`${configData.projectRootPath}components/models`)) {
-        await createDirectory(`${configData.projectRootPath}components/models`);
-      }
+    //   if (!existsSync(`${configData.projectRootPath}components/models`)) {
+    //     await createDirectory(`${configData.projectRootPath}components/models`);
+    //   }
   
-      createFile(
-        `${configData.projectRootPath}components/models/${upperCaseFirstLetterModelName}.js`,
-        newModel
-      );
+    //   createFile(
+    //     `${configData.projectRootPath}components/models/${upperCaseFirstLetterModelName}.js`,
+    //     newModel
+    //   );
+
     } catch (error) {
       console.log(error);
       return error;

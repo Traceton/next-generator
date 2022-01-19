@@ -5,8 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generatePostgresqlModel = void 0;
 const utils_1 = require("../../../../utils");
-const fs_1 = require("fs");
-const fs_2 = __importDefault(require("fs"));
+const fs_1 = __importDefault(require("fs"));
 const generatePostgresqlModel = async (userInput) => {
     let modelName = userInput[2];
     let configData = (0, utils_1.readNextConfig)();
@@ -59,7 +58,7 @@ const generatePostgresqlModel = async (userInput) => {
     module.exports = mongoose.models.${modelName} || mongoose.model("${modelName}", ${modelName}Schema);`;
         try {
             let path = `${configData.projectRootPath}/prisma/schema.prisma`;
-            const rawConfigFile = fs_2.default.readFileSync(path, { encoding: "utf8" });
+            const rawConfigFile = fs_1.default.readFileSync(path, { encoding: "utf8" });
             if (!rawConfigFile || rawConfigFile == undefined) {
                 console.log("no prisma schema found, cannot modify");
             }
@@ -71,13 +70,6 @@ const generatePostgresqlModel = async (userInput) => {
         catch (error) {
             console.log(error);
         }
-        if (!(0, fs_1.existsSync)(`${configData.projectRootPath}components`)) {
-            await (0, utils_1.createDirectory)(`${configData.projectRootPath}components`);
-        }
-        if (!(0, fs_1.existsSync)(`${configData.projectRootPath}components/models`)) {
-            await (0, utils_1.createDirectory)(`${configData.projectRootPath}components/models`);
-        }
-        (0, utils_1.createFile)(`${configData.projectRootPath}components/models/${upperCaseFirstLetterModelName}.js`, newModel);
     }
     catch (error) {
         console.log(error);
