@@ -57,7 +57,7 @@ const generatePostgresqlModel = async (userInput) => {
   
     module.exports = mongoose.models.${modelName} || mongoose.model("${modelName}", ${modelName}Schema);`;
         try {
-            let path = `${configData.projectRootPath}/prisma/schema.prisma`;
+            let path = `${configData.projectRootPath}prisma/schema.prisma`;
             const rawConfigFile = fs_1.default.readFileSync(path, { encoding: "utf8" });
             if (!rawConfigFile || rawConfigFile == undefined) {
                 console.log("no prisma schema found, cannot modify");

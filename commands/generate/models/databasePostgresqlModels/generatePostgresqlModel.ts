@@ -70,7 +70,7 @@ export const generatePostgresqlModel = async (userInput: string[]) => {
 
     // try to modify the Prisma schema
     try {
-        let path = `${configData.projectRootPath}/prisma/schema.prisma`
+        let path = `${configData.projectRootPath}prisma/schema.prisma`
 
         const rawConfigFile = fs.readFileSync(path, { encoding: "utf8" });
         if (!rawConfigFile || rawConfigFile == undefined) {
