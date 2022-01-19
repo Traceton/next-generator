@@ -58,15 +58,7 @@ export const generatePostgresqlModel = async (userInput: string[]) => {
         .replace("]", "")
         .replace(/"/g, "");
   
-      let newModel = `const mongoose = require("mongoose"); \n
-  
-    const ${modelName}Schema = new mongoose.Schema({
-  
-    ${finalSchemaItems}
-  
-    }); \n
-  
-    module.exports = mongoose.models.${modelName} || mongoose.model("${modelName}", ${modelName}Schema);`;
+      let newModel = `${finalSchemaItems}`;
 
     // try to modify the Prisma schema
     try {
@@ -78,9 +70,9 @@ export const generatePostgresqlModel = async (userInput: string[]) => {
           } else {
             console.log(`prisma schema -> ${rawConfigFile}`)
 
-            fs.appendFile(path, rawConfigFile, function (err) {
-                if (err) throw err;
-                console.log('Updated!');
+            fs.appendFile(path, newModel, function (error) {
+                if (error) console.log(`prisma schema mod error -> ${error}`)
+                console.log('Updated schema!');
               });
           }
     } catch (error) {
