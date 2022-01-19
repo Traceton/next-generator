@@ -1,5 +1,4 @@
-import { createDirectory, createFile, readNextConfig } from "../../../../utils";
-import { existsSync} from "fs";
+import { readNextConfig } from "../../../../utils";
 import fs from "fs";
 
 // generates a Postgresql model using userInput. 
@@ -24,7 +23,7 @@ export const generatePostgresqlModel = async (userInput: string[]) => {
   
       let modelItems = userInput.slice(3);
   
-      let neWModelSchemaItems = [];
+      let finalSchemaItems: string[] = [];
   
       // maps through each command
       modelItems.map((unSplitEntry) => {
@@ -32,33 +31,23 @@ export const generatePostgresqlModel = async (userInput: string[]) => {
         let entryName = entry[0];
         let entryType = entry[1];
   
-        let modelField = {
-          [entryName]: {
-            type: entryType,
-            required: true,
-          },
-        };
-  
-        let stringField = JSON.stringify(modelField)
-          .replace("{", "")
-          .replace("}", "");
-        neWModelSchemaItems.push(stringField);
+        const modelField = `${entryName} ${entryType}`
+        
+        finalSchemaItems.push(modelField);
       });
   
-      let createdOnField = `createdOn: {
-      type: Date,
-      required: true,
-      default: Date.now(),
-    },`;
-      neWModelSchemaItems.push(createdOnField);
+    //   let finalSchemaItems = neWModelSchemaItems
+    //     .toString()
+    //     .replace("[", "")
+    //     .replace("]", "")
+    //     .replace(/"/g, "");
   
-      let finalSchemaItems = neWModelSchemaItems
-        .toString()
-        .replace("[", "")
-        .replace("]", "")
-        .replace(/"/g, "");
-  
-      let newModel = `${finalSchemaItems}`;
+      let newModel = `
+      model ${upperCaseFirstLetterModelName} {
+        id String @id @default(cuid())
+        ${finalSchemaItems}
+      }
+      `;
 
     // try to modify the Prisma schema
     try {

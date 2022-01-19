@@ -20,34 +20,20 @@ const generatePostgresqlModel = async (userInput) => {
     try {
         const upperCaseFirstLetterModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
         let modelItems = userInput.slice(3);
-        let neWModelSchemaItems = [];
+        let finalSchemaItems = [];
         modelItems.map((unSplitEntry) => {
             let entry = unSplitEntry.split(":");
             let entryName = entry[0];
             let entryType = entry[1];
-            let modelField = {
-                [entryName]: {
-                    type: entryType,
-                    required: true,
-                },
-            };
-            let stringField = JSON.stringify(modelField)
-                .replace("{", "")
-                .replace("}", "");
-            neWModelSchemaItems.push(stringField);
+            const modelField = `${entryName} ${entryType}`;
+            finalSchemaItems.push(modelField);
         });
-        let createdOnField = `createdOn: {
-      type: Date,
-      required: true,
-      default: Date.now(),
-    },`;
-        neWModelSchemaItems.push(createdOnField);
-        let finalSchemaItems = neWModelSchemaItems
-            .toString()
-            .replace("[", "")
-            .replace("]", "")
-            .replace(/"/g, "");
-        let newModel = `${finalSchemaItems}`;
+        let newModel = `
+      model ${upperCaseFirstLetterModelName} {
+        id String @id @default(cuid())
+        ${finalSchemaItems}
+      }
+      `;
         try {
             let path = `${configData.projectRootPath}prisma/schema.prisma`;
             const rawConfigFile = fs_1.default.readFileSync(path, { encoding: "utf8" });
