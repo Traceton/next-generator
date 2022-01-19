@@ -38,7 +38,7 @@ export const generatePostgresqlModel = async (userInput: string[]) => {
   
       let finalSchemaItems = neWModelSchemaItems
         .toString()
-        .replace(/,/g, "\n");
+        .replace(/,/g, "\n \t \t \t \t");
   
       let newModel = `
       model ${upperCaseFirstLetterModelName} {
