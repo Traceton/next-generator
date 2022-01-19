@@ -9,18 +9,14 @@ const generatePostgresqlApiRoutes = async (userInput) => {
     if (!modelName) {
         return `no routeName recieved`;
     }
-    const upperCaseFirstLetterModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
     const indexApiPage = `
-import ${upperCaseFirstLetterModelName} from "../../../components/models/${upperCaseFirstLetterModelName}";
-import dbConnect from "../../../utils/dbConnect";
-
-dbConnect();
+  import { prisma } from '../../../utils/prismaInstance'
 
 export default async (req, res) => {
   switch (req.method) {
     case "GET":
       try {
-        const ${modelName}s = await ${upperCaseFirstLetterModelName}.find({});
+        const ${modelName}s = await prisma.${modelName}.findMany();
 
         if (!${modelName}s) {
           return res
@@ -43,7 +39,9 @@ export default async (req, res) => {
       break;
     case "POST":
       try {
-        const ${modelName} = await ${upperCaseFirstLetterModelName}.create(req.body);
+        const ${modelName} = await prisma.${modelName}.create({
+            data: req.body
+        });;
 
         res.status(201).json({
           message_type: "success",
@@ -68,10 +66,7 @@ export default async (req, res) => {
 };
   `;
     const dynamicApiPage = `
-  import ${upperCaseFirstLetterModelName} from "../../../components/models/${upperCaseFirstLetterModelName}";
-import dbConnect from "../../../utils/dbConnect";
-
-dbConnect();
+import { prisma } from '../../../utils/prismaInstance'
 
 export default async (req, res) => {
   const ${modelName}Id = req.query.${modelName}Id;
@@ -79,7 +74,11 @@ export default async (req, res) => {
   switch (req.method) {
     case "GET":
       try {
-        const ${modelName} = await ${upperCaseFirstLetterModelName}.findById(${modelName}Id);
+        const ${modelName} = await prisma.${modelName}.findUnique({
+            where: {
+              id: ${modelName}Id,
+            },
+          });
 
         if (!${modelName}) {
           return res
@@ -102,10 +101,10 @@ export default async (req, res) => {
       break;
     case "PATCH":
       try {
-        const ${modelName} = await ${upperCaseFirstLetterModelName}.findByIdAndUpdate(${modelName}Id, req.body, {
-          new: true,
-          runValidators: true,
-        });
+        const ${modelName} = await prisma.${modelName}.update({
+            where: { id: ${modelName}Id },
+            data: req.body,
+          })
 
         if (!${modelName}) {
           return res
@@ -128,7 +127,11 @@ export default async (req, res) => {
       break;
     case "DELETE":
       try {
-        const ${modelName} = await ${upperCaseFirstLetterModelName}.deleteOne({ _id: ${modelName}Id });
+        const ${modelName} = await prisma.${modelName}.delete({
+            where: {
+              id: ${modelName}Id,
+            },
+          });
 
         if (!${modelName}) {
           return res
@@ -191,11 +194,6 @@ export default async (req, res) => {
         (0, utils_1.createDirectory)(`${configData.projectRootPath}utils`);
     }
     (0, utils_1.createFile)(`${configData.projectRootPath}utils/dbConnect.js`, dbConnectFile);
-    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}.env.local`)) {
-        (0, utils_1.createFile)(`${configData.projectRootPath}.env.local`, `MONGODB_URI=your-database-string-here
-    MONGODB_DB=your-database-name-here    
-    `);
-    }
     (0, utils_1.createFile)(`${configData.projectRootPath}pages/api/${modelName}s/index.js`, indexApiPage);
     (0, utils_1.createFile)(`${configData.projectRootPath}pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
 };

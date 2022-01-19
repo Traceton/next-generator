@@ -1,5 +1,6 @@
 import { existsSync } from "fs";
 import { createDirectory, readNextConfig } from "../../utils"
+import { generateEnv } from "./generateEnv";
 import { generateCrudController } from "./generateCrudController"
 import { generateModelController } from "./models/generateModelController"
 import { generateApiRoutesController } from "./apiRoutes/generateApiRoutesController"
@@ -16,8 +17,8 @@ export const generatorController = (userInput: string[]) => {
           }
     }
 
-
-    console.log(configData)
+    // Generates a env file based on the database set in nextGenConfig
+    generateEnv()
 
     if (userInput[1] === "model" || userInput[1] === "m") {
         generateModelController(userInput);
