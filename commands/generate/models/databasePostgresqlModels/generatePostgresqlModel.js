@@ -26,7 +26,7 @@ const generatePostgresqlModel = async (userInput) => {
             let entryName = entry[0];
             let entryType = entry[1];
             const modelField = `${entryName} ${entryType}`;
-            finalSchemaItems.push(modelField);
+            finalSchemaItems.push(modelField.replace(/,/g, ""));
         });
         let newModel = `
       model ${upperCaseFirstLetterModelName} {

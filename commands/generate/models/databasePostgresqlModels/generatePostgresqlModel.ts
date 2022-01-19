@@ -33,7 +33,7 @@ export const generatePostgresqlModel = async (userInput: string[]) => {
   
         const modelField = `${entryName} ${entryType}`
         
-        finalSchemaItems.push(modelField);
+        finalSchemaItems.push(modelField.replace(/,/g, ""));
       });
   
     //   let finalSchemaItems = neWModelSchemaItems
