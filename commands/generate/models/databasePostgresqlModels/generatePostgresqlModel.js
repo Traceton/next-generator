@@ -63,12 +63,11 @@ const generatePostgresqlModel = async (userInput) => {
                 console.log("no prisma schema found, cannot modify");
             }
             else {
-                configData = JSON.parse(rawConfigFile);
-                console.log(`prisma schema -> ${configData}`);
+                console.log(`prisma schema -> ${rawConfigFile}`);
             }
         }
         catch (error) {
-            console.log(error);
+            console.log(`prisma schema mod error -> ${error}`);
         }
     }
     catch (error) {
