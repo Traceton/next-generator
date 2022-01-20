@@ -28,7 +28,7 @@ export const createFile = (filePath: string, fileContent: string) => {
 };
 
 // This reads the nextGenConfig file,
-//  and returns _id for mongodb and id for postges
+// returns _id for mongodb and id for postges
 export const getIdType = () => {
   const configData = readNextConfig()
 
