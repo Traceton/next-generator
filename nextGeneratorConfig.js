@@ -6,5 +6,5 @@ exports.defaultConfig = {
     "pageType": "none",
     "projectRootPath": ""
 };
-exports.acceptedDatabases = ["mongodb"];
+exports.acceptedDatabases = ["mongodb", "postgresql"];
 exports.acceptedPageTypes = ["none", "tailwindcss"];

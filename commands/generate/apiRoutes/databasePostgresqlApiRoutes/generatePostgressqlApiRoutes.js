@@ -1,29 +1,22 @@
-import { createDirectory, createFile, readNextConfig } from "../../../../utils";
-import { existsSync } from "fs";
-
-export const generateMongodbApiRoutes = async (userInput: string[]) => {
-  const modelName = userInput[2];
-
-  let configData = readNextConfig()
-
-  if (!modelName) {
-    return `no routeName recieved`;
-  }
-
-  const upperCaseFirstLetterModelName =
-    modelName.charAt(0).toUpperCase() + modelName.slice(1);
-
-  const indexApiPage = `
-import ${upperCaseFirstLetterModelName} from "../../../components/models/${upperCaseFirstLetterModelName}";
-import dbConnect from "../../../utils/dbConnect";
-
-dbConnect();
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.generatePostgresqlApiRoutes = void 0;
+const utils_1 = require("../../../../utils");
+const fs_1 = require("fs");
+const generatePostgresqlApiRoutes = async (userInput) => {
+    const modelName = userInput[2];
+    let configData = (0, utils_1.readNextConfig)();
+    if (!modelName) {
+        return `no routeName recieved`;
+    }
+    const indexApiPage = `
+  import { prisma } from '../../../utils/prismaInstance'
 
 export default async (req, res) => {
   switch (req.method) {
     case "GET":
       try {
-        const ${modelName}s = await ${upperCaseFirstLetterModelName}.find({});
+        const ${modelName}s = await prisma.${modelName}.findMany();
 
         if (!${modelName}s) {
           return res
@@ -46,7 +39,9 @@ export default async (req, res) => {
       break;
     case "POST":
       try {
-        const ${modelName} = await ${upperCaseFirstLetterModelName}.create(req.body);
+        const ${modelName} = await prisma.${modelName}.create({
+            data: req.body
+        });;
 
         res.status(201).json({
           message_type: "success",
@@ -70,12 +65,8 @@ export default async (req, res) => {
   }
 };
   `;
-
-  const dynamicApiPage = `
-  import ${upperCaseFirstLetterModelName} from "../../../components/models/${upperCaseFirstLetterModelName}";
-import dbConnect from "../../../utils/dbConnect";
-
-dbConnect();
+    const dynamicApiPage = `
+import { prisma } from '../../../utils/prismaInstance'
 
 export default async (req, res) => {
   const ${modelName}Id = req.query.${modelName}Id;
@@ -83,7 +74,11 @@ export default async (req, res) => {
   switch (req.method) {
     case "GET":
       try {
-        const ${modelName} = await ${upperCaseFirstLetterModelName}.findById(${modelName}Id);
+        const ${modelName} = await prisma.${modelName}.findUnique({
+            where: {
+              id: ${modelName}Id,
+            },
+          });
 
         if (!${modelName}) {
           return res
@@ -106,10 +101,10 @@ export default async (req, res) => {
       break;
     case "PATCH":
       try {
-        const ${modelName} = await ${upperCaseFirstLetterModelName}.findByIdAndUpdate(${modelName}Id, req.body, {
-          new: true,
-          runValidators: true,
-        });
+        const ${modelName} = await prisma.${modelName}.update({
+            where: { id: ${modelName}Id },
+            data: req.body,
+          })
 
         if (!${modelName}) {
           return res
@@ -132,7 +127,11 @@ export default async (req, res) => {
       break;
     case "DELETE":
       try {
-        const ${modelName} = await ${upperCaseFirstLetterModelName}.deleteOne({ _id: ${modelName}Id });
+        const ${modelName} = await prisma.${modelName}.delete({
+            where: {
+              id: ${modelName}Id,
+            },
+          });
 
         if (!${modelName}) {
           return res
@@ -163,46 +162,36 @@ export default async (req, res) => {
 };
 
   `;
+    const prismaInstanceFile = `
+  import { PrismaClient } from '@prisma/client'
 
-  const dbConnectFile = `
-  import mongoose from "mongoose";
+declare global {
+  // allow global 'var' declarations
+  // eslint-disable-next-line no-var
+  var prisma: PrismaClient | undefined
+}
 
-  const connection = {};
-  
-  async function dbConnect() {
-    if (connection.isConnected) {
-      return;
+export const prisma =
+  global.prisma ||
+  new PrismaClient({
+    log: ['query'],
+  })
+
+if (process.env.NODE_ENV !== 'production') global.prisma = prisma`;
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages`)) {
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}pages`);
     }
-  
-    const db = await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-  
-    connection.isConnected = db.connections[0].readyState;
-  }
-  
-  export default dbConnect;`;
-
-  if (!existsSync(`${configData.projectRootPath}pages`)) {
-     createDirectory(`${configData.projectRootPath}pages`);
-  }
-
-  if (!existsSync(`${configData.projectRootPath}pages/api`)) {
-     createDirectory(`${configData.projectRootPath}pages/api`);
-  }
-
-  if (!existsSync(`${configData.projectRootPath}pages/api/${modelName}s`)) {
-    createDirectory(`${configData.projectRootPath}pages/api/${modelName}s`);
-  }
-
-  if (!existsSync(`${configData.projectRootPath}utils`)) {
-     createDirectory(`${configData.projectRootPath}utils`);
-  }
-
-  createFile(`${configData.projectRootPath}utils/dbConnect.js`, dbConnectFile);
-
-  createFile(`${configData.projectRootPath}pages/api/${modelName}s/index.js`, indexApiPage);
-  createFile(`${configData.projectRootPath}pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages/api`)) {
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}pages/api`);
+    }
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages/api/${modelName}s`)) {
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}pages/api/${modelName}s`);
+    }
+    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}utils`)) {
+        (0, utils_1.createDirectory)(`${configData.projectRootPath}utils`);
+    }
+    (0, utils_1.createFile)(`${configData.projectRootPath}utils/prismaInstance.ts`, prismaInstanceFile);
+    (0, utils_1.createFile)(`${configData.projectRootPath}pages/api/${modelName}s/index.js`, indexApiPage);
+    (0, utils_1.createFile)(`${configData.projectRootPath}pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
 };
-
+exports.generatePostgresqlApiRoutes = generatePostgresqlApiRoutes;

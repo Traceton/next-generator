@@ -33,11 +33,6 @@ const tailwindcssPageController = async (userInput) => {
     if (!(0, fs_1.existsSync)(`${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)) {
         (0, utils_1.createDirectory)(`${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`);
     }
-    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}.env.local`)) {
-        (0, utils_1.createFile)(`${configData.projectRootPath}.env.local`, ` MONGODB_URI=your-database-string-here 
-        NEXT_PUBLIC_HOST_URL=http://localhost:3000
-    `);
-    }
     (0, utils_1.createFile)(`${configData.projectRootPath}pages/${modelName}s/index.js`, indexPage);
     (0, utils_1.createFile)(`${configData.projectRootPath}pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
     (0, utils_1.createFile)(`${configData.projectRootPath}pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`, createPage);

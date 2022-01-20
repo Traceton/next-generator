@@ -191,11 +191,6 @@ export default async (req, res) => {
         (0, utils_1.createDirectory)(`${configData.projectRootPath}utils`);
     }
     (0, utils_1.createFile)(`${configData.projectRootPath}utils/dbConnect.js`, dbConnectFile);
-    if (!(0, fs_1.existsSync)(`${configData.projectRootPath}.env.local`)) {
-        (0, utils_1.createFile)(`${configData.projectRootPath}.env.local`, `MONGODB_URI=your-database-string-here
-    MONGODB_DB=your-database-name-here    
-    `);
-    }
     (0, utils_1.createFile)(`${configData.projectRootPath}pages/api/${modelName}s/index.js`, indexApiPage);
     (0, utils_1.createFile)(`${configData.projectRootPath}pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
 };
