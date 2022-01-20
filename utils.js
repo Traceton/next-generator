@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.readNextConfig = exports.createFile = exports.createDirectory = void 0;
+exports.readNextConfig = exports.getIdType = exports.createFile = exports.createDirectory = void 0;
 const fs_1 = __importDefault(require("fs"));
 const nextGeneratorConfig_1 = require("./nextGeneratorConfig");
 const createDirectory = (directoryPath) => {
@@ -28,6 +28,21 @@ const createFile = (filePath, fileContent) => {
     return `file created`;
 };
 exports.createFile = createFile;
+const getIdType = () => {
+    const configData = (0, exports.readNextConfig)();
+    switch (configData.database) {
+        case "postgresql":
+            return "id";
+            break;
+        case "mongodb":
+            return "_id";
+            break;
+        default:
+            return "_id";
+            break;
+    }
+};
+exports.getIdType = getIdType;
 const readNextConfig = () => {
     let configData;
     let path = `nextGenConfig.json`;
