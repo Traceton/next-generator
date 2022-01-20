@@ -1,6 +1,6 @@
 import { readNextConfig } from "../../../utils"
 import { generateMongodbApiRoutes } from "./databaseMongodbApiRoutes/generateMongodbApiRoutes"
-
+import { generatePostgresqlApiRoutes } from "./databasePostgresqlApiRoutes/generatePostgressqlApiRoutes"
 // Command to use this generator below:
 // generate api-routes truck make:String model:String
 
@@ -8,9 +8,15 @@ import { generateMongodbApiRoutes } from "./databaseMongodbApiRoutes/generateMon
 export const generateApiRoutesController = (userInput: string[]) => {
 const configData = readNextConfig()
 
-if (configData.database == "none" || !configData.database) {
-    // Do nothing, or perhaps use something as a default.
-  } else if (configData.database == "mongodb") {
+  switch (configData.database) {
+    case "postgresql":
+      generatePostgresqlApiRoutes(userInput)
+        break;
+    case"mongodb":
     generateMongodbApiRoutes(userInput)
+        break;  
+    default:
+        // Do nothing 
+        break;
   }
 }
