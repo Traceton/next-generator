@@ -1,4 +1,4 @@
-import { createDirectory, createFile, readNextConfig } from "../../../../utils";
+import { createDirectory, createFile, getIdType, readNextConfig } from "../../../../utils";
 import { existsSync } from "fs";
 import { getDynamicTailwindcssData } from "./getDynamicTailwindcssData"
 import { generateIndex } from "./generateIndex"
@@ -11,6 +11,7 @@ export const tailwindcssPageController = async (userInput: string[]) => {
   const modelName = userInput[2];
 
   let configData = await readNextConfig()
+  let idType = getIdType()
 
   const modelItems = userInput.slice(3);
 
@@ -29,16 +30,16 @@ export const tailwindcssPageController = async (userInput: string[]) => {
   const finalDynamicData = getDynamicTailwindcssData(modelName, modelItems)
 
   // generates the index page
-  const indexPage = generateIndex(modelName, finalDynamicData.finalSchemaItemsForIndex)
+  const indexPage = generateIndex(modelName, idType, finalDynamicData.finalSchemaItemsForIndex)
 
   //  generates the dynamic page
-  const dynamicPage = generateDynamic(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage)
+  const dynamicPage = generateDynamic(modelName, idType, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage)
 
   // generates the create page
-  const createPage = generateCreate(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems)
+  const createPage = generateCreate(modelName, idType, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems)
 
   // generates the edit page
-  const editPage = generateEdit(modelName, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems)
+  const editPage = generateEdit(modelName, idType, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems)
 
 
 

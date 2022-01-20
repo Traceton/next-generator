@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateDynamic = void 0;
-const generateDynamic = (modelName, upperCaseFirstLetterModelName, finalSchemaItemsForDynamicPage) => {
+const generateDynamic = (modelName, idType, upperCaseFirstLetterModelName, finalSchemaItemsForDynamicPage) => {
     const dynamicPage = `
   import Link from 'next/link'
 import { useRouter } from "next/router";
@@ -32,7 +32,7 @@ export default function ${upperCaseFirstLetterModelName}Details(props) {
                   >
                     Back
                   </button>
-                  <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}._id}>
+                  <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}.${idType}}>
                     <a className="m-1 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xl font-light rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" >
                       Edit
                     </a>

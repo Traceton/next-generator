@@ -1,7 +1,7 @@
 import { getUpperCaseFirstLetter } from "./pagesUtils"
 
 // Generate the index page.
-export const generateIndex = (modelName: string, finalSchemaItemsForIndex: string) => {
+export const generateIndex = (modelName: string, idType: string, finalSchemaItemsForIndex: string) => {
 
     let upperCaseFirstLetterModelName = getUpperCaseFirstLetter(modelName)
 
@@ -29,10 +29,10 @@ export const generateIndex = (modelName: string, finalSchemaItemsForIndex: strin
               <div>
                 {props.${modelName}s.map((${modelName}) => (
                   <div
-                    key={${modelName}._id}  
+                    key={${modelName}.${idType}}  
                   >
                     <div>
-                      <a href={"/${modelName}s/" + ${modelName}._id}>
+                      <a href={"/${modelName}s/" + ${modelName}.${idType}}>
                         <span aria-hidden="true" />
                         ${finalSchemaItemsForIndex}
                       </a>

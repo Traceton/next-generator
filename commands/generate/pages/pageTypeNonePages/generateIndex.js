@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateIndex = void 0;
 const pagesUtils_1 = require("./pagesUtils");
-const generateIndex = (modelName, finalSchemaItemsForIndex) => {
+const generateIndex = (modelName, idType, finalSchemaItemsForIndex) => {
     let upperCaseFirstLetterModelName = (0, pagesUtils_1.getUpperCaseFirstLetter)(modelName);
     const noneIndex = `
     import Link from 'next/link'
@@ -27,10 +27,10 @@ const generateIndex = (modelName, finalSchemaItemsForIndex) => {
               <div>
                 {props.${modelName}s.map((${modelName}) => (
                   <div
-                    key={${modelName}._id}  
+                    key={${modelName}.${idType}}  
                   >
                     <div>
-                      <a href={"/${modelName}s/" + ${modelName}._id}>
+                      <a href={"/${modelName}s/" + ${modelName}.${idType}}>
                         <span aria-hidden="true" />
                         ${finalSchemaItemsForIndex}
                       </a>

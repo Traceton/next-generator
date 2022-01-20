@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateEdit = void 0;
-const generateEdit = (modelName, upperCaseFirstLetterModelName, finalJsonBodyItems, finalEditFormFieldItems) => {
+const generateEdit = (modelName, idType, upperCaseFirstLetterModelName, finalJsonBodyItems, finalEditFormFieldItems) => {
     const editPage = `
     import { useRouter } from "next/router";
   

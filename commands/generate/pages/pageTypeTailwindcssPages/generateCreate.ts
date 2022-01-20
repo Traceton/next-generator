@@ -1,6 +1,6 @@
 // Generate the create tailwindcss page.
-export const generateCreate = (modelName: string, upperCaseFirstLetterModelName: string, finalJsonBodyItems: string, finalFormFieldItems: string) => {
-
+export const generateCreate = (modelName: string, idType: string, upperCaseFirstLetterModelName: string, finalJsonBodyItems: string, finalFormFieldItems: string) => {
+  
   const createPage = `
   import { useRouter } from 'next/router'
 import React from "react";
