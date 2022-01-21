@@ -1,6 +1,6 @@
 {
   "name": "next-generator",
-  "version": "2.1.3-alpha",
+  "version": "2.2.0-alpha",
   "description": "Your Next.js route, model, and page generator.",
   "main": "./bin/index.js",
   "bin": {

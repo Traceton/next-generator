@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateCreate = void 0;
-const generateCreate = (modelName, upperCaseFirstLetterModelName, finalJsonBodyItems, finalFormFieldItems) => {
+const generateCreate = (modelName, idType, upperCaseFirstLetterModelName, finalJsonBodyItems, finalFormFieldItems) => {
     const createPage = `
     import { useRouter } from 'next/router'
   import React from "react";

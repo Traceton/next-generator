@@ -1,5 +1,5 @@
 // Generate the dynamic tailwindcss page.
-export const generateDynamic = (modelName: string, upperCaseFirstLetterModelName: string, finalSchemaItemsForDynamicPage: string) => {
+export const generateDynamic = (modelName: string, idType: string, upperCaseFirstLetterModelName: string, finalSchemaItemsForDynamicPage: string) => {
 
   const dynamicPage = `
   import Link from 'next/link'
@@ -31,7 +31,7 @@ export default function ${upperCaseFirstLetterModelName}Details(props) {
                   >
                     Back
                   </button>
-                  <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}._id}>
+                  <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}.${idType}}>
                     <a className="m-1 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xl font-light rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" >
                       Edit
                     </a>

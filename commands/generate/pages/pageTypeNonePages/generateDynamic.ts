@@ -1,4 +1,4 @@
-export const generateDynamic = (modelName: string, upperCaseFirstLetterModelName: string, finalSchemaItemsForDynamicPage: string) => {
+export const generateDynamic = (modelName: string, idType: string, upperCaseFirstLetterModelName: string, finalSchemaItemsForDynamicPage: string) => {
 
     const dynamicPage = `
     import Link from 'next/link'
@@ -27,7 +27,7 @@ export const generateDynamic = (modelName: string, upperCaseFirstLetterModelName
                     >
                       Back
                     </button>
-                    <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}._id}>
+                    <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}.${idType}}>
                       <a>
                         Edit
                       </a>

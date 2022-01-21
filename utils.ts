@@ -27,6 +27,25 @@ export const createFile = (filePath: string, fileContent: string) => {
   return `file created`;
 };
 
+// This reads the nextGenConfig file,
+// returns _id for mongodb and id for postges
+export const getIdType = () => {
+  const configData = readNextConfig()
+
+  switch (configData.database) {
+    case "postgresql":
+      return "id"
+      break;
+    case "mongodb":
+      return "_id"
+      break;
+    default:
+      return "_id"
+      break;
+  }
+
+}
+
 // accepted databases & styles located in next-generator-config.ts
 // example of next config format given in nextGenConfigExample.json
 export const readNextConfig = () => {
