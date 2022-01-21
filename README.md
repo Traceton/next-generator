@@ -1,15 +1,11 @@
 # :rocket: next-generator
 
-## Your Next.js route, model, and page generator. CRUD more quickly. (Create-Read-Update-Delete)
-:heavy_exclamation_mark: Be sure to check out the Wiki for more info :heavy_exclamation_mark:
+### Your Next.js route, model, and page generator. CRUD more quickly. (Create-Read-Update-Delete)
 
-### next-generator is a extremely easy to use npm package for people using Nextjs, mongoose(mongoDb) or prisma(postgreSQL), and tailwindCss(optional) for their project.
-
-#### next-generator makes working with crud functions quicker in your next.js project.
-
-#### ❓ Using nodejs, express, and mongoose? Check out node-trekker on github or npm for a similar package to this one.
+next-generator is a extremely easy to use npm package for people using Nextjs, mongoose(mongoDb) or prisma(postgreSQL), and tailwindCss(optional) for their project.
 
 ## Install and setup:
+:heavy_exclamation_mark: Be sure to check out the [Next Generator Wiki](https://github.com/Traceton/next-generator/wiki) for more info. :heavy_exclamation_mark:
 
 Install next generator by running `npm i -D next-generator`
 
