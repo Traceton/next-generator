@@ -1,5 +1,5 @@
 // Test functionality of createDirectory and createFile.
-const { createDirectory, createFile } = require("./utils");
+const { createDirectory, createFile, getIdType } = require("./utils");
 const fs = require("fs");
 
 jest.mock(`fs`);
@@ -109,3 +109,11 @@ test("should return no directoryPath recieved", async () => {
 test("should return no directoryPath recieved", async () => {
   expect(await createDirectory()).toBe(`no directoryPath recieved`);
 });
+
+
+// getIdType tests
+describe("Test if the id time is returned correctly", () => {
+  expect( getIdType()).toBe("id")
+  jest.mock('./nextGenConfig.json')
+  expect( getIdType()).toBe("_id")
+})
