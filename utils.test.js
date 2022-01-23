@@ -73,29 +73,6 @@ describe("test if `fs` is called correctly in createDirectory", () => {
   });
 });
 
-// test incorrect input
-// test("should return incorrect directory name format", async () => {
-//   if (existsSync(`testIncorrectDirectory.js`)) {
-//     await fs.rmdir("testIncorrectDirectory.js", (err) => {
-//       if (err) {
-//         console.log(err);
-//       }
-//     });
-//   }
-
-//   expect(await createDirectory("testIncorrectDirectory.js")).toBe(
-//     `incorrect directory name format`
-//   );
-
-//   if (existsSync(`testIncorrectDirectory.js`)) {
-//     await fs.rmdir("testIncorrectDirectory.js", (err) => {
-//       if (err) {
-//         console.log(err);
-//       }
-//     });
-//   }
-// });
-
 // // test undefined input
 test("should return no directoryPath recieved", async () => {
   expect(await createDirectory(undefined)).toBe(`no directoryPath recieved`);
@@ -112,8 +89,8 @@ test("should return no directoryPath recieved", async () => {
 
 
 // getIdType tests
-describe("Test if the id time is returned correctly", () => {
-  expect( getIdType()).toBe("id")
-  jest.mock('./nextGenConfig.json')
-  expect( getIdType()).toBe("_id")
-})
+// describe("Test if the id time is returned correctly", () => {
+//   expect( getIdType()).toBe("id")
+//   jest.mock('./nextGenConfig')
+//   expect( getIdType()).toBe("_id")
+// })
