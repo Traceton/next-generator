@@ -30,21 +30,21 @@ describe("Test if `fs` is called correctly in createFile", () => {
 });
 
 // // Test undefined input
-test("should return no filePath and no fileContent recieved ", async () => {
-  expect(await createFile(undefined)).toBe(
+test("should return no filePath and no fileContent recieved ", () => {
+  expect(createFile(undefined)).toBe(
     `no filePath and no fileContent recieved`
   );
 });
 
 // // Test null input
-test("should return no filePath and no fileContent recieved ", async () => {
-  expect(await createFile(null)).toBe(
+test("should return no filePath and no fileContent recieved ", () => {
+  expect(createFile(null)).toBe(
     `no filePath and no fileContent recieved`
   );
 });
 
-test("should return no filePath and no fileContent recieved ", async () => {
-  expect(await createFile()).toBe(`no filePath and no fileContent recieved`);
+test("should return no filePath and no fileContent recieved ", () => {
+  expect(createFile()).toBe(`no filePath and no fileContent recieved`);
 });
 
 // // CREATE DIRECTORY TESTS
@@ -74,17 +74,17 @@ describe("test if `fs` is called correctly in createDirectory", () => {
 });
 
 // // test undefined input
-test("should return no directoryPath recieved", async () => {
-  expect(await createDirectory(undefined)).toBe(`no directoryPath recieved`);
+test("should return no directoryPath recieved", () => {
+  expect(createDirectory(undefined)).toBe(`no directoryPath recieved`);
 });
 
 // test null input
-test("should return no directoryPath recieved", async () => {
-  expect(await createDirectory(null)).toBe(`no directoryPath recieved`);
+test("should return no directoryPath recieved", () => {
+  expect(createDirectory(null)).toBe(`no directoryPath recieved`);
 });
 
-test("should return no directoryPath recieved", async () => {
-  expect(await createDirectory()).toBe(`no directoryPath recieved`);
+test("should return no directoryPath recieved", () => {
+  expect(createDirectory()).toBe(`no directoryPath recieved`);
 });
 
 
