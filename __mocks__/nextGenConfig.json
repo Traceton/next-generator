@@ -1,6 +1,0 @@
-
-{
-    "database": "mongodb",
-    "pageType": "tailwindcss",
-    "projectRootPath":"customPath/"
-}
