@@ -1,6 +1,6 @@
 {
   "name": "next-generator",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Your Next.js route, model, and page generator.",
   "main": "./bin/index.js",
   "bin": {
@@ -19,10 +19,8 @@
     "url": "https://github.com/tjcharm/next-generator/issues"
   },
   "homepage": "https://github.com/Traceton/next-generator/wiki",
-  "devDependencies": {
-    "jest": "^27.0.4"
-  },
   "dependencies": {
+    "jest": "^27.4.7",
     "typescript": "^4.4.3"
   }
 }
