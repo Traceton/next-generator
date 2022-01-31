@@ -1,17 +1,22 @@
-import { createDirectory, createFile, getIdType, readNextConfig } from "../../../../utils";
+import {
+  createDirectory,
+  createFile,
+  getIdType,
+  readNextConfig,
+} from "../../../../utils";
 import { existsSync } from "fs";
-import { getDynamicTailwindcssData } from "./getDynamicTailwindcssData"
-import { generateIndex } from "./generateIndex"
-import { generateDynamic } from "./generateDynamic"
-import { generateCreate } from "./generateCreate"
-import { generateEdit } from "./generateEdit"
+import { getDynamicTailwindcssData } from "./getDynamicTailwindcssData";
+import { generateIndex } from "./generateIndex";
+import { generateDynamic } from "./generateDynamic";
+import { generateCreate } from "./generateCreate";
+import { generateEdit } from "./generateEdit";
 
 // The controller that determines how to generate the pages for a tailwindcss pageType in the nextGenConfig.
 export const tailwindcssPageController = async (userInput: string[]) => {
   const modelName = userInput[2];
 
-  let configData = await readNextConfig()
-  let idType = getIdType()
+  let configData = await readNextConfig();
+  let idType = getIdType();
 
   const modelItems = userInput.slice(3);
 
@@ -25,26 +30,42 @@ export const tailwindcssPageController = async (userInput: string[]) => {
   const upperCaseFirstLetterModelName =
     modelName.charAt(0).toUpperCase() + modelName.slice(1);
 
-
   // Gets any dynamic data that the page generators will need.
-  const finalDynamicData = getDynamicTailwindcssData(modelName, modelItems)
+  const finalDynamicData = getDynamicTailwindcssData(modelName, modelItems);
 
   // generates the index page
-  const indexPage = generateIndex(modelName, idType, finalDynamicData.finalSchemaItemsForIndex)
+  const indexPage = generateIndex(
+    modelName,
+    idType,
+    finalDynamicData.finalSchemaItemsForIndex,
+    finalDynamicData.finalSchemaTitleItemsForIndex
+  );
 
   //  generates the dynamic page
-  const dynamicPage = generateDynamic(modelName, idType, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage)
+  const dynamicPage = generateDynamic(
+    modelName,
+    idType,
+    upperCaseFirstLetterModelName,
+    finalDynamicData.finalSchemaItemsForDynamicPage
+  );
 
   // generates the create page
-  const createPage = generateCreate(modelName, idType, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems)
+  const createPage = generateCreate(
+    modelName,
+    idType,
+    upperCaseFirstLetterModelName,
+    finalDynamicData.finalJsonBodyItems,
+    finalDynamicData.finalFormFieldItems
+  );
 
   // generates the edit page
-  const editPage = generateEdit(modelName, idType, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems)
-
-
-
-
-
+  const editPage = generateEdit(
+    modelName,
+    idType,
+    upperCaseFirstLetterModelName,
+    finalDynamicData.finalJsonBodyItems,
+    finalDynamicData.finalEditFormFieldItems
+  );
 
   if (!existsSync(`${configData.projectRootPath}pages`)) {
     createDirectory(`${configData.projectRootPath}pages`);
@@ -55,16 +76,24 @@ export const tailwindcssPageController = async (userInput: string[]) => {
   }
 
   if (
-    !existsSync(`${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`)
+    !existsSync(
+      `${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`
+    )
   ) {
     createDirectory(
       `${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s`
     );
   }
 
-  createFile(`${configData.projectRootPath}pages/${modelName}s/index.js`, indexPage);
+  createFile(
+    `${configData.projectRootPath}pages/${modelName}s/index.js`,
+    indexPage
+  );
 
-  createFile(`${configData.projectRootPath}pages/${modelName}s/[${modelName}Id].js`, dynamicPage);
+  createFile(
+    `${configData.projectRootPath}pages/${modelName}s/[${modelName}Id].js`,
+    dynamicPage
+  );
 
   createFile(
     `${configData.projectRootPath}pages/${modelName}s/create${upperCaseFirstLetterModelName}.js`,
@@ -75,4 +104,4 @@ export const tailwindcssPageController = async (userInput: string[]) => {
     `${configData.projectRootPath}pages/${modelName}s/edit${upperCaseFirstLetterModelName}s/[${modelName}Id].js`,
     editPage
   );
-}
+};
