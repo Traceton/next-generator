@@ -36,10 +36,10 @@ const getDynamicTailwindcssData = (modelName, modelItems) => {
   </div>`;
         let editFormField = `<div>
     <label
-      htmlFor="state"
+      htmlFor="${entryName}"
       className="block text-sm font-medium text-white"
     >
-      State
+    ${entryName}
     </label>
     <div className="mt-1">
       <input
