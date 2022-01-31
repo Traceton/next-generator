@@ -22,10 +22,7 @@ export const getDynamicTailwindcssData = (
 
     let modelFieldTitleForIndex = `<th scope=^col^ className=^px-2 py-3 text-left text-xs font-medium text-white uppercase tracking-wider^>${entryName}</th>`;
     let modelFieldForIndex = `<td className=^px-2 py-4 whitespace-nowrap text-md text-gray-200^>{${modelName}.${entryName}}</td>`;
-    let modelFieldForDynamicPage = `
-    <div>
-    <label htmlFor=^${entryName}^ className=^block text-sm font-bold text-white^>${entryName}</label><div className=^mt-1^><h3 id=^${entryName}^ name=^${entryName}^ className=^appearance-none block w-full px-3 py-2 bg-gray-800 border-0 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-200^>{props.${modelName}.${entryName}}</h3></div>
-    </div>`;
+    let modelFieldForDynamicPage = `<div><label htmlFor=^${entryName}^ className=^block text-sm font-bold text-white^>${entryName}</label><div className=^mt-1^><h3 id=^${entryName}^ name=^${entryName}^ className=^appearance-none block w-full px-3 py-2 bg-gray-800 border-0 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-200^>{props.${modelName}.${entryName}}</h3></div></div>`;
     let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
     let formField = `
     <div>
