@@ -1,6 +1,10 @@
 // Generate the dynamic tailwindcss page.
-export const generateDynamic = (modelName: string, idType: string, upperCaseFirstLetterModelName: string, finalSchemaItemsForDynamicPage: string) => {
-
+export const generateDynamic = (
+  modelName: string,
+  idType: string,
+  upperCaseFirstLetterModelName: string,
+  finalSchemaItemsForDynamicPage: string
+) => {
   const dynamicPage = `
   import Link from 'next/link'
 import { useRouter } from "next/router";
@@ -69,7 +73,7 @@ export const getServerSideProps = async (context) => {
     },
   };
 };
-  `
+  `;
 
-  return dynamicPage
-}
+  return dynamicPage;
+};
