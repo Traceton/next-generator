@@ -1,6 +1,11 @@
 // Generate the edit tailwindcss page.
-export const generateEdit = (modelName: string, idType: string, upperCaseFirstLetterModelName: string, finalJsonBodyItems: string, finalEditFormFieldItems: string) => {
-
+export const generateEdit = (
+  modelName: string,
+  idType: string,
+  upperCaseFirstLetterModelName: string,
+  finalJsonBodyItems: string,
+  finalEditFormFieldItems: string
+) => {
   const editPage = `
   import { useRouter } from "next/router";
 
@@ -118,5 +123,5 @@ export const getServerSideProps = async (context) => {
 
   `;
 
-  return editPage
-}
+  return editPage;
+};
