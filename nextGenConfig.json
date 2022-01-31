@@ -1,6 +1,5 @@
-
 {
-    "database": "postgresql",
-    "pageType": "tailwindcss",
-    "projectRootPath":"customPath/"
+  "database": "mongodb",
+  "pageType": "tailwindcss",
+  "projectRootPath": "customPath/"
 }
