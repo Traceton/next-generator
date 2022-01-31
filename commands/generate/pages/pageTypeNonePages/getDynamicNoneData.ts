@@ -15,8 +15,8 @@ export const getDynamicNoneData = (modelName: string, modelItems: string[]) => {
     let entry = unSplitEntry.split(":");
     let entryName = entry[0];
 
-    let modelFieldForIndex = `<p>${entryName}: {${modelName}.${entryName}}</p> `
-    let modelFieldForDynamicPage = `<div><label htmlFor=^${entryName}^>${entryName}</label><div><h1 id=^year^>{props.${modelName}.${entryName}}</h1></div></div>`
+    let modelFieldForIndex = `<p>${entryName}: {${modelName}.${entryName}}</p> `;
+    let modelFieldForDynamicPage = `<div><label htmlFor=^${entryName}^>${entryName}</label><div><h1 id=^year^>{props.${modelName}.${entryName}}</h1></div></div>`;
     let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
     let formField = `<div>
                           <label htmlFor="${entryName}">
@@ -48,7 +48,9 @@ export const getDynamicNoneData = (modelName: string, modelItems: string[]) => {
       </div>`;
 
     neWModelSchemaItemsForIndex.push(JSON.stringify(modelFieldForIndex));
-    neWModelSchemaItemsForDynamicPage.push(JSON.stringify(modelFieldForDynamicPage));
+    neWModelSchemaItemsForDynamicPage.push(
+      JSON.stringify(modelFieldForDynamicPage)
+    );
     jsonBodyForForm.push(JSON.stringify(jsonBodyField));
     formFieldItems.push(formField);
     editFormFieldItems.push(editFormField);
@@ -96,9 +98,8 @@ export const getDynamicNoneData = (modelName: string, modelItems: string[]) => {
     finalSchemaItemsForDynamicPage: finalSchemaItemsForDynamicPage,
     finalJsonBodyItems: finalJsonBodyItems,
     finalFormFieldItems: finalFormFieldItems,
-    finalEditFormFieldItems: finalEditFormFieldItems
-  }
+    finalEditFormFieldItems: finalEditFormFieldItems,
+  };
 
-  return finalDynamicData
-
-}
+  return finalDynamicData;
+};
