@@ -21,7 +21,7 @@ const tailwindcssPageController = async (userInput) => {
     }
     const upperCaseFirstLetterModelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
     const finalDynamicData = (0, getDynamicTailwindcssData_1.getDynamicTailwindcssData)(modelName, modelItems);
-    const indexPage = (0, generateIndex_1.generateIndex)(modelName, idType, finalDynamicData.finalSchemaItemsForIndex);
+    const indexPage = (0, generateIndex_1.generateIndex)(modelName, idType, finalDynamicData.finalSchemaItemsForIndex, finalDynamicData.finalSchemaTitleItemsForIndex);
     const dynamicPage = (0, generateDynamic_1.generateDynamic)(modelName, idType, upperCaseFirstLetterModelName, finalDynamicData.finalSchemaItemsForDynamicPage);
     const createPage = (0, generateCreate_1.generateCreate)(modelName, idType, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalFormFieldItems);
     const editPage = (0, generateEdit_1.generateEdit)(modelName, idType, upperCaseFirstLetterModelName, finalDynamicData.finalJsonBodyItems, finalDynamicData.finalEditFormFieldItems);

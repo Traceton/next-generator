@@ -1,8 +1,13 @@
 // Get the dynamic data for pages using tailwindcss for pageType in their config.
-export const getDynamicTailwindcssData = (modelName: string, modelItems: string[]) => {
-  let neWModelSchemaItemsForIndex: string[] = [];
+export const getDynamicTailwindcssData = (
+  modelName: string,
+  modelItems: string[]
+) => {
+  let newModelItemTitlesForIndex: string[] = [];
 
-  let neWModelSchemaItemsForDynamicPage: string[] = [];
+  let newModelSchemaItemsForIndex: string[] = [];
+
+  let newModelSchemaItemsForDynamicPage: string[] = [];
 
   let jsonBodyForForm: string[] = [];
 
@@ -15,48 +20,61 @@ export const getDynamicTailwindcssData = (modelName: string, modelItems: string[
     let entry = unSplitEntry.split(":");
     let entryName = entry[0];
 
-    let modelFieldForIndex = `<p className=^text-lg text-gray-500 truncate^>${entryName}: {${modelName}.${entryName}}</p> `
-    let modelFieldForDynamicPage = `<div className=^sm:col-span-6^><label htmlFor=^${entryName}^ className=^block text-3xl font-light text-gray-700^>${entryName}</label><div className=^mt-1 flex rounded-md shadow-sm^><h1 id=^year^>{props.${modelName}.${entryName}}</h1></div></div>`
+    let modelFieldTitleForIndex = `<th scope=^col^ className=^px-2 py-3 text-left text-xs font-medium text-white uppercase tracking-wider^>${entryName}</th>`;
+    let modelFieldForIndex = `<td className=^px-2 py-4 whitespace-nowrap text-md text-gray-200^>{${modelName}.${entryName}}</td>`;
+    let modelFieldForDynamicPage = `<div><label htmlFor=^${entryName}^ className=^block text-sm font-bold text-white^>${entryName}</label><div className=^mt-1^><h3 id=^${entryName}^ name=^${entryName}^ className=^appearance-none block w-full px-3 py-2 bg-gray-800 border-0 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-200^>{props.${modelName}.${entryName}}</h3></div></div>`;
     let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
-    let formField = `<div className="sm:col-span-6">
-                          <label htmlFor="${entryName}" className="block text-3xl font-light text-gray-700">
-                            ${entryName}
-                          </label>
-                          <div className="mt-1 flex rounded-md shadow-sm">
-                            <input
-                              type="text"
-                              name="${entryName}"
-                              id="${entryName}"
-                              autoComplete="${entryName}"
-                              className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
-                            />
-                          </div>
-                        </div>`;
+    let formField = `
+    <div>
+    <label
+      htmlFor="${entryName}"
+      className="block text-sm font-medium text-white"
+    >
+    ${entryName}
+    </label>
+    <div className="mt-1">
+      <input
+        id="${entryName}"
+        name="${entryName}"
+        type="${entryName}"
+        autoComplete="${entryName}"
+        required
+        className="appearance-none block w-full px-3 py-2 bg-gray-700 border-0 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-white"
+      />
+    </div>
+  </div>`;
 
-    let editFormField = `<div className="sm:col-span-6">
-        <label htmlFor="${entryName}" className="block text-3xl font-light text-gray-700">
-          ${entryName}
-        </label>
-        <div className="mt-1 flex rounded-md shadow-sm">
-          <input
-          defaultValue={props.${modelName}.${entryName}}
-            type="text"
-            name="${entryName}"
-            id="${entryName}"
-            autoComplete="${entryName}"
-            className="shadow-sm  border border-transparent block h-10 w-full text-xl font-light sm:text-sm border border-gray-300 rounded-md"
-          />
-        </div>
-      </div>`;
+    let editFormField = `<div>
+    <label
+      htmlFor="${entryName}"
+      className="block text-sm font-medium text-white"
+    >
+    ${entryName}
+    </label>
+    <div className="mt-1">
+      <input
+        defaultValue={props.${modelName}.${entryName}}
+        id="${entryName}"
+        name="${entryName}"
+        type="${entryName}"
+        autoComplete="${entryName}"
+        required
+        className="appearance-none block w-full px-3 py-2 bg-gray-700 border-0 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-white"
+      />
+    </div>
+  </div>`;
 
-    neWModelSchemaItemsForIndex.push(JSON.stringify(modelFieldForIndex));
-    neWModelSchemaItemsForDynamicPage.push(JSON.stringify(modelFieldForDynamicPage));
+    newModelItemTitlesForIndex.push(JSON.stringify(modelFieldTitleForIndex));
+    newModelSchemaItemsForIndex.push(JSON.stringify(modelFieldForIndex));
+    newModelSchemaItemsForDynamicPage.push(
+      JSON.stringify(modelFieldForDynamicPage)
+    );
     jsonBodyForForm.push(JSON.stringify(jsonBodyField));
     formFieldItems.push(formField);
     editFormFieldItems.push(editFormField);
   });
 
-  let finalSchemaItemsForIndex = neWModelSchemaItemsForIndex
+  let finalSchemaTitleItemsForIndex = newModelItemTitlesForIndex
     .toString()
     .replace("[", "")
     .replace("]", "")
@@ -65,7 +83,16 @@ export const getDynamicTailwindcssData = (modelName: string, modelItems: string[
     .replace(/"/g, "")
     .replace(/\^/g, `"`);
 
-  let finalSchemaItemsForDynamicPage = neWModelSchemaItemsForDynamicPage
+  let finalSchemaItemsForIndex = newModelSchemaItemsForIndex
+    .toString()
+    .replace("[", "")
+    .replace("]", "")
+    .replace(/,/g, "")
+    .replace(/`/g, "")
+    .replace(/"/g, "")
+    .replace(/\^/g, `"`);
+
+  let finalSchemaItemsForDynamicPage = newModelSchemaItemsForDynamicPage
     .toString()
     .replace("[", "")
     .replace("]", "")
@@ -94,13 +121,13 @@ export const getDynamicTailwindcssData = (modelName: string, modelItems: string[
     .replace(/,/g, "");
 
   let finalDynamicData = {
+    finalSchemaTitleItemsForIndex: finalSchemaTitleItemsForIndex,
     finalSchemaItemsForIndex: finalSchemaItemsForIndex,
     finalSchemaItemsForDynamicPage: finalSchemaItemsForDynamicPage,
     finalJsonBodyItems: finalJsonBodyItems,
     finalFormFieldItems: finalFormFieldItems,
-    finalEditFormFieldItems: finalEditFormFieldItems
-  }
+    finalEditFormFieldItems: finalEditFormFieldItems,
+  };
 
-  return finalDynamicData
-
-}
+  return finalDynamicData;
+};

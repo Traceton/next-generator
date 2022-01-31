@@ -2,50 +2,74 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateIndex = void 0;
 const pagesUtils_1 = require("./pagesUtils");
-const generateIndex = (modelName, idType, finalSchemaItemsForIndex) => {
+const generateIndex = (modelName, idType, finalSchemaItemsForIndex, finalSchemaTitleItemsForIndex) => {
     let upperCaseFirstLetterModelName = (0, pagesUtils_1.getUpperCaseFirstLetter)(modelName);
     const tailwindcssIndex = `
     import Link from 'next/link'
 
     export default function ${upperCaseFirstLetterModelName}(props) {
       return (
-        <div className="bg-gray-700 h-screen">
-          <div className="p-2">
-            <div className="m-4 p-4 rounded-md bg-gray-400 font-light space-y-8">
-              <div className="flex flex-row">
-                <div className="p-4 m-4">
-                  <h3 className="text-4xl leading-6 font-light text-gray-900">${upperCaseFirstLetterModelName}s</h3>
-                </div>
+        <>
+      <div className="h-screen p-2 rounded-md bg-gray-900 font-light">
+        <div className="">
+          <div className="flex flex-row justify-between">
+            <div className="flex flex-col justify-center">
+              <h3 className=" m-1 p-1 text-4xl leading-6 font-light text-white">
+              ${upperCaseFirstLetterModelName}s
+              </h3>
+            </div>
 
-                <div className="m-2 p-2 w-full justify-end">
-                  <div className="pt-2 flex justify-end">
-                    <Link href="/${modelName}s/create${upperCaseFirstLetterModelName}">
-                      <a className="m-1 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xl font-light rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" >
-                        New
-                      </a>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {props.${modelName}s.map((${modelName}) => (
-                  <div
-                    key={${modelName}.${idType}}
-                    className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-                  >
-                    <div className="flex-1 min-w-0">
-                      <a href={"/${modelName}s/" + ${modelName}.${idType}} className="focus:outline-none">
-                        <span className="absolute inset-0" aria-hidden="true" />
-                        ${finalSchemaItemsForIndex}
-                      </a>
-                    </div>
-                  </div>
-                ))}
+            <div className="m-2 p-2 w-full">
+              <div className="pt-2 flex justify-end">
+              <Link href="/${modelName}s/create${upperCaseFirstLetterModelName}">
+                  <a className="m-1 inline-flex justify-center py-2 px-4 border border-gray-700 shadow-sm text-xl font-light rounded-md text-white border-gray-500 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    +
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
         </div>
+
+        <div className="flex flex-col m-0">
+          <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="py-2 b-none align-middle inline-block min-w-full sm:px-6 lg:px-8">
+              <div className="shadow overflow-hidden border-b border-gray-800 sm:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-800">
+                  <thead className="bg-gray-800">
+                    <tr> 
+                      ${finalSchemaTitleItemsForIndex}
+                      <th scope="col" className="relative px-6 py-3">
+                        <span className="sr-only">View</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-gray-700 divide-y divide-gray-800">
+                    {props.${modelName}s.map((${modelName}) => (
+                      <tr key={${modelName}.${idType}}>
+                        ${finalSchemaItemsForIndex}
+                        <td className="px-2 py-4 whitespace-nowrap text-right font-light text-md flex justify-end">
+                          <Link href={"/${modelName}s/" + ${modelName}.${idType}}>
+                            <a className="m-1 inline-flex justify-center  px-2 border border-gray-900 shadow-sm  font-light rounded-md text-white border-gray-500 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                              View
+                            </a>
+                          </Link>
+                          <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}.${idType}}>
+                            <a className="m-1 inline-flex justify-center  px-2 border border-gray-900 shadow-sm  font-light rounded-md text-white border-gray-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                              Edit
+                            </a>
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
       );
     }
 

@@ -83,7 +83,7 @@ const getDynamicNoneData = (modelName, modelItems) => {
         finalSchemaItemsForDynamicPage: finalSchemaItemsForDynamicPage,
         finalJsonBodyItems: finalJsonBodyItems,
         finalFormFieldItems: finalFormFieldItems,
-        finalEditFormFieldItems: finalEditFormFieldItems
+        finalEditFormFieldItems: finalEditFormFieldItems,
     };
     return finalDynamicData;
 };
