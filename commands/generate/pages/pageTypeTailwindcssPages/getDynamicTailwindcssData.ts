@@ -20,7 +20,7 @@ export const getDynamicTailwindcssData = (
     let entry = unSplitEntry.split(":");
     let entryName = entry[0];
 
-    let modelFieldTitleForIndex = `<th scope=^col^ className=^px-2 py-3 text-left text-xs font-medium text-white uppercase tracking-wider^>${entryName}</th> `;
+    let modelFieldTitleForIndex = `<th scope=^col^ className=^px-2 py-3 text-left text-xs font-medium text-white uppercase tracking-wider^>${entryName}</th>`;
     let modelFieldForIndex = `<td className=^px-2 py-4 whitespace-nowrap text-md text-gray-200^>{${modelName}.${entryName}}</td> `;
     let modelFieldForDynamicPage = `<div className=^sm:col-span-6^><label htmlFor=^${entryName}^ className=^block text-3xl font-light text-gray-700^>${entryName}</label><div className=^mt-1 flex rounded-md shadow-sm^><h1 id=^year^>{props.${modelName}.${entryName}}</h1></div></div>`;
     let jsonBodyField = ` ${entryName}: event.target.${entryName}.value`;
