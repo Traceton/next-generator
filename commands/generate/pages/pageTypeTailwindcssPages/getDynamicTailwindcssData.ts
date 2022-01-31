@@ -71,7 +71,7 @@ export const getDynamicTailwindcssData = (
     .replace("]", "")
     .replace(/,/g, "")
     .replace(/`/g, "")
-    .replace(/"/g, "")
+    // .replace(/"/g, "")
     .replace(/\^/g, `"`);
 
   let finalSchemaItemsForIndex = newModelSchemaItemsForIndex
