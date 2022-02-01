@@ -39,19 +39,19 @@ export const generateIndex = (
                         ${finalSchemaItemsForIndex}
                       </a>
                     </div>
+                    <Link href={"/${modelName}s/" + ${modelName}.${idType}}>
+                      <a>
+                        View
+                      </a>
+                    </Link>
+                    <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}.${idType}}>
+                      <a>
+                        Edit
+                      </a>
+                    </Link>
                   </div>
                 ))}
               </div>
-              <Link href={"/${modelName}s/" + ${modelName}.${idType}}>
-                <a>
-                  View
-                </a>
-              </Link>
-              <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}.${idType}}>
-                <a>
-                  Edit
-                </a>
-              </Link>
             </div>
       );
     }
