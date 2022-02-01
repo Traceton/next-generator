@@ -1,6 +1,11 @@
-export const generateCreate = (modelName: string, idType: string, upperCaseFirstLetterModelName: string, finalJsonBodyItems: string, finalFormFieldItems: string) => {
-
-    const createPage = `
+export const generateCreate = (
+  modelName: string,
+  idType: string,
+  upperCaseFirstLetterModelName: string,
+  finalJsonBodyItems: string,
+  finalFormFieldItems: string
+) => {
+  const createPage = `
     import { useRouter } from 'next/router'
   import React from "react";
   
@@ -55,6 +60,6 @@ export const generateCreate = (modelName: string, idType: string, upperCaseFirst
     );
   }
     `;
-  
-    return createPage
-  }
+
+  return createPage;
+};

@@ -1,6 +1,10 @@
-export const generateDynamic = (modelName: string, idType: string, upperCaseFirstLetterModelName: string, finalSchemaItemsForDynamicPage: string) => {
-
-    const dynamicPage = `
+export const generateDynamic = (
+  modelName: string,
+  idType: string,
+  upperCaseFirstLetterModelName: string,
+  finalSchemaItemsForDynamicPage: string
+) => {
+  const dynamicPage = `
     import Link from 'next/link'
   import { useRouter } from "next/router";
   
@@ -63,7 +67,7 @@ export const generateDynamic = (modelName: string, idType: string, upperCaseFirs
       },
     };
   };
-    `
-  
-    return dynamicPage
-  }
+    `;
+
+  return dynamicPage;
+};

@@ -1,6 +1,11 @@
-export const generateEdit = (modelName: string, idType: string, upperCaseFirstLetterModelName: string, finalJsonBodyItems: string, finalEditFormFieldItems: string) => {
-
-    const editPage = `
+export const generateEdit = (
+  modelName: string,
+  idType: string,
+  upperCaseFirstLetterModelName: string,
+  finalJsonBodyItems: string,
+  finalEditFormFieldItems: string
+) => {
+  const editPage = `
     import { useRouter } from "next/router";
   
   export default function Edit${upperCaseFirstLetterModelName}(props) {
@@ -109,6 +114,6 @@ export const generateEdit = (modelName: string, idType: string, upperCaseFirstLe
   
   
     `;
-  
-    return editPage
-  }
+
+  return editPage;
+};
