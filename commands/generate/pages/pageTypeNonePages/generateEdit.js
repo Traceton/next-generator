@@ -71,7 +71,7 @@ const generateEdit = (modelName, idType, upperCaseFirstLetterModelName, finalJso
                     <button
                       type="submit"
                     >
-                      Save
+                      Update
                     </button>
                   </div>
                 </div>
