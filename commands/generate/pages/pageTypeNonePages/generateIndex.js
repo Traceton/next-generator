@@ -38,6 +38,16 @@ const generateIndex = (modelName, idType, finalSchemaItemsForIndex) => {
                   </div>
                 ))}
               </div>
+              <Link href={"/${modelName}s/" + ${modelName}.${idType}}>
+                <a>
+                  View
+                </a>
+              </Link>
+              <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}.${idType}}>
+                <a>
+                  Edit
+                </a>
+              </Link>
             </div>
       );
     }

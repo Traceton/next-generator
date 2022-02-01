@@ -74,7 +74,7 @@ export const generateEdit = (
                     <button
                       type="submit"
                     >
-                      Save
+                      Update
                     </button>
                   </div>
                 </div>

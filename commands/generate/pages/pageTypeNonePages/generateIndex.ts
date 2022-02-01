@@ -1,12 +1,14 @@
-import { getUpperCaseFirstLetter } from "./pagesUtils"
+import { getUpperCaseFirstLetter } from "./pagesUtils";
 
 // Generate the index page.
-export const generateIndex = (modelName: string, idType: string, finalSchemaItemsForIndex: string) => {
+export const generateIndex = (
+  modelName: string,
+  idType: string,
+  finalSchemaItemsForIndex: string
+) => {
+  let upperCaseFirstLetterModelName = getUpperCaseFirstLetter(modelName);
 
-    let upperCaseFirstLetterModelName = getUpperCaseFirstLetter(modelName)
-
-
-    const noneIndex = `
+  const noneIndex = `
     import Link from 'next/link'
 
     export default function ${upperCaseFirstLetterModelName}(props) {
@@ -40,6 +42,16 @@ export const generateIndex = (modelName: string, idType: string, finalSchemaItem
                   </div>
                 ))}
               </div>
+              <Link href={"/${modelName}s/" + ${modelName}.${idType}}>
+                <a>
+                  View
+                </a>
+              </Link>
+              <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}.${idType}}>
+                <a>
+                  Edit
+                </a>
+              </Link>
             </div>
       );
     }
@@ -68,7 +80,7 @@ export const generateIndex = (modelName: string, idType: string, finalSchemaItem
         },
       };
     };
-  `
+  `;
 
-    return noneIndex
-}
+  return noneIndex;
+};

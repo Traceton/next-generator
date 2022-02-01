@@ -25,12 +25,11 @@ export const generateDynamic = (
                 ${finalSchemaItemsForDynamicPage}
                 <div>
                   <div>
-                    <button
-                      onClick={() => router.back()}
-                      type="button"
-                    >
-                      Back
-                    </button>
+                  <Link href={"/${modelName}s"}>
+                  <a>
+                    Home
+                  </a>
+                </Link>
                     <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}.${idType}}>
                       <a>
                         Edit
