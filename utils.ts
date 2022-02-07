@@ -1,5 +1,9 @@
 import fs from "fs";
-import { defaultConfig, acceptedDatabases, acceptedPageTypes } from "./nextGeneratorConfig"
+import {
+  defaultConfig,
+  acceptedDatabases,
+  acceptedPageTypes,
+} from "./nextGeneratorConfig";
 
 export const createDirectory = (directoryPath: string) => {
   if (!directoryPath) {
@@ -20,51 +24,47 @@ export const createFile = (filePath: string, fileContent: string) => {
     return `no filePath OR no fileContent recieved`;
   }
 
-  fs.writeFileSync(
-    filePath,
-    fileContent
-  );
+  fs.writeFileSync(filePath, fileContent);
   return `file created`;
 };
 
 // This reads the nextGenConfig file,
 // returns _id for mongodb and id for postges
 export const getIdType = () => {
-  const configData = readNextConfig()
+  const configData = readNextConfig();
 
   switch (configData.database) {
     case "postgresql":
-      return "id"
+      return "id";
       break;
     case "mongodb":
-      return "_id"
+      return "_id";
       break;
     default:
-      return "_id"
+      return "_id";
       break;
   }
-
-}
+};
 
 // accepted databases & styles located in next-generator-config.ts
 // example of next config format given in nextGenConfigExample.json
 export const readNextConfig = () => {
   let configData;
 
-  let path = `nextGenConfig.json`
+  let path = `nextGenConfig.json`;
 
   try {
     // reads json from nextGenConfig.json
     const rawConfigFile = fs.readFileSync(path, { encoding: "utf8" });
     // If no config file was found, uses the default config.
     if (!rawConfigFile || rawConfigFile == undefined) {
-      console.log("no config file found, using default config")
-      configData = defaultConfig
+      console.log("no config file found, using default config");
+      configData = defaultConfig;
     } else {
-      configData = JSON.parse(rawConfigFile)
+      configData = JSON.parse(rawConfigFile);
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 
   if (configData) {
@@ -72,17 +72,15 @@ export const readNextConfig = () => {
     if (acceptedDatabases.includes(configData.database)) {
       // checks if the pageType entered by the user is currently accepted.
       if (acceptedPageTypes.includes(configData.pageType)) {
-        return configData
+        return configData;
       } else {
-        console.log(`unknown pageType: ${configData.pageType}`)
+        console.log(`unknown pageType: ${configData.pageType}`);
       }
     } else {
-      console.log(`unknown database: ${configData.database}`)
+      console.log(`unknown database: ${configData.database}`);
     }
   } else {
-    console.log("No configData found, returning default config")
-    return defaultConfig
+    console.log("No configData found, returning default config");
+    return defaultConfig;
   }
-
-}
-
+};
