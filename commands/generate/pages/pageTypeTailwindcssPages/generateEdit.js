@@ -55,7 +55,7 @@ export default function Edit${upperCaseFirstLetterModelName}(props) {
         </div>
 
         <div className=" mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-gray-800 bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <div className="bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6" onSubmit={update${upperCaseFirstLetterModelName}}>
               ${finalEditFormFieldItems}
               <div className="flex flex-row ">
