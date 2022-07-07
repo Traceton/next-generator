@@ -27,7 +27,7 @@ export const generateIndex = (
             <div className="m-2 p-2 w-full">
               <div className="pt-2 flex justify-end">
               <Link href="/${modelName}s/create${upperCaseFirstLetterModelName}">
-                  <a className="m-1 inline-flex justify-center py-2 px-4 border border-gray-700 shadow-sm text-xl font-light rounded-md text-white border-gray-500 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  <a className="m-1 inline-flex justify-center py-2 px-4 border border-gray-700 shadow-sm text-xl font-light rounded-md text-white hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     +
                   </a>
                 </Link>
@@ -38,11 +38,11 @@ export const generateIndex = (
 
         <div className="flex flex-col m-0">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="py-2 b-none align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="py-2 border-none align-middle inline-block min-w-full sm:px-6 lg:px-8">
               <div className="shadow overflow-hidden border-b border-gray-800 sm:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-800">
                   <thead className="bg-gray-800">
-                    <tr> 
+                    <tr>
                       ${finalSchemaTitleItemsForIndex}
                       <th scope="col" className="relative px-6 py-3">
                         <span className="sr-only">View</span>
@@ -53,14 +53,14 @@ export const generateIndex = (
                     {props.${modelName}s.map((${modelName}) => (
                       <tr key={${modelName}.${idType}}>
                         ${finalSchemaItemsForIndex}
-                        <td className="px-2 py-4 whitespace-nowrap text-right font-light text-md flex justify-end">
+                        <td className="px-2 py-4 whitespace-nowrap text-right font-light text-base flex justify-end">
                           <Link href={"/${modelName}s/" + ${modelName}.${idType}}>
-                            <a className="m-1 inline-flex justify-center  px-2 border border-gray-900 shadow-sm  font-light rounded-md text-white border-gray-500 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <a className="m-1 inline-flex justify-center  px-2 border shadow-sm  font-light rounded-md text-white border-gray-500 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                               View
                             </a>
                           </Link>
                           <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}.${idType}}>
-                            <a className="m-1 inline-flex justify-center  px-2 border border-gray-900 shadow-sm  font-light rounded-md text-white border-gray-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <a className="m-1 inline-flex justify-center  px-2 border shadow-sm  font-light rounded-md text-white border-gray-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                               Edit
                             </a>
                           </Link>
