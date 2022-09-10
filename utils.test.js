@@ -1,5 +1,10 @@
 // Test functionality of createDirectory and createFile.
-const { createDirectory, createFile, getIdType, readNextConfig } = require("./utils");
+const {
+  createDirectory,
+  createFile,
+  getIdType,
+  readNextConfig,
+} = require("./utils");
 const fs = require("fs");
 
 jest.mock(`fs`);
@@ -74,16 +79,12 @@ describe("Test if `fs` is called correctly in createFile", () => {
 
 // // Test undefined input
 test("should return no filePath and no fileContent recieved ", () => {
-  expect(createFile(undefined)).toBe(
-    `no filePath and no fileContent recieved`
-  );
+  expect(createFile(undefined)).toBe(`no filePath and no fileContent recieved`);
 });
 
 // // Test null input
 test("should return no filePath and no fileContent recieved ", () => {
-  expect(createFile(null)).toBe(
-    `no filePath and no fileContent recieved`
-  );
+  expect(createFile(null)).toBe(`no filePath and no fileContent recieved`);
 });
 
 test("should return no filePath and no fileContent recieved ", () => {
@@ -96,8 +97,8 @@ test("should return no filePath and no fileContent recieved ", () => {
 
 // getIdType tests
 describe("Test if the id time is returned correctly", () => {
-  expect( getIdType()).toBe("_id")
-})
+  expect(getIdType()).toBe("_id");
+});
 
 // END getIdType TESTS
 
@@ -105,12 +106,12 @@ describe("Test if the id time is returned correctly", () => {
 
 describe("Should return the contents of nextGenConfig.json", () => {
   const readConfig = jest.fn(readNextConfig);
-  readConfig()
-  expect( readConfig).toHaveReturnedWith({
-    "database": "mongodb",
-    "pageType": "none",
-    "projectRootPath":""
-})
-})
+  readConfig();
+  expect(readConfig).toHaveReturnedWith({
+    database: "mongodb",
+    pageType: "none",
+    projectRootPath: "",
+  });
+});
 
 // END readNextConfig TESTS

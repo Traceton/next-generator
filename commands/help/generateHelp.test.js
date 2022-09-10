@@ -1,9 +1,9 @@
-const {generateHelp} = require("./generateHelp")
+const { generateHelp } = require("./generateHelp");
 
 test("Checks if help command returns the help file", () => {
-    const help = jest.fn(generateHelp);
-    
-    help();
+  const help = jest.fn(generateHelp);
 
-    expect(help).toHaveReturned()
-})
+  help();
+
+  expect(help).toHaveReturned();
+});

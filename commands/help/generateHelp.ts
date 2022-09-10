@@ -48,4 +48,3 @@ export const generateHelp = async () => {
 
   console.log(`***** End of User Guide *****`);
 };
-

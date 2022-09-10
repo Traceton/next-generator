@@ -1,11 +1,11 @@
 import { createDirectory, createFile, readNextConfig } from "../../../../utils";
 import { existsSync } from "fs";
 
-// generates a mongoose/mongodb model using userInput. 
+// generates a mongoose/mongodb model using userInput.
 export const generateMongooseModel = async (userInput: string[]) => {
   let modelName = userInput[2];
 
-  let configData = readNextConfig()
+  let configData = readNextConfig();
 
   if (modelName === undefined || modelName === "undefined") {
     console.log(`must enter a model name`);

@@ -4,7 +4,7 @@ import { existsSync } from "fs";
 export const generatePostgresqlApiRoutes = async (userInput: string[]) => {
   const modelName = userInput[2];
 
-  let configData = readNextConfig()
+  let configData = readNextConfig();
 
   if (!modelName) {
     return `no routeName recieved`;
@@ -183,11 +183,11 @@ export const prisma =
 if (process.env.NODE_ENV !== 'production') global.prisma = prisma`;
 
   if (!existsSync(`${configData.projectRootPath}pages`)) {
-     createDirectory(`${configData.projectRootPath}pages`);
+    createDirectory(`${configData.projectRootPath}pages`);
   }
 
   if (!existsSync(`${configData.projectRootPath}pages/api`)) {
-     createDirectory(`${configData.projectRootPath}pages/api`);
+    createDirectory(`${configData.projectRootPath}pages/api`);
   }
 
   if (!existsSync(`${configData.projectRootPath}pages/api/${modelName}s`)) {
@@ -195,12 +195,20 @@ if (process.env.NODE_ENV !== 'production') global.prisma = prisma`;
   }
 
   if (!existsSync(`${configData.projectRootPath}utils`)) {
-     createDirectory(`${configData.projectRootPath}utils`);
+    createDirectory(`${configData.projectRootPath}utils`);
   }
 
-  createFile(`${configData.projectRootPath}utils/prismaInstance.ts`, prismaInstanceFile);
+  createFile(
+    `${configData.projectRootPath}utils/prismaInstance.ts`,
+    prismaInstanceFile
+  );
 
-  createFile(`${configData.projectRootPath}pages/api/${modelName}s/index.js`, indexApiPage);
-  createFile(`${configData.projectRootPath}pages/api/${modelName}s/[${modelName}Id].js`, dynamicApiPage);
+  createFile(
+    `${configData.projectRootPath}pages/api/${modelName}s/index.js`,
+    indexApiPage
+  );
+  createFile(
+    `${configData.projectRootPath}pages/api/${modelName}s/[${modelName}Id].js`,
+    dynamicApiPage
+  );
 };
-

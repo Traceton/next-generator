@@ -47,7 +47,7 @@ const generatePostgresqlModel = async (userInput) => {
                 fs_1.default.appendFile(path, newModel, function (error) {
                     if (error)
                         console.log(`prisma schema mod error -> ${error}`);
-                    console.log('Updated schema!');
+                    console.log("Updated schema!");
                 });
             }
         }

@@ -1,5 +1,5 @@
-import { readNextConfig } from "../../../utils"
-import {nonePageController} from "./pageTypeNonePages/nonePageController"
+import { readNextConfig } from "../../../utils";
+import { nonePageController } from "./pageTypeNonePages/nonePageController";
 import { tailwindcssPageController } from "./pageTypeTailwindcssPages/tailwindcssPageController";
 
 // Command to use this generator below:
@@ -7,12 +7,11 @@ import { tailwindcssPageController } from "./pageTypeTailwindcssPages/tailwindcs
 
 // The controller that routes user input depending on pageType in nextGenConfig
 export const generatePagesController = async (userInput: string[]) => {
-  const configData = readNextConfig()
+  const configData = readNextConfig();
 
   if (configData.pageType == "none" || !configData.pageType) {
-    nonePageController(userInput)
+    nonePageController(userInput);
   } else if (configData.pageType == "tailwindcss") {
-    tailwindcssPageController(userInput)
+    tailwindcssPageController(userInput);
   }
-
 };
