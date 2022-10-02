@@ -41,3 +41,5 @@ const nextGeneratorController = () => {
 };
 
 nextGeneratorController();
+
+// example fix for Kanban For Everyone
