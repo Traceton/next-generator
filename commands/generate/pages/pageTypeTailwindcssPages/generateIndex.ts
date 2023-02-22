@@ -26,10 +26,8 @@ export const generateIndex = (
 
             <div className="m-2 p-2 w-full">
               <div className="pt-2 flex justify-end">
-              <Link href="/${modelName}s/create${upperCaseFirstLetterModelName}">
-                  <a className="m-1 inline-flex justify-center py-2 px-4 border border-gray-700 shadow-sm text-xl font-light rounded-md text-white border-gray-500 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    +
-                  </a>
+                <Link href="/${modelName}s/create${upperCaseFirstLetterModelName}" className="m-1 inline-flex justify-center py-2 px-4 border border-gray-700 shadow-sm text-xl font-light rounded-md text-white border-gray-500 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">  
+                  +
                 </Link>
               </div>
             </div>
@@ -54,15 +52,11 @@ export const generateIndex = (
                       <tr key={${modelName}.${idType}}>
                         ${finalSchemaItemsForIndex}
                         <td className="px-2 py-4 whitespace-nowrap text-right font-light text-md flex justify-end">
-                          <Link href={"/${modelName}s/" + ${modelName}.${idType}}>
-                            <a className="m-1 inline-flex justify-center  px-2 border border-gray-900 shadow-sm  font-light rounded-md text-white border-gray-500 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                              View
-                            </a>
+                          <Link href={"/${modelName}s/" + ${modelName}.${idType}} className="m-1 inline-flex justify-center  px-2 border border-gray-900 shadow-sm  font-light rounded-md text-white border-gray-500 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            View
                           </Link>
-                          <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}.${idType}}>
-                            <a className="m-1 inline-flex justify-center  px-2 border border-gray-900 shadow-sm  font-light rounded-md text-white border-gray-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                              Edit
-                            </a>
+                          <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}.${idType}} className="m-1 inline-flex justify-center  px-2 border border-gray-900 shadow-sm  font-light rounded-md text-white border-gray-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Edit
                           </Link>
                         </td>
                       </tr>
