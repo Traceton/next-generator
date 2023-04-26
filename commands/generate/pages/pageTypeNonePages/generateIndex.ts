@@ -20,10 +20,8 @@ export const generateIndex = (
 
                 <div>
                   <div>
-                    <Link href="/${modelName}s/create${upperCaseFirstLetterModelName}">
-                      <a>
-                        New
-                      </a>
+                    <Link href="/${modelName}s/create${upperCaseFirstLetterModelName}">                  
+                      New
                     </Link>
                   </div>
               </div>
@@ -40,14 +38,10 @@ export const generateIndex = (
                       </a>
                     </div>
                     <Link href={"/${modelName}s/" + ${modelName}.${idType}}>
-                      <a>
-                        View
-                      </a>
+                      View
                     </Link>
                     <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}.${idType}}>
-                      <a>
                         Edit
-                      </a>
                     </Link>
                   </div>
                 ))}
