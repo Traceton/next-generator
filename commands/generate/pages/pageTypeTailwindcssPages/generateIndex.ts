@@ -15,7 +15,7 @@ export const generateIndex = (
     export default function ${upperCaseFirstLetterModelName}(props) {
       return (
         <>
-      <div className="h-screen p-2 rounded-md bg-gray-900 font-light">
+      <div className="h-screen p-2 bg-gray-900 font-light">
         <div className="">
           <div className="flex flex-row justify-between">
             <div className="flex flex-col justify-center">
