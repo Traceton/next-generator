@@ -25,15 +25,11 @@ export const generateDynamic = (
                 ${finalSchemaItemsForDynamicPage}
                 <div>
                   <div>
-                  <Link href={"/${modelName}s"}>
-                  <a>
-                    Home
-                  </a>
-                </Link>
+                    <Link href={"/${modelName}s"}>
+                      Home 
+                    </Link>
                     <Link href={"/${modelName}s/edit${upperCaseFirstLetterModelName}s/" + ${modelName}.${idType}}>
-                      <a>
-                        Edit
-                      </a>
+                      Edit
                     </Link>
                   </div>
                 </div>
