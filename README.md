@@ -4,6 +4,8 @@
 
 next-generator is a extremely easy to use npm package for people using Nextjs, mongoose(mongoDb) or prisma(postgreSQL), and tailwindCss(optional) for their project.
 
+## See https://traceton.hashnode.dev/next-generator-for-nextjs-rapid-prototyping for a quick guide.
+
 ## Install and setup:
 :heavy_exclamation_mark: Be sure to check out the [Next Generator Wiki](https://github.com/Traceton/next-generator/wiki) for more info. :heavy_exclamation_mark:
 
